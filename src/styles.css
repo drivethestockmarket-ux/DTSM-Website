@@ -1233,7 +1233,6 @@ p {
 }
 
 .inside-section,
-.social-section,
 .transformation-section,
 .steps-section,
 .scanner-section {
@@ -1244,11 +1243,6 @@ p {
   background:
     linear-gradient(90deg, rgba(233, 248, 239, 0.52), transparent 34%),
     #ffffff;
-}
-
-.social-section {
-  background:
-    linear-gradient(180deg, #ffffff, #f8fbf9);
 }
 
 .home-offer-section {
@@ -1515,6 +1509,178 @@ p {
   margin: 6px 0 0;
   color: var(--muted);
   line-height: 1.55;
+}
+
+.pricing-proof-section {
+  background:
+    radial-gradient(circle at 78% 0%, rgba(25, 196, 119, 0.14), transparent 30%),
+    linear-gradient(180deg, #ffffff, #f7fbf8);
+  border-top: 1px solid rgba(0, 122, 59, 0.08);
+}
+
+.pricing-proof-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.5fr);
+  gap: 18px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.pricing-proof-window,
+.pricing-proof-quote {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 253, 250, 0.96));
+  border: 1px solid rgba(0, 122, 59, 0.14);
+  border-radius: 30px;
+  box-shadow: var(--shadow-soft);
+}
+
+.pricing-proof-window {
+  overflow: hidden;
+}
+
+.pricing-proof-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 16px;
+  padding: 18px;
+}
+
+.pricing-proof-feed {
+  display: grid;
+  gap: 12px;
+}
+
+.pricing-proof-feed article,
+.pricing-proof-badge,
+.pricing-proof-point {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(22, 34, 29, 0.05);
+}
+
+.pricing-proof-feed article {
+  padding: 20px;
+}
+
+.pricing-proof-feed small,
+.pricing-proof-feed strong {
+  display: block;
+}
+
+.pricing-proof-feed small {
+  color: var(--green-dark);
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pricing-proof-feed strong {
+  margin-top: 8px;
+  color: #111b17;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.pricing-proof-feed p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.pricing-proof-side {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.pricing-proof-badge {
+  padding: 20px;
+  background:
+    radial-gradient(circle at 86% 14%, rgba(25, 196, 119, 0.12), transparent 32%),
+    linear-gradient(180deg, #ffffff, #f7fbf8);
+}
+
+.pricing-proof-badge strong,
+.pricing-proof-badge span {
+  display: block;
+}
+
+.pricing-proof-badge strong {
+  color: #101816;
+  font-size: 1.12rem;
+}
+
+.pricing-proof-badge span {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.pricing-proof-point {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 18px;
+}
+
+.pricing-proof-point svg {
+  color: var(--green);
+  margin-top: 4px;
+}
+
+.pricing-proof-point strong {
+  display: block;
+  color: #111b17;
+}
+
+.pricing-proof-point p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.pricing-proof-quote {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: clamp(24px, 3vw, 34px);
+  background:
+    radial-gradient(circle at 82% 10%, rgba(25, 196, 119, 0.16), transparent 32%),
+    linear-gradient(180deg, #ffffff, #f7fbf8);
+}
+
+.pricing-proof-quote span,
+.pricing-proof-quote strong,
+.pricing-proof-quote small {
+  display: block;
+}
+
+.pricing-proof-quote span {
+  color: var(--green-dark);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pricing-proof-quote p {
+  margin: 0;
+  color: #111b17;
+  font-size: clamp(1.12rem, 2vw, 1.35rem);
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.pricing-proof-quote strong {
+  color: #101816;
+  font-size: 1.02rem;
+}
+
+.pricing-proof-quote small {
+  color: var(--muted);
+  font-weight: 850;
 }
 
 .reactions-section {
@@ -5526,7 +5692,9 @@ footer p {
   .affiliate-position-strip,
   .affiliate-kit-section,
   .faq-layout,
-  .legal-grid {
+  .legal-grid,
+  .pricing-proof-shell,
+  .pricing-proof-main {
     grid-template-columns: 1fr;
   }
 
@@ -5871,8 +6039,40 @@ footer p {
   .scanner-process-section article,
   .legal-card,
   .faq-item,
-  .contact-panel article {
+  .contact-panel article,
+  .pricing-proof-feed article,
+  .pricing-proof-badge,
+  .pricing-proof-point,
+  .pricing-proof-quote {
     padding: 20px;
+  }
+
+  .reaction-marquee {
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+  }
+
+  .reaction-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reaction-marquee::before,
+  .reaction-marquee::after {
+    display: none;
+  }
+
+  .reaction-track {
+    width: max-content;
+    padding: 18px 2px 12px;
+    animation: none;
+  }
+
+  .reaction-card {
+    flex: 0 0 min(340px, 86vw);
+    min-height: 0;
   }
 
   .scanner-embed {

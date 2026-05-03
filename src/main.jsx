@@ -261,6 +261,12 @@ const planGuides = [
   ["Most accountability", "Elite", "You want weekly meetings, trade review submissions, and deeper feedback around execution."]
 ];
 
+const pricingProofCards = [
+  ["Feed + watchlist", "Log into Circle, check what is in play, and see what traders are posting before the open."],
+  ["Live room + replays", "Watch the session live, then go back through recordings and Level 2 examples after the market closes."],
+  ["Review + accountability", "Post your trades, get feedback, and use weekly meetings to clean up repeated mistakes."]
+];
+
 const communityTestimonials = [
   [
     "John LeMay",
@@ -421,6 +427,18 @@ const lookInsideTabs = {
     ],
     stat: "24 traders watching"
   },
+  "Elite Meetings": {
+    icon: <CalendarDays />,
+    title: "Weekly meetings to review, talk, connect, and improve.",
+    status: "Elite weekly",
+    summary: "Elite members join focused sessions around execution, psychology, consistency, and trade review.",
+    posts: [
+      ["Thursday", "Weekly trade review: what worked, what failed, and what to clean up.", "54", "23"],
+      ["Group call", "Members bring screenshots and talk through decisions live.", "41", "20"],
+      ["Action plan", "Leave with one execution rule to focus on next week.", "67", "29"]
+    ],
+    stat: "Elite accountability"
+  },
   "The Tape": {
     icon: <MessageSquareText />,
     title: "A social feed for trades, lessons, and observations.",
@@ -486,18 +504,6 @@ const lookInsideTabs = {
     summary: "Post entries, exits, mistakes, screenshots, and lessons so the community can help you improve.",
     posts: previewTabs["Trade Reviews"].items,
     stat: "Feedback loops"
-  },
-  "Elite Meetings": {
-    icon: <CalendarDays />,
-    title: "Weekly meetings to review, talk, connect, and improve.",
-    status: "Elite weekly",
-    summary: "Elite members join focused sessions around execution, psychology, consistency, and trade review.",
-    posts: [
-      ["Thursday", "Weekly trade review: what worked, what failed, and what to clean up.", "54", "23"],
-      ["Group call", "Members bring screenshots and talk through decisions live.", "41", "20"],
-      ["Action plan", "Leave with one execution rule to focus on next week.", "67", "29"]
-    ],
-    stat: "Elite accountability"
   }
 };
 
@@ -1039,7 +1045,7 @@ function HeroLookInside() {
           <span />
           <span />
           <img src="/assets/dtsm-orb-logo.png" alt="" />
-          <b>DTSM Community</b>
+          <b>DTSM on Circle</b>
         </div>
         <div className="look-layout">
           <aside className="look-tabs" aria-label="Look inside DTSM tabs">
@@ -1621,50 +1627,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
         </div>
       </section>
 
-      <section className="section social-section">
-        <div className="section-heading">
-          <span className="kicker">Community System</span>
-          <h2>Participation is built into the platform.</h2>
-          <p>
-            DTSM is designed so members do more than watch. They post, comment, like, ask questions,
-            share useful information, and build reputation by helping the room get sharper.
-          </p>
-        </div>
-        <div className="social-grid">
-          <article className="social-card large">
-            <div className="card-icon"><MessageSquareText /></div>
-            <h3>The Tape works like a trading feed.</h3>
-            <p>
-              Members can post charts, screenshots, trade notes, watchlist ideas, and lessons. Other
-              traders can like, comment, and add context so the best observations become easier to find.
-            </p>
-            <div className="sample-post">
-              <div>
-                <strong>Edwin O.</strong>
-                <small>Posted in The Tape</small>
-              </div>
-              <p>Level 2 started stacking bids before the breakout. Screenshot and notes attached.</p>
-              <div className="feed-actions"><span><Heart size={15} /> 48</span><span><MessageCircle size={15} /> 21</span></div>
-            </div>
-          </article>
-          <article className="social-card">
-            <div className="card-icon"><MessageCircle /></div>
-            <h3>24/7 Live Trading Chatroom</h3>
-            <p>Open around the clock for pre-market prep, live session discussion, after-hours review, and member questions.</p>
-          </article>
-          <article className="social-card">
-            <div className="card-icon"><Trophy /></div>
-            <h3>Contributor Leaderboard</h3>
-            <p>Members who share posts, useful information, and thoughtful comments earn visibility for helping the community improve.</p>
-          </article>
-          <article className="social-card">
-            <div className="card-icon"><CalendarDays /></div>
-            <h3>Elite Weekly Meetings</h3>
-            <p>Elite members meet weekly to review trades, talk through execution, connect with other traders, and get better together.</p>
-          </article>
-        </div>
-      </section>
-
       <section className="section accountability-section">
         <div className="accountability-copy">
           <span className="kicker">Accountability</span>
@@ -1682,40 +1644,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
               <p>{pillar.body}</p>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="section home-free-path-section">
-        <div className="section-heading centered compact">
-          <span className="kicker">Start Free</span>
-          <h2>Not ready for membership yet? Start with the free path.</h2>
-          <p>
-            Start with free breakdowns, join the Discord preview, and use the scanner workflow so
-            you can see how DTSM thinks before paying for full access.
-          </p>
-        </div>
-        <div className="home-free-path-grid">
-          <a href={youtubeLink} className="home-free-card youtube" onClick={() => trackEvent("youtube_click", { location: "home_free_path" })}>
-            <PlayCircle size={24} />
-            <span>YouTube</span>
-            <strong>Watch free breakdowns</strong>
-            <p>Market lessons, Level 2 concepts, scanner education, and execution review content.</p>
-            <b>Open YouTube <ArrowRight size={16} /></b>
-          </a>
-          <a href={discordLink} className="home-free-card discord" onClick={() => trackEvent("discord_click", { location: "home_free_path" })}>
-            <MessageCircle size={24} />
-            <span>Discord</span>
-            <strong>Join the free preview</strong>
-            <p>Stay connected with DTSM before becoming a member and see what traders are watching.</p>
-            <b>Join Discord <ArrowRight size={16} /></b>
-          </a>
-          <a href="/scanner" className="home-free-card scanner">
-            <LineChart size={24} />
-            <span>Scanner</span>
-            <strong>Find what is moving</strong>
-            <p>Use the ChartsWatcher scanner and DTSM workflow to turn movement into a cleaner plan.</p>
-            <b>Open Scanner <ArrowRight size={16} /></b>
-          </a>
         </div>
       </section>
 
@@ -1751,6 +1679,81 @@ function HomePage({ menuOpen, setMenuOpen }) {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section pricing-proof-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">What Opens After You Join</span>
+          <h2>A clearer, more premium reason to upgrade.</h2>
+          <p>
+            DTSM works best when the value feels concrete. You join, log into Circle, follow what is
+            in play, review the session, and keep building your process with the room.
+          </p>
+        </div>
+        <div className="pricing-proof-shell">
+          <div className="pricing-proof-window">
+            <div className="look-topbar">
+              <span />
+              <span />
+              <span />
+              <img src="/assets/dtsm-orb-logo.png" alt="" />
+              <b>DTSM on Circle</b>
+            </div>
+            <div className="pricing-proof-main">
+              <div className="pricing-proof-feed">
+                <article>
+                  <small>The Tape</small>
+                  <strong>Morning watchlist posted with levels and scenarios.</strong>
+                  <p>Check what is in play before the open so you are not guessing once momentum starts moving.</p>
+                </article>
+                <article>
+                  <small>Live Room</small>
+                  <strong>Session is live with chart, commentary, and setup context.</strong>
+                  <p>Follow the room, listen to the reasoning, and see how execution decisions are handled in real time.</p>
+                </article>
+                <article>
+                  <small>Review Loop</small>
+                  <strong>Recordings, trade reviews, and weekly meetings stay in one place.</strong>
+                  <p>Come back after the move, study what happened, and turn each trade into a cleaner rule or routine.</p>
+                </article>
+              </div>
+              <aside className="pricing-proof-side">
+                <div className="pricing-proof-badge">
+                  <strong>Why members stay</strong>
+                  <span>It gives them a room to return to every day.</span>
+                </div>
+                {pricingProofCards.map(([title, body]) => (
+                  <div className="pricing-proof-point" key={title}>
+                    <Check size={16} />
+                    <div>
+                      <strong>{title}</strong>
+                      <p>{body}</p>
+                    </div>
+                  </div>
+                ))}
+              </aside>
+            </div>
+          </div>
+          <div className="pricing-proof-quote">
+            <span>Member perspective</span>
+            <p>
+              "I've learned more in a few months than I did in my first year of trading. Brendan
+              breaks things down clearly, and the room gives me a place to keep showing up."
+            </p>
+            <strong>John LeMay</strong>
+            <small>Momentum Day Trader</small>
+            <a
+              className="primary-button"
+              href="#pricing"
+              onClick={(event) => {
+                trackEvent("pricing_click", { location: "pricing_proof" });
+                scrollToSection(event, "pricing");
+              }}
+            >
+              View Membership Plans <ArrowRight size={18} />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1860,6 +1863,40 @@ function HomePage({ menuOpen, setMenuOpen }) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section home-free-path-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Start Free</span>
+          <h2>Not ready for membership yet? Start with the free path.</h2>
+          <p>
+            Start with free breakdowns, join the Discord preview, and use the scanner workflow so
+            you can see how DTSM thinks before paying for full access.
+          </p>
+        </div>
+        <div className="home-free-path-grid">
+          <a href={youtubeLink} className="home-free-card youtube" onClick={() => trackEvent("youtube_click", { location: "home_free_path" })}>
+            <PlayCircle size={24} />
+            <span>YouTube</span>
+            <strong>Watch free breakdowns</strong>
+            <p>Market lessons, Level 2 concepts, scanner education, and execution review content.</p>
+            <b>Open YouTube <ArrowRight size={16} /></b>
+          </a>
+          <a href={discordLink} className="home-free-card discord" onClick={() => trackEvent("discord_click", { location: "home_free_path" })}>
+            <MessageCircle size={24} />
+            <span>Discord</span>
+            <strong>Join the free preview</strong>
+            <p>Stay connected with DTSM before becoming a member and see what traders are watching.</p>
+            <b>Join Discord <ArrowRight size={16} /></b>
+          </a>
+          <a href="/scanner" className="home-free-card scanner">
+            <LineChart size={24} />
+            <span>Scanner</span>
+            <strong>Find what is moving</strong>
+            <p>Use the ChartsWatcher scanner and DTSM workflow to turn movement into a cleaner plan.</p>
+            <b>Open Scanner <ArrowRight size={16} /></b>
+          </a>
         </div>
       </section>
 
