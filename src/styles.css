@@ -645,6 +645,10 @@ p {
 }
 
 .live-video-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -827,6 +831,143 @@ p {
 .recording-card p {
   margin: 12px 0 0;
   color: #20312a;
+}
+
+.meeting-preview-card {
+  display: grid;
+  gap: 12px;
+  animation: previewSwap 420ms ease both;
+}
+
+.meeting-preview-stage,
+.meeting-preview-chat {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(22, 34, 29, 0.05);
+}
+
+.meeting-preview-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  padding: 18px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 84% 12%, rgba(94, 239, 155, 0.2), transparent 30%),
+    linear-gradient(135deg, #07120d, #0f3320 52%, #0a1a12);
+}
+
+.meeting-preview-stage strong,
+.meeting-preview-stage small {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.meeting-preview-stage strong {
+  margin-top: 18px;
+  font-size: 1.28rem;
+}
+
+.meeting-preview-stage small {
+  max-width: 420px;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.45;
+}
+
+.meeting-preview-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.meeting-preview-grid article {
+  position: relative;
+  overflow: hidden;
+  min-height: 96px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+}
+
+.meeting-preview-grid article.speaking {
+  box-shadow: inset 0 0 0 2px rgba(109, 242, 160, 0.55);
+}
+
+.meeting-preview-grid article div,
+.meeting-preview-grid article span,
+.meeting-preview-grid article b {
+  position: relative;
+  z-index: 1;
+}
+
+.meeting-preview-grid article div {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: #08301b;
+  background: #d9fbe5;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  font-weight: 950;
+}
+
+.meeting-preview-grid article span {
+  display: block;
+  margin-top: 16px;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.meeting-preview-grid article b {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+  padding: 0 8px;
+  color: #082314;
+  background: #6df2a0;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.meeting-preview-grid article b svg {
+  color: var(--green-dark);
+}
+
+.meeting-preview-chat {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+}
+
+.meeting-preview-chat p {
+  margin: 0;
+  padding: 11px 12px;
+  color: #233129;
+  background: #f5f9f7;
+  border: 1px solid #e6eeea;
+  border-radius: 16px;
+  line-height: 1.45;
+}
+
+.meeting-preview-chat span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--green-dark);
+  font-weight: 950;
 }
 
 .orderflow-panel {
@@ -1210,9 +1351,27 @@ p {
   margin-bottom: 38px;
 }
 
+.section-heading h2,
+.pain-copy h2,
+.inside-copy h2,
+.accountability-copy h2,
+.join-flow-copy h2,
+.affiliate-kit-copy h2,
+.affiliate-form-copy h2,
+.scanner-copy h2 {
+  max-width: 16ch;
+  font-size: clamp(1.95rem, 3.2vw, 3rem);
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
 .section-heading.centered {
   margin-inline: auto;
   text-align: center;
+}
+
+.section-heading.centered h2 {
+  margin-inline: auto;
 }
 
 .section-heading.compact {
@@ -1922,7 +2081,7 @@ p {
 }
 
 .pain-copy h2 {
-  max-width: 820px;
+  max-width: 14ch;
 }
 
 .pain-copy p {
@@ -3961,7 +4120,7 @@ p {
 }
 
 .affiliate-form-copy h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  max-width: 14ch;
 }
 
 .form-promise {
@@ -4172,7 +4331,7 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 330px;
   gap: 18px;
-  min-height: 560px;
+  height: 760px;
   padding: 18px;
   background:
     linear-gradient(135deg, rgba(233, 248, 239, 0.86), rgba(255, 255, 255, 0.92) 42%),
@@ -4184,6 +4343,7 @@ p {
 
 .platform-main,
 .platform-side {
+  min-height: 0;
   background:
     linear-gradient(180deg, #ffffff, #f7fbf9);
   border: 1px solid var(--line);
@@ -4191,6 +4351,9 @@ p {
 }
 
 .platform-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   padding: clamp(22px, 4vw, 42px);
 }
 
@@ -4207,14 +4370,18 @@ p {
 
 .platform-main h3 {
   max-width: 650px;
-  margin: 18px 0 24px;
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  line-height: 1;
+  margin: 16px 0 22px;
+  font-size: clamp(1.9rem, 3.2vw, 3rem);
+  line-height: 1.04;
 }
 
 .feed-list {
   display: grid;
   gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 4px;
 }
 
 .feed-item {
@@ -4279,10 +4446,216 @@ p {
   color: var(--green);
 }
 
+.tape-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.tape-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 292px;
+  padding: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(22, 34, 29, 0.05);
+  animation: fadeUp 260ms ease both;
+}
+
+.tape-card:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.tape-card:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.tape-attachment {
+  position: relative;
+  overflow: hidden;
+  min-height: 134px;
+  padding: 14px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+}
+
+.tape-attachment.green {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(135deg, #07120d, #1d7a46);
+  background-size: 24px 24px, 24px 24px, auto;
+}
+
+.tape-attachment.blue {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(135deg, #102137, #2d6cdf);
+  background-size: 24px 24px, 24px 24px, auto;
+}
+
+.tape-attachment.gray {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(135deg, #111817, #42514d);
+  background-size: 24px 24px, 24px 24px, auto;
+}
+
+.tape-attachment span {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.tape-attachment-art {
+  position: absolute;
+  inset: auto 14px 14px 14px;
+  display: flex;
+  align-items: end;
+  gap: 7px;
+  height: 64px;
+}
+
+.tape-attachment-art i {
+  flex: 1;
+  min-width: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.18));
+  border-radius: 999px 999px 4px 4px;
+}
+
+.tape-card small {
+  color: var(--green-dark);
+  font-weight: 950;
+}
+
+.tape-card p {
+  margin: 8px 0 0;
+  color: #26332e;
+}
+
 .meeting-preview {
   display: grid;
   gap: 14px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 4px;
   animation: fadeUp 260ms ease both;
+}
+
+.chatroom-preview {
+  display: grid;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 4px;
+  animation: fadeUp 260ms ease both;
+}
+
+.chatroom-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  color: #13211a;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(22, 34, 29, 0.05);
+}
+
+.chatroom-top span,
+.chatroom-top strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 950;
+}
+
+.chatroom-top svg {
+  color: var(--green);
+}
+
+.chatroom-top strong {
+  min-height: 32px;
+  padding: 0 10px;
+  color: #ffffff;
+  background: var(--green);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.chatroom-thread {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 249, 246, 0.98)),
+    radial-gradient(circle at 16% 12%, rgba(25, 196, 119, 0.1), transparent 34%);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 0 18px 42px rgba(22, 34, 29, 0.08);
+}
+
+.chatroom-thread article {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.chatroom-avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #082314;
+  background: linear-gradient(135deg, #ffffff, #d8f7e4);
+  border: 1px solid #cfeedd;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.chatroom-bubble {
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(22, 34, 29, 0.05);
+}
+
+.chatroom-bubble strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #14221c;
+  font-size: 0.96rem;
+}
+
+.chatroom-bubble p {
+  margin: 0;
+  color: #32413b;
+  line-height: 1.55;
 }
 
 .meeting-top {
@@ -4329,7 +4702,7 @@ p {
 
 .meeting-room-window {
   overflow: hidden;
-  min-height: 420px;
+  min-height: 410px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 249, 246, 0.96)),
     radial-gradient(circle at 20% 12%, rgba(25, 196, 119, 0.14), transparent 38%);
@@ -4387,7 +4760,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 148px;
+  min-height: 138px;
   padding: 14px;
   color: #ffffff;
   background:
@@ -4541,6 +4914,10 @@ p {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 4px;
 }
 
 .preview-recording-card {

@@ -261,12 +261,6 @@ const planGuides = [
   ["Most accountability", "Elite", "You want weekly meetings, trade review submissions, and deeper feedback around execution."]
 ];
 
-const pricingProofCards = [
-  ["Feed + watchlist", "Log into Circle, check what is in play, and see what traders are posting before the open."],
-  ["Live room + replays", "Watch the session live, then go back through recordings and Level 2 examples after the market closes."],
-  ["Review + accountability", "Post your trades, get feedback, and use weekly meetings to clean up repeated mistakes."]
-];
-
 const communityTestimonials = [
   [
     "John LeMay",
@@ -360,6 +354,17 @@ const previewTabs = {
     ],
     side: ["Real trader calls", "Execution review", "Accountability"]
   },
+  "Live Trading Room": {
+    title: "Follow real-time market sessions with context.",
+    eyebrow: "Live Trading Room",
+    mode: "video",
+    items: [
+      ["Live", "Watching relative volume and tape speed before any entry.", "42", "16"],
+      ["Setup", "Small-cap momentum forming near high-of-day.", "29", "9"],
+      ["Review", "Risk defined below reclaim. No chase if it extends.", "36", "14"]
+    ],
+    side: ["Screen share", "Live commentary", "24/7 chat"]
+  },
   Recordings: {
     title: "Replay sessions and study examples after market hours.",
     eyebrow: "Archive",
@@ -374,22 +379,45 @@ const previewTabs = {
   "The Tape": {
     title: "A live feed for trades, notes, and lessons.",
     eyebrow: "Community Feed",
+    mode: "tape",
     items: [
-      ["9:42 AM", "Posted a VWAP reclaim screenshot. Entry was late, review attached.", "24", "8"],
-      ["10:15 AM", "Good patience on this halt setup. Waiting for confirmation kept risk clean.", "31", "12"],
-      ["11:03 AM", "Lesson: no trade is still a decision. Skipped three low-quality moves.", "18", "5"]
+      {
+        meta: "9:42 AM",
+        text: "Posted a VWAP reclaim screenshot. Entry was late, review attached.",
+        likes: "24",
+        comments: "8",
+        attachment: "Chart screenshot",
+        accent: "green"
+      },
+      {
+        meta: "10:15 AM",
+        text: "Good patience on this halt setup. Waiting for confirmation kept risk clean.",
+        likes: "31",
+        comments: "12",
+        attachment: "Trade note image",
+        accent: "blue"
+      },
+      {
+        meta: "11:03 AM",
+        text: "Lesson: no trade is still a decision. Skipped three low-quality moves.",
+        likes: "18",
+        comments: "5",
+        attachment: "Recap attachment",
+        accent: "gray"
+      }
     ],
     side: ["Trade screenshots", "Comments", "Likes + saves"]
   },
-  "Live Trading Room": {
-    title: "Follow real-time market sessions with context.",
-    eyebrow: "Live Trading Room",
+  "24/7 Chatroom": {
+    title: "Stay connected before, during, and after the market.",
+    eyebrow: "24/7 Chatroom",
+    mode: "chat",
     items: [
-      ["Live", "Watching relative volume and tape speed before any entry.", "42", "16"],
-      ["Setup", "Small-cap momentum forming near high-of-day.", "29", "9"],
-      ["Review", "Risk defined below reclaim. No chase if it extends.", "36", "14"]
+      ["8:14 AM", "Watching ORB names and waiting to see which one holds premarket volume.", "24", "11"],
+      ["10:22 AM", "Tape slowed down after the first push. Better to wait than force the next entry.", "31", "13"],
+      ["3:58 PM", "Posting my recap after the close. Best trade was the reclaim, worst trade was chasing extension.", "27", "9"]
     ],
-    side: ["Screen share", "Live commentary", "24/7 chat"]
+    side: ["Open all day", "Fast questions", "Trade talk"]
   },
   "Trade Reviews": {
     title: "Turn trades into feedback loops.",
@@ -432,6 +460,7 @@ const lookInsideTabs = {
     title: "Weekly meetings to review, talk, connect, and improve.",
     status: "Elite weekly",
     summary: "Elite members join focused sessions around execution, psychology, consistency, and trade review.",
+    mode: "call",
     posts: [
       ["Thursday", "Weekly trade review: what worked, what failed, and what to clean up.", "54", "23"],
       ["Group call", "Members bring screenshots and talk through decisions live.", "41", "20"],
@@ -1160,6 +1189,34 @@ function HeroLookInside() {
                   </div>
                 )}
 
+                {active.mode === "call" && (
+                  <div className="meeting-preview-card">
+                    <div className="meeting-preview-stage">
+                      <span className="live-dot">Live call</span>
+                      <strong>Weekly execution review in progress</strong>
+                      <small>Talking through what worked this week, what got forced, and what rule to carry into next week.</small>
+                      <div className="meeting-preview-grid">
+                        {[
+                          ["BH", "Brendan", true],
+                          ["ED", "Edward"],
+                          ["CV", "CV-Pete"],
+                          ["JL", "John"]
+                        ].map(([initials, name, speaking]) => (
+                          <article key={name} className={speaking ? "speaking" : ""}>
+                            <div>{initials}</div>
+                            <span>{name}</span>
+                            {speaking ? <b><Radio size={12} /> Speaking</b> : null}
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="meeting-preview-chat">
+                      <p><span>Brendan</span>Good trade idea, but the entry only counts if the reclaim holds.</p>
+                      <p><span>Edward</span>That helped me slow down a lot this week.</p>
+                    </div>
+                  </div>
+                )}
+
                 {!active.mode && active.posts.map(([meta, text, likes, comments]) => (
                   <article className="look-post" key={`${activeTab}-${meta}`}>
                     <div className="post-avatar">{String(meta).replace("#", "").slice(0, 1)}</div>
@@ -1241,7 +1298,7 @@ function CommunityPreview() {
     <section className="section preview-section">
       <div className="section-heading centered">
         <span className="kicker">Community Preview</span>
-        <h2>Peek inside the environment before you join.</h2>
+        <h2>Peek Inside The Environment<br />Before You Join.</h2>
         <p>
           Click through the core spaces and see how DTSM turns market activity into a repeatable
           improvement loop.
@@ -1322,6 +1379,81 @@ function CommunityPreview() {
                     ))}
                   </div>
                 </div>
+              </div>
+            ) : active.mode === "video" ? (
+              <div className="live-video-card">
+                <div className="video-screen">
+                  <div className="video-overlay">
+                    <span className="live-dot">Live session active</span>
+                    <strong>Small-cap momentum room</strong>
+                    <small>
+                      Watch the chart, hear the commentary, and follow how the setup is being
+                      managed in real time.
+                    </small>
+                  </div>
+                  <div className="video-chart" aria-hidden="true">
+                    {Array.from({ length: 14 }).map((_, index) => (
+                      <i key={index} style={{ height: `${24 + ((index * 19) % 52)}%` }} />
+                    ))}
+                  </div>
+                  <div className="play-button" aria-hidden="true">
+                    <PlayCircle size={34} />
+                  </div>
+                </div>
+                <div className="video-controls" aria-label="Live room session controls">
+                  <span><Radio size={15} /> 38 traders watching</span>
+                  <div><i /></div>
+                  <strong>12:14 left in recap</strong>
+                </div>
+                <div className="video-notes">
+                  <span><MonitorUp size={15} /> Screen share</span>
+                  <span><MessageCircle size={15} /> Live commentary</span>
+                  <span><Layers3 size={15} /> Level 2 focus</span>
+                </div>
+              </div>
+            ) : active.mode === "chat" ? (
+              <div className="chatroom-preview">
+                <div className="chatroom-top">
+                  <span><MessageCircle size={15} /> DTSM live chat</span>
+                  <strong>Open 24/7</strong>
+                </div>
+                <div className="chatroom-thread" aria-label="24/7 chatroom messages">
+                  {[
+                    ["BH", "Brendan", "Premarket volume is there. Let the first move settle before you do anything."],
+                    ["CV", "CV-Pete", "Got it. Watching the reclaim instead of the first candle push."],
+                    ["ED", "Edward", "Posting my chart in a second. Tape felt clean once bids started stacking."],
+                    ["JL", "John", "Helpful. I am sitting on my hands until the level confirms."]
+                  ].map(([initials, name, message]) => (
+                    <article key={name + message}>
+                      <div className="chatroom-avatar">{initials}</div>
+                      <div className="chatroom-bubble">
+                        <strong>{name}</strong>
+                        <p>{message}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ) : active.mode === "tape" ? (
+              <div className="tape-preview-grid">
+                {active.items.map((item) => (
+                  <article className="tape-card" key={`${item.meta}-${item.text}`}>
+                    <div className={`tape-attachment ${item.accent}`}>
+                      <span>{item.attachment}</span>
+                      <div className="tape-attachment-art" aria-hidden="true">
+                        {Array.from({ length: 7 }).map((_, index) => (
+                          <i key={index} style={{ height: `${26 + ((index * 17) % 44)}%` }} />
+                        ))}
+                      </div>
+                    </div>
+                    <small>{item.meta}</small>
+                    <p>{item.text}</p>
+                    <div className="feed-actions" aria-label="Post engagement">
+                      <span><Heart size={15} /> {item.likes}</span>
+                      <span><MessageCircle size={15} /> {item.comments}</span>
+                    </div>
+                  </article>
+                ))}
               </div>
             ) : active.mode === "recordings" ? (
               <div className="preview-recording-grid">
@@ -1425,12 +1557,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
             <span>30-Day Trial</span>
             <strong>Just $11.99</strong>
           </div>
-          <div className="hero-command-strip">
-            <span><Radio size={15} /> Live room</span>
-            <span><MessageCircle size={15} /> 24/7 chat</span>
-            <span><PlayCircle size={15} /> Recordings</span>
-            <span><Trophy size={15} /> Leaderboard</span>
-          </div>
         </div>
         <div className="hero-product">
           <HeroLookInside />
@@ -1454,7 +1580,7 @@ function HomePage({ menuOpen, setMenuOpen }) {
       <section className="section pain-section">
         <div className="pain-copy">
           <span className="kicker">The Real Problem</span>
-          <h2>More content will not fix inconsistent execution.</h2>
+          <h2>More Content Will Not Fix<br />Inconsistent Execution.</h2>
           <p>
             DTSM gives you what most traders are missing after they buy more content: a room to log
             into, a watchlist to follow, real trades to review, and a reason to keep showing up.
@@ -1478,114 +1604,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
       </section>
 
       <FounderSection />
-
-      <section id="inside" className="section inside-section refined-inside">
-        <div className="inside-story">
-          <div className="inside-copy">
-            <span className="kicker">The DTSM System</span>
-            <h2>A daily improvement loop for traders who want structure.</h2>
-            <p>
-              DTSM turns trading from a solo guessing game into a repeatable rhythm: prepare with
-              the room, watch real execution, talk through what happened, and review the decisions
-              that actually matter.
-            </p>
-            <div className="section-cta-row">
-              <a
-                className="primary-button"
-                href="#pricing"
-                onClick={(event) => {
-                  trackEvent("pricing_click", { location: "inside_section" });
-                  scrollToSection(event, "pricing");
-                }}
-              >
-                View Membership Plans <ArrowRight size={18} />
-              </a>
-              <a className="secondary-button" href="#preview" onClick={(event) => scrollToSection(event, "preview")}>
-                Explore The Preview <ArrowRight size={18} />
-              </a>
-            </div>
-          </div>
-          <div className="inside-os" aria-label="DTSM daily workflow preview">
-            <div className="os-top">
-              <span />
-              <span />
-              <span />
-              <strong>DTSM Daily Loop</strong>
-            </div>
-            <div className="os-body">
-              <div className="os-main-card">
-                <small>Live Room</small>
-                <strong>Watch execution with context.</strong>
-                <div className="os-chart">
-                  {Array.from({ length: 18 }).map((_, index) => (
-                    <i key={index} style={{ height: `${24 + ((index * 33) % 62)}%` }} />
-                  ))}
-                </div>
-              </div>
-              <div className="os-side-stack">
-                <div><MessageSquareText size={18} /><span>The Tape</span></div>
-                <div><Layers3 size={18} /><span>Level 2 + T&S</span></div>
-                <div><ClipboardCheck size={18} /><span>Trade Reviews</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="inside-flow">
-          {[
-            ["01", "Prepare", "Watchlist, key levels, and what is actually in play."],
-            ["02", "Participate", "Live room, The Tape, and 24/7 chat keep you engaged."],
-            ["03", "Study", "Recordings, Level 2 replays, and examples from real sessions."],
-            ["04", "Review", "Trade reviews turn decisions into clear lessons."]
-          ].map(([number, title, body]) => (
-            <article key={title}>
-              <span>{number}</span>
-              <strong>{title}</strong>
-              <p>{body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <div id="preview">
-        <CommunityPreview />
-      </div>
-
-      <section className="section home-offer-section">
-        <div className="section-heading centered compact">
-          <span className="kicker">What You Actually Get</span>
-          <h2>Everything is grouped around one goal: better execution.</h2>
-          <p>
-            When you join, you are not dumped into a pile of content. You get the feed, live room,
-            chat, recordings, and trade reviews in one place so the next step is always clear.
-          </p>
-        </div>
-        <div className="home-offer-grid">
-          {homeOfferGroups.map((group) => (
-            <article key={group.label}>
-              <span>{group.label}</span>
-              <h3>{group.title}</h3>
-              <p>{group.body}</p>
-              <div>
-                {group.items.map((item) => (
-                  <small key={item}><Check size={15} /> {item}</small>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="section-cta-center">
-          <a
-            className="primary-button"
-            href="#pricing"
-            onClick={(event) => {
-              trackEvent("pricing_click", { location: "home_offer_section" });
-              scrollToSection(event, "pricing");
-            }}
-          >
-            View Membership Plans <ArrowRight size={18} />
-          </a>
-        </div>
-      </section>
 
       <section className="section reactions-section">
         <div className="section-heading centered compact">
@@ -1619,6 +1637,47 @@ function HomePage({ menuOpen, setMenuOpen }) {
             href="#pricing"
             onClick={(event) => {
               trackEvent("pricing_click", { location: "reactions_section" });
+              scrollToSection(event, "pricing");
+            }}
+          >
+            View Membership Plans <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <div id="preview">
+        <CommunityPreview />
+      </div>
+
+      <section className="section home-offer-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">What You Actually Get</span>
+          <h2>Everything Is Built Around<br />Better Execution.</h2>
+          <p>
+            When you join, you are not dumped into a pile of content. You get the feed, live room,
+            chat, recordings, and trade reviews in one place so the next step is always clear.
+          </p>
+        </div>
+        <div className="home-offer-grid">
+          {homeOfferGroups.map((group) => (
+            <article key={group.label}>
+              <span>{group.label}</span>
+              <h3>{group.title}</h3>
+              <p>{group.body}</p>
+              <div>
+                {group.items.map((item) => (
+                  <small key={item}><Check size={15} /> {item}</small>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="section-cta-center">
+          <a
+            className="primary-button"
+            href="#pricing"
+            onClick={(event) => {
+              trackEvent("pricing_click", { location: "home_offer_section" });
               scrollToSection(event, "pricing");
             }}
           >
@@ -1679,81 +1738,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
               </div>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="section pricing-proof-section">
-        <div className="section-heading centered compact">
-          <span className="kicker">What Opens After You Join</span>
-          <h2>A clearer, more premium reason to upgrade.</h2>
-          <p>
-            DTSM works best when the value feels concrete. You join, log into Circle, follow what is
-            in play, review the session, and keep building your process with the room.
-          </p>
-        </div>
-        <div className="pricing-proof-shell">
-          <div className="pricing-proof-window">
-            <div className="look-topbar">
-              <span />
-              <span />
-              <span />
-              <img src="/assets/dtsm-orb-logo.png" alt="" />
-              <b>DTSM on Circle</b>
-            </div>
-            <div className="pricing-proof-main">
-              <div className="pricing-proof-feed">
-                <article>
-                  <small>The Tape</small>
-                  <strong>Morning watchlist posted with levels and scenarios.</strong>
-                  <p>Check what is in play before the open so you are not guessing once momentum starts moving.</p>
-                </article>
-                <article>
-                  <small>Live Room</small>
-                  <strong>Session is live with chart, commentary, and setup context.</strong>
-                  <p>Follow the room, listen to the reasoning, and see how execution decisions are handled in real time.</p>
-                </article>
-                <article>
-                  <small>Review Loop</small>
-                  <strong>Recordings, trade reviews, and weekly meetings stay in one place.</strong>
-                  <p>Come back after the move, study what happened, and turn each trade into a cleaner rule or routine.</p>
-                </article>
-              </div>
-              <aside className="pricing-proof-side">
-                <div className="pricing-proof-badge">
-                  <strong>Why members stay</strong>
-                  <span>It gives them a room to return to every day.</span>
-                </div>
-                {pricingProofCards.map(([title, body]) => (
-                  <div className="pricing-proof-point" key={title}>
-                    <Check size={16} />
-                    <div>
-                      <strong>{title}</strong>
-                      <p>{body}</p>
-                    </div>
-                  </div>
-                ))}
-              </aside>
-            </div>
-          </div>
-          <div className="pricing-proof-quote">
-            <span>Member perspective</span>
-            <p>
-              "I've learned more in a few months than I did in my first year of trading. Brendan
-              breaks things down clearly, and the room gives me a place to keep showing up."
-            </p>
-            <strong>John LeMay</strong>
-            <small>Momentum Day Trader</small>
-            <a
-              className="primary-button"
-              href="#pricing"
-              onClick={(event) => {
-                trackEvent("pricing_click", { location: "pricing_proof" });
-                scrollToSection(event, "pricing");
-              }}
-            >
-              View Membership Plans <ArrowRight size={18} />
-            </a>
-          </div>
         </div>
       </section>
 
