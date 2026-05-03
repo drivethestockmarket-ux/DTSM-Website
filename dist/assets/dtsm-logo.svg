@@ -1,0 +1,6 @@
+<svg width="164" height="48" viewBox="0 0 164 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="14" fill="#07120D"/>
+  <path d="M14 32V16h8.3c5.9 0 9.7 3.1 9.7 8s-3.8 8-9.7 8H14Zm5-4.3h3.1c3 0 4.8-1.4 4.8-3.7s-1.8-3.7-4.8-3.7H19v7.4Z" fill="#FFFFFF"/>
+  <path d="M35 15h4v18h-4V15Z" fill="#007A3B"/>
+  <text x="60" y="31" fill="#07120D" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="-1">DTSM</text>
+</svg>
