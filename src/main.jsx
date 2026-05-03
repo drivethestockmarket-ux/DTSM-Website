@@ -179,6 +179,40 @@ const resourceOperatingSystem = [
   ["Weekly reset", "Turn repeated mistakes into rules, routines, and better execution goals."]
 ];
 
+const resourceHeroStats = [
+  ["Free starter course", "Core lessons + routine builder"],
+  ["2 hour bonus replay", "See a full session with context"],
+  ["Execution-first path", "Prep, execution, review, repeat"],
+  ["Community upgrade ready", "Move into DTSM when you want more"]
+];
+
+const resourceTrustCards = [
+  ["Start in one place", "Stop bouncing between random lessons and begin with a cleaner path.", <Library />],
+  ["Learn what matters first", "Small-cap basics, risk, Level 2, Time & Sales, and review structure.", <Target />],
+  ["Turn information into routine", "Build habits around what to watch, what to skip, and what to review.", <Clock3 />]
+];
+
+const resourceCollections = [
+  {
+    label: "Starter",
+    title: "Foundation before speed",
+    body: "Get the language, risk, and routine down before you try to trade every move.",
+    items: ["Small-cap basics", "Risk management", "Momentum", "Trading routine"]
+  },
+  {
+    label: "Execution",
+    title: "Read cleaner setups",
+    body: "Slow down, read order flow better, and make your entries and exits more intentional.",
+    items: ["Level 2", "Time & Sales", "Entry review", "Mistake patterns"]
+  },
+  {
+    label: "Preview",
+    title: "See how DTSM thinks",
+    body: "Preview the kind of watchlists, reviews, recaps, and breakdowns that get stronger inside the room.",
+    items: ["Trade review", "Watchlist", "Weekly recap", "Recording notes"]
+  }
+];
+
 const affiliateBenefits = [
   ["Live trading community", "A real product traders can log into daily, not a one-off download or hype funnel.", <Radio />],
   ["Execution-focused education", "Position DTSM around discipline, reviews, Level 2, Time & Sales, and better process.", <Target />],
@@ -1774,6 +1808,11 @@ function HomePage({ menuOpen, setMenuOpen }) {
             want deeper feedback on your execution.
           </p>
         </div>
+        <div className="pricing-launch-banner">
+          <span>Founders launch pricing</span>
+          <strong>Early members get the lowest pricing DTSM plans to offer.</strong>
+          <p>Join during the founders launch window and lock in early-member pricing while the community is still in its first growth phase.</p>
+        </div>
         <div className="pricing-focus-bar">
           <span>Best place to start: <strong>Live Access</strong></span>
           <span>Try Live Access for <strong>$11.99 first month</strong></span>
@@ -2013,17 +2052,25 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <section className="page-hero resource-hero">
-        <div>
+        <div className="resource-hero-copy">
           <span className="kicker">Free Resource Hub</span>
-          <h1>Build Your Trading Process Before You Trade Bigger.</h1>
+          <h1>Build A Cleaner Trading Process Before You Risk More.</h1>
           <p>
-            Learn small-cap basics, Level 2, Time and Sales, watchlists, and trade reviews through
-            resources designed to help you prepare before the open, recognize cleaner setups, and
-            review your trades with more structure.
+            This is the free DTSM path for traders who want structure. Start with the course, learn
+            the language, build a routine around execution, and get a better feel for how DTSM helps
+            traders prepare, trade, and review.
           </p>
           <div className="hero-actions">
-            <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: "resources_hero" })}>View Membership Plans <ArrowRight size={19} /></a>
+            <a className="primary-button" href={loginLink} onClick={() => trackEvent("login_click", { location: "resources_hero" })}>Start The Free Course <ArrowRight size={19} /></a>
             <a className="secondary-button" href="/#preview">Preview The Community</a>
+          </div>
+          <div className="resource-hero-stats">
+            {resourceHeroStats.map(([title, body]) => (
+              <article key={title}>
+                <strong>{title}</strong>
+                <span>{body}</span>
+              </article>
+            ))}
           </div>
         </div>
         <div className="resource-hero-panel">
@@ -2054,26 +2101,71 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
               </div>
             </div>
           </div>
+          <div className="resource-hero-note">
+            <span>Free path</span>
+            <strong>Start with the course, then move into YouTube, Discord, and the scanner workflow.</strong>
+          </div>
         </div>
       </section>
 
-      <section className="resource-path-section">
-        {resourcePath.map(([number, title, body]) => (
-          <article key={title}>
-            <span>{number}</span>
-            <strong>{title}</strong>
-            <p>{body}</p>
-          </article>
-        ))}
+      <section className="section resource-trust-section">
+        <div className="resource-trust-grid">
+          {resourceTrustCards.map(([title, body, icon]) => (
+            <article key={title}>
+              <div className="card-icon">{icon}</div>
+              <strong>{title}</strong>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section resource-command-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Start Here</span>
+          <h2>One free path that makes the next step obvious.</h2>
+          <p>
+            Instead of grabbing random lessons, use this order: learn the basics, build a routine,
+            review execution, then step into the live environment when you are ready.
+          </p>
+        </div>
+        <div className="resource-command-grid">
+          <div className="resource-command-main">
+            {resourcePath.map(([number, title, body]) => (
+              <article key={title}>
+                <span>{number}</span>
+                <div>
+                  <strong>{title}</strong>
+                  <p>{body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <aside className="resource-command-side">
+            <span>What this gives you</span>
+            <strong>A better way to learn than random trading content.</strong>
+            <p>
+              The point of the free Resources page is not more noise. It is helping you prepare
+              better, read setups more clearly, and review decisions with structure before you ever
+              jump into the full live room.
+            </p>
+            <div className="resource-command-pills">
+              <small><Check size={14} /> Free starter course</small>
+              <small><Check size={14} /> 2 hour replay</small>
+              <small><Check size={14} /> YouTube lessons</small>
+              <small><Check size={14} /> DTSM Discord preview</small>
+            </div>
+          </aside>
+        </div>
       </section>
 
       <section className="section featured-resources-section">
         <div className="section-heading centered compact">
           <span className="kicker">Starter Kit</span>
-          <h2>Start with the DTSM Starter Course.</h2>
+          <h2>Start with the free DTSM Starter Course.</h2>
           <p>
-            A clean place to learn the basics, understand the language, and get ready for the live
-            community without bouncing between random trading content.
+            This is the cleanest entry point on the page. Learn the basics, understand the language,
+            and walk through a better routine before stepping deeper into the live environment.
           </p>
         </div>
         <a
@@ -2148,11 +2240,36 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
         </a>
       </section>
 
+      <section className="section resource-collections-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">What You Can Study</span>
+          <h2>Three resource lanes built around better execution.</h2>
+          <p>
+            The goal is to help visitors instantly understand what they can learn here and why each
+            section matters before they ever join DTSM.
+          </p>
+        </div>
+        <div className="resource-collections-grid">
+          {resourceCollections.map((collection) => (
+            <article key={collection.title}>
+              <span>{collection.label}</span>
+              <h3>{collection.title}</h3>
+              <p>{collection.body}</p>
+              <div>
+                {collection.items.map((item) => (
+                  <small key={item}><Check size={14} /> {item}</small>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <FreeChannelsSection />
 
       {resourceGroups.map((group) => (
         <section className="section resources-section" key={group.title}>
-          <div className="section-heading">
+          <div className="section-heading compact">
             <span className="kicker">{group.eyebrow}</span>
             <h2>{group.title}</h2>
             <p>{group.description}</p>
@@ -2160,14 +2277,26 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
           <div className="resource-grid">
             {group.cards.map(([title, body, icon, tag, time]) => (
               <article className="resource-card" key={title}>
-                <div className="card-icon">{icon}</div>
-                <div className="resource-card-meta">
-                  <span className="resource-status">{tag}</span>
-                  <small>{time}</small>
+                <div className="resource-card-top">
+                  <div className="card-icon">{icon}</div>
+                  <div className="resource-card-meta">
+                    <span className="resource-status">{tag}</span>
+                    <small>{time}</small>
+                  </div>
+                </div>
+                <div className="resource-card-visual" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
                 </div>
                 <h3>{title}</h3>
                 <p>{body}</p>
-                <a href={youtubeLink} onClick={() => trackEvent("youtube_click", { location: "resource_card" })}>View Resource <ArrowRight size={15} /></a>
+                <a
+                  href={group.eyebrow === "Preview DTSM" ? "/#preview" : youtubeLink}
+                  onClick={() => trackEvent(group.eyebrow === "Preview DTSM" ? "preview_click" : "youtube_click", { location: "resource_card" })}
+                >
+                  {group.eyebrow === "Preview DTSM" ? "Preview DTSM" : "View Resource"} <ArrowRight size={15} />
+                </a>
               </article>
             ))}
           </div>
