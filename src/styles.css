@@ -281,6 +281,36 @@ p {
   margin-top: 32px;
 }
 
+.hero-trial-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 14px;
+  margin-top: 14px;
+  color: #14201b;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 122, 59, 0.14);
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(22, 34, 29, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.hero-trial-note span,
+.hero-trial-note strong {
+  font-size: 0.9rem;
+  font-weight: 950;
+}
+
+.hero-trial-note span {
+  color: var(--green-dark);
+  text-transform: uppercase;
+}
+
+.hero-trial-note strong {
+  color: #0e1713;
+}
+
 .hero-proof {
   margin-top: 34px;
 }
@@ -1187,6 +1217,19 @@ p {
 
 .section-heading.compact {
   max-width: 760px;
+}
+
+.section-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.section-cta-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
 }
 
 .inside-section,
@@ -5673,6 +5716,10 @@ footer p {
 }
 
 @media (max-width: 640px) {
+  .section {
+    padding: 58px 18px;
+  }
+
   .site-header {
     padding: 14px 16px;
   }
@@ -5694,6 +5741,12 @@ footer p {
     padding: 112px 18px 54px;
   }
 
+  .hero-copy p,
+  .page-hero p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
   h1 {
     font-size: clamp(3rem, 15vw, 4.85rem);
   }
@@ -5705,6 +5758,23 @@ footer p {
   .hero-actions a,
   .final-cta .primary-button {
     width: 100%;
+  }
+
+  .hero-trial-note {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-command-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .hero-command-strip span {
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
   }
 
   .pricing-focus-bar {
@@ -5731,6 +5801,19 @@ footer p {
   }
 
   .look-status a {
+    width: 100%;
+  }
+
+  .section-cta-row,
+  .section-cta-center {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .section-cta-row .primary-button,
+  .section-cta-row .secondary-button,
+  .section-cta-center .primary-button,
+  .section-cta-center .secondary-button {
     width: 100%;
   }
 
@@ -5783,9 +5866,18 @@ footer p {
     min-height: 0;
   }
 
+  .proof-strip article,
+  .resource-path-section article,
+  .scanner-process-section article,
+  .legal-card,
+  .faq-item,
+  .contact-panel article {
+    padding: 20px;
+  }
+
   .scanner-embed {
-    min-height: 420px;
-    height: 62vh;
+    min-height: 360px;
+    height: 56vh;
   }
 
   .platform-preview {
@@ -5859,6 +5951,22 @@ footer p {
     margin-top: 24px;
   }
 
+  .scanner-actions,
+  .scanner-footer-row {
+    align-items: stretch;
+  }
+
+  .scanner-actions .primary-button,
+  .scanner-footer-row .scanner-fallback,
+  .contact-panel .secondary-button {
+    width: 100%;
+  }
+
+  .scanner-actions span,
+  .footer-support-block p {
+    max-width: none;
+  }
+
   .popular-badge {
     position: static;
     width: max-content;
@@ -5891,5 +5999,98 @@ footer p {
 
   .section {
     padding-inline: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    gap: 12px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand strong {
+    font-size: 1rem;
+  }
+
+  .nav {
+    left: 12px;
+    right: 12px;
+  }
+
+  .hero {
+    padding: 108px 16px 48px;
+  }
+
+  .page-hero {
+    padding: 108px 16px 48px;
+  }
+
+  .section {
+    padding: 52px 16px;
+  }
+
+  .hero-trial-note {
+    justify-content: space-between;
+    padding-inline: 12px;
+  }
+
+  .hero-command-strip {
+    grid-template-columns: 1fr;
+    padding: 8px;
+  }
+
+  .hero-command-strip span {
+    min-height: 38px;
+  }
+
+  .look-topbar,
+  .platform-main,
+  .platform-side,
+  .scanner-panel,
+  .resource-window,
+  .affiliate-hero-card,
+  .legal-hero-card,
+  .starter-course-card {
+    border-radius: 22px;
+  }
+
+  .look-main,
+  .scanner-copy,
+  .starter-course-card,
+  .legal-hero-card,
+  .contact-panel article {
+    padding: 18px;
+  }
+
+  .look-tabs {
+    gap: 7px;
+    padding: 12px;
+  }
+
+  .look-tabs button {
+    min-height: 42px;
+    font-size: 0.88rem;
+  }
+
+  .scanner-embed {
+    min-height: 320px;
+    height: 52vh;
+  }
+
+  .resource-path-section {
+    margin-top: -16px;
+    padding-inline: 16px;
+  }
+
+  .footer-links {
+    width: 100%;
+  }
+
+  .footer-links a {
+    width: 100%;
+    justify-content: center;
   }
 }

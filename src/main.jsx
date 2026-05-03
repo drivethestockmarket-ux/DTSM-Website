@@ -1206,10 +1206,21 @@ function HeroLookInside() {
 function CommunityPreview() {
   const [activeTab, setActiveTab] = useState("Weekly Meetings");
   const [isPaused, setIsPaused] = useState(false);
+  const [isMobilePreview, setIsMobilePreview] = useState(false);
   const active = previewTabs[activeTab];
 
   useEffect(() => {
-    if (isPaused) return undefined;
+    const media = window.matchMedia("(max-width: 640px), (hover: none), (pointer: coarse)");
+    const syncPreviewMode = () => setIsMobilePreview(media.matches);
+
+    syncPreviewMode();
+    media.addEventListener("change", syncPreviewMode);
+
+    return () => media.removeEventListener("change", syncPreviewMode);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || isMobilePreview) return undefined;
     const timer = window.setInterval(() => {
       setActiveTab((current) => {
         const currentIndex = previewTabNames.indexOf(current);
@@ -1218,7 +1229,7 @@ function CommunityPreview() {
     }, 5000);
 
     return () => window.clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, isMobilePreview]);
 
   return (
     <section className="section preview-section">
@@ -1232,8 +1243,12 @@ function CommunityPreview() {
       </div>
       <div
         className="preview-shell"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        onMouseEnter={() => {
+          if (!isMobilePreview) setIsPaused(true);
+        }}
+        onMouseLeave={() => {
+          if (!isMobilePreview) setIsPaused(false);
+        }}
       >
         <div className="preview-tabs" role="tablist" aria-label="Community preview tabs">
           {previewTabNames.map((tab) => (
@@ -1241,7 +1256,9 @@ function CommunityPreview() {
               key={tab}
               className={activeTab === tab ? "active" : ""}
               onClick={() => setActiveTab(tab)}
-              onMouseEnter={() => setActiveTab(tab)}
+              onMouseEnter={() => {
+                if (!isMobilePreview) setActiveTab(tab);
+              }}
               role="tab"
               aria-selected={activeTab === tab}
             >
@@ -1398,6 +1415,10 @@ function HomePage({ menuOpen, setMenuOpen }) {
               Preview The Community
             </a>
           </div>
+          <div className="hero-trial-note">
+            <span>30-Day Trial</span>
+            <strong>Just $11.99</strong>
+          </div>
           <div className="hero-command-strip">
             <span><Radio size={15} /> Live room</span>
             <span><MessageCircle size={15} /> 24/7 chat</span>
@@ -1462,9 +1483,21 @@ function HomePage({ menuOpen, setMenuOpen }) {
               the room, watch real execution, talk through what happened, and review the decisions
               that actually matter.
             </p>
-            <a className="secondary-button" href="#preview" onClick={(event) => scrollToSection(event, "preview")}>
-              Explore The Preview <ArrowRight size={18} />
-            </a>
+            <div className="section-cta-row">
+              <a
+                className="primary-button"
+                href="#pricing"
+                onClick={(event) => {
+                  trackEvent("pricing_click", { location: "inside_section" });
+                  scrollToSection(event, "pricing");
+                }}
+              >
+                View Membership Plans <ArrowRight size={18} />
+              </a>
+              <a className="secondary-button" href="#preview" onClick={(event) => scrollToSection(event, "preview")}>
+                Explore The Preview <ArrowRight size={18} />
+              </a>
+            </div>
           </div>
           <div className="inside-os" aria-label="DTSM daily workflow preview">
             <div className="os-top">
@@ -1534,6 +1567,18 @@ function HomePage({ menuOpen, setMenuOpen }) {
             </article>
           ))}
         </div>
+        <div className="section-cta-center">
+          <a
+            className="primary-button"
+            href="#pricing"
+            onClick={(event) => {
+              trackEvent("pricing_click", { location: "home_offer_section" });
+              scrollToSection(event, "pricing");
+            }}
+          >
+            View Membership Plans <ArrowRight size={18} />
+          </a>
+        </div>
       </section>
 
       <section className="section reactions-section">
@@ -1561,6 +1606,18 @@ function HomePage({ menuOpen, setMenuOpen }) {
               </article>
             ))}
           </div>
+        </div>
+        <div className="section-cta-center">
+          <a
+            className="secondary-button"
+            href="#pricing"
+            onClick={(event) => {
+              trackEvent("pricing_click", { location: "reactions_section" });
+              scrollToSection(event, "pricing");
+            }}
+          >
+            View Membership Plans <ArrowRight size={18} />
+          </a>
         </div>
       </section>
 
@@ -1670,7 +1727,19 @@ function HomePage({ menuOpen, setMenuOpen }) {
             The goal is to make the next action obvious: log in, see what is moving, follow the
             room, study the replay, and bring decisions back for review.
           </p>
-          <a className="secondary-button" href={loginLink} onClick={() => trackEvent("login_click", { location: "join_flow" })}>Member Login <ArrowRight size={18} /></a>
+          <div className="section-cta-row">
+            <a
+              className="primary-button"
+              href="#pricing"
+              onClick={(event) => {
+                trackEvent("pricing_click", { location: "join_flow" });
+                scrollToSection(event, "pricing");
+              }}
+            >
+              View Membership Plans <ArrowRight size={18} />
+            </a>
+            <a className="secondary-button" href={loginLink} onClick={() => trackEvent("login_click", { location: "join_flow_login" })}>Member Login <ArrowRight size={18} /></a>
+          </div>
         </div>
         <div className="join-flow-panel">
           {homeJoinSteps.map(([title, body], index) => (
