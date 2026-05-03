@@ -473,6 +473,7 @@ const lookInsideTabs = {
     title: "A social feed for trades, lessons, and observations.",
     status: "128 posts today",
     summary: "Members share screenshots, notes, lessons, and market reads with comments and likes.",
+    mode: "tape",
     posts: previewTabs["The Tape"].items,
     stat: "842 likes this week"
   },
@@ -1214,6 +1215,29 @@ function HeroLookInside() {
                       <p><span>Brendan</span>Good trade idea, but the entry only counts if the reclaim holds.</p>
                       <p><span>Edward</span>That helped me slow down a lot this week.</p>
                     </div>
+                  </div>
+                )}
+
+                {active.mode === "tape" && (
+                  <div className="tape-preview-grid">
+                    {active.posts.map((item) => (
+                      <article className="tape-card" key={`${activeTab}-${item.meta}`}>
+                        <div className={`tape-attachment ${item.accent}`}>
+                          <span>{item.attachment}</span>
+                          <div className="tape-attachment-art" aria-hidden="true">
+                            {Array.from({ length: 7 }).map((_, index) => (
+                              <i key={index} style={{ height: `${26 + ((index * 17) % 44)}%` }} />
+                            ))}
+                          </div>
+                        </div>
+                        <small>{item.meta}</small>
+                        <p>{item.text}</p>
+                        <div className="feed-actions">
+                          <span><Heart size={15} /> {item.likes}</span>
+                          <span><MessageCircle size={15} /> {item.comments}</span>
+                        </div>
+                      </article>
+                    ))}
                   </div>
                 )}
 
