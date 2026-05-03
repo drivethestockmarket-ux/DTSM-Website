@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { Analytics, track as trackVercelEvent } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
   ArrowRight,
   BarChart3,
@@ -54,6 +56,7 @@ function trackEvent(name, params = {}) {
 
   window.gtag?.("event", name, params);
   window.clarity?.("event", name);
+  trackVercelEvent(name, params);
 }
 
 function initAnalytics() {
@@ -2782,7 +2785,7 @@ function App() {
         intro="This page explains what information may be collected through the DTSM website, how it is used, and how to contact support with questions."
         sections={[
           ["Information you provide", "If you contact DTSM by email or submit an affiliate application, the information you provide may be used to respond to you, review your request, and communicate about membership or partnership inquiries."],
-          ["Analytics and site activity", "DTSM may use tools such as Google Analytics and Microsoft Clarity to understand page visits, clicks, and general site behavior so the website can be improved over time."],
+          ["Analytics and site activity", "DTSM may use tools such as Vercel Analytics, Vercel Speed Insights, Google Analytics, and Microsoft Clarity to understand page visits, clicks, performance, and general site behavior so the website can be improved over time."],
           ["Third-party services", "Some pages link to or embed third-party platforms such as Circle, ChartsWatcher, YouTube, Discord, and payment or checkout tools. Those services operate under their own terms and privacy policies."],
           ["How information is used", "Site information may be used to improve the website, respond to support requests, review affiliate submissions, and understand which pages and actions are most useful to visitors."],
           ["Data sharing", "DTSM does not position the site as a data brokerage product. Information is only used in connection with site operations, support, analytics, and services directly related to DTSM."],
@@ -2820,4 +2823,10 @@ function App() {
   return <HomePage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+  <>
+    <App />
+    <Analytics />
+    <SpeedInsights />
+  </>
+);
