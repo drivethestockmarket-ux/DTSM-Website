@@ -33,9 +33,9 @@ import {
 import "./styles.css";
 
 const checkoutLinks = {
-  starter: "https://www.joindtsm.com/checkout/starter-access?coupon_code=FIRST25",
-  live: "https://www.joindtsm.com/checkout/trial?coupon_code=FIRST25",
-  pro: "https://www.joindtsm.com/checkout/elite?coupon_code=FIRST25"
+  starter: "https://drivethestockmarket.circle.so/checkout/starter-access?coupon_code=FIRST25",
+  live: "https://drivethestockmarket.circle.so/checkout/trial?coupon_code=FIRST25",
+  pro: "https://drivethestockmarket.circle.so/checkout/elite?coupon_code=FIRST25"
 };
 
 const chartsWatcherLink = "https://app.chartswatcher.com/register/?ref=DTSM";
