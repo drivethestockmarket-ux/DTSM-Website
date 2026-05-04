@@ -134,6 +134,14 @@ button {
   min-width: max-content;
 }
 
+.mobile-nav-actions {
+  display: none;
+}
+
+.mobile-header-cta {
+  display: none;
+}
+
 .header-login {
   color: #12201a;
   background: #ffffff;
@@ -6457,6 +6465,23 @@ footer p {
     display: none;
   }
 
+  .mobile-header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 44px;
+    padding: 0 14px;
+    color: #ffffff;
+    background: var(--green);
+    border: 1px solid rgba(0, 122, 59, 0.12);
+    border-radius: 14px;
+    box-shadow: 0 16px 30px rgba(25, 196, 119, 0.28);
+    font-size: 0.92rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
   .icon-button {
     display: grid;
   }
@@ -6481,6 +6506,20 @@ footer p {
 
   .nav a {
     padding: 14px;
+  }
+
+  .mobile-nav-actions {
+    display: grid;
+    gap: 10px;
+    padding: 10px 4px 4px;
+    border-top: 1px solid var(--line);
+    margin-top: 6px;
+  }
+
+  .mobile-nav-actions .header-login,
+  .mobile-nav-actions .header-cta {
+    width: 100%;
+    justify-content: center;
   }
 
   .pillar-grid,
@@ -6608,6 +6647,11 @@ footer p {
 
   .site-header {
     padding: 14px 16px;
+  }
+
+  .mobile-header-cta {
+    padding: 0 12px;
+    font-size: 0.88rem;
   }
 
   .brand-orb {

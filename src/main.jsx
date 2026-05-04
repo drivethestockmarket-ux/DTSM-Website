@@ -782,6 +782,18 @@ function Header({ menuOpen, setMenuOpen }) {
             </a>
           );
         })}
+        <div className="mobile-nav-actions">
+          <a
+            className="header-login"
+            href={loginLink}
+            onClick={() => {
+              setMenuOpen(false);
+              trackEvent("login_click", { location: "mobile_nav" });
+            }}
+          >
+            Log In
+          </a>
+        </div>
       </nav>
       <div className="header-actions">
         <a className="header-login" href={loginLink} onClick={() => trackEvent("login_click", { location: "header" })}>
@@ -798,6 +810,16 @@ function Header({ menuOpen, setMenuOpen }) {
           View Plans <ArrowRight size={17} />
         </a>
       </div>
+      <a
+        className="mobile-header-cta"
+        href="/#pricing"
+        onClick={(event) => {
+          trackEvent("pricing_click", { location: "mobile_header" });
+          goToHomeSection(event, "pricing", isHome);
+        }}
+      >
+        View Plans <ArrowRight size={17} />
+      </a>
       <button className="icon-button" aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <X /> : <Menu />}
       </button>
