@@ -45,7 +45,7 @@ const chartsWatcherHighOfDayEmbed = "https://chartswatcher.com/pages/scanner/hig
 const chartsWatcherCode = "DTSM10";
 const youtubeLink = "https://www.youtube.com/@JoinDTSM";
 const discordLink = "https://discord.gg/dGpTPBcpnN";
-const loginLink = "https://login.circle.so/sign_in?request_host=www.joindtsm.com#email";
+const loginLink = "https://login.circle.so/sign_in?request_host=drivethestockmarket.circle.so#email";
 const supportEmail = "drivethestockmarket@gmail.com";
 const affiliateFormEndpoint = `https://formsubmit.co/ajax/${supportEmail}`;
 const gaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
