@@ -50,6 +50,9 @@ const supportEmail = "drivethestockmarket@gmail.com";
 const affiliateFormEndpoint = `https://formsubmit.co/ajax/${supportEmail}`;
 const gaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID;
+const shouldUseVercelRuntime =
+  typeof window !== "undefined" &&
+  !["localhost", "127.0.0.1"].includes(window.location.hostname);
 
 function trackEvent(name, params = {}) {
   if (typeof window === "undefined") return;
@@ -138,10 +141,46 @@ const resourceGroups = [
     eyebrow: "Start Here",
     description: "Get the language and routine down before you try to trade faster markets.",
     cards: [
-      ["Small-Cap Trading Basics", "Understand the core language, catalysts, float, volume, and why small-cap stocks can move fast.", <LineChart />, "Beginner", "8 min"],
-      ["Risk Management Basics", "Learn how to think about risk, sizing, invalidation, and protecting your account.", <Target />, "Foundation", "10 min"],
-      ["Understanding Momentum", "A simple guide to volume, trend, relative strength, and when momentum is actually clean.", <TrendingUp />, "Market reads", "7 min"],
-      ["Building a Trading Routine", "Create a repeatable pre-market, live session, and post-market review process.", <Clock3 />, "Routine", "12 min"]
+      {
+        title: "Small-Cap Trading Basics",
+        body: "Understand the core language, catalysts, float, volume, and why small-cap stocks can move fast.",
+        icon: <LineChart />,
+        tag: "Beginner",
+        time: "8 min",
+        href: loginLink,
+        cta: "Open Starter Course",
+        event: "login_click"
+      },
+      {
+        title: "Risk Management Basics",
+        body: "Learn how to think about risk, sizing, invalidation, and protecting your account.",
+        icon: <Target />,
+        tag: "Foundation",
+        time: "10 min",
+        href: loginLink,
+        cta: "Open Starter Course",
+        event: "login_click"
+      },
+      {
+        title: "Understanding Momentum",
+        body: "A simple guide to volume, trend, relative strength, and when momentum is actually clean.",
+        icon: <TrendingUp />,
+        tag: "Market reads",
+        time: "7 min",
+        href: youtubeLink,
+        cta: "Watch Lesson",
+        event: "youtube_click"
+      },
+      {
+        title: "Building a Trading Routine",
+        body: "Create a repeatable pre-market, live session, and post-market review process.",
+        icon: <Clock3 />,
+        tag: "Routine",
+        time: "12 min",
+        href: loginLink,
+        cta: "Start Free Course",
+        event: "login_click"
+      }
     ]
   },
   {
@@ -149,10 +188,46 @@ const resourceGroups = [
     eyebrow: "Execution",
     description: "Study the pieces that help traders slow down, wait for quality, and review decisions.",
     cards: [
-      ["Level 2 Basics", "Learn what bids, asks, size, and market maker movement can tell you in real time.", <Layers3 />, "Order flow", "9 min"],
-      ["Time & Sales Basics", "Understand prints, speed, size, and how the tape confirms or rejects an idea.", <BarChart3 />, "Tape reading", "9 min"],
-      ["Entry and Exit Review", "Use a simple framework to review whether your entry, exit, and risk made sense.", <ClipboardCheck />, "Review", "11 min"],
-      ["Common Beginner Mistakes", "Spot the patterns that usually lead to chasing, oversizing, and emotional trades.", <X />, "Mistakes", "6 min"]
+      {
+        title: "Level 2 Basics",
+        body: "Learn what bids, asks, size, and market maker movement can tell you in real time.",
+        icon: <Layers3 />,
+        tag: "Order flow",
+        time: "9 min",
+        href: youtubeLink,
+        cta: "Watch Breakdown",
+        event: "youtube_click"
+      },
+      {
+        title: "Time & Sales Basics",
+        body: "Understand prints, speed, size, and how the tape confirms or rejects an idea.",
+        icon: <BarChart3 />,
+        tag: "Tape reading",
+        time: "9 min",
+        href: youtubeLink,
+        cta: "Watch Breakdown",
+        event: "youtube_click"
+      },
+      {
+        title: "Entry and Exit Review",
+        body: "Use a simple framework to review whether your entry, exit, and risk made sense.",
+        icon: <ClipboardCheck />,
+        tag: "Review",
+        time: "11 min",
+        href: "/#preview",
+        cta: "Preview Reviews",
+        event: "preview_click"
+      },
+      {
+        title: "Common Beginner Mistakes",
+        body: "Spot the patterns that usually lead to chasing, oversizing, and emotional trades.",
+        icon: <X />,
+        tag: "Mistakes",
+        time: "6 min",
+        href: discordLink,
+        cta: "Join Free Discord",
+        event: "discord_click"
+      }
     ]
   },
   {
@@ -160,10 +235,46 @@ const resourceGroups = [
     eyebrow: "Preview DTSM",
     description: "See the kinds of templates and breakdowns that become more powerful inside the community.",
     cards: [
-      ["Sample Trade Review", "Preview how a trade can be broken down into plan, execution, mistake, and lesson.", <MessageSquareText />, "Template", "Preview"],
-      ["Sample Watchlist", "See how names, levels, catalysts, and scenarios can be organized before the open.", <Library />, "Watchlist", "Preview"],
-      ["Sample Weekly Recap", "A template for reviewing what worked, what failed, and what to focus on next.", <CalendarDays />, "Recap", "Preview"],
-      ["Sample Recording Breakdown", "A placeholder for session notes tied to live room and Level 2 recordings.", <PlayCircle />, "Recording", "Preview"]
+      {
+        title: "Sample Trade Review",
+        body: "Preview how a trade can be broken down into plan, execution, mistake, and lesson.",
+        icon: <MessageSquareText />,
+        tag: "Template",
+        time: "Preview",
+        href: "/#preview",
+        cta: "Preview DTSM",
+        event: "preview_click"
+      },
+      {
+        title: "Sample Watchlist",
+        body: "See how names, levels, catalysts, and scenarios can be organized before the open.",
+        icon: <Library />,
+        tag: "Watchlist",
+        time: "Preview",
+        href: "/scanner",
+        cta: "Open Scanner Workflow",
+        event: "scanner_click"
+      },
+      {
+        title: "Sample Weekly Recap",
+        body: "A template for reviewing what worked, what failed, and what to focus on next.",
+        icon: <CalendarDays />,
+        tag: "Recap",
+        time: "Preview",
+        href: "/#preview",
+        cta: "See The Preview",
+        event: "preview_click"
+      },
+      {
+        title: "Sample Recording Breakdown",
+        body: "Preview the kind of notes and lessons tied to live room and Level 2 recordings inside DTSM.",
+        icon: <PlayCircle />,
+        tag: "Recording",
+        time: "Preview",
+        href: "/#pricing",
+        cta: "Unlock The Library",
+        event: "pricing_click"
+      }
     ]
   }
 ];
@@ -252,10 +363,31 @@ const painPoints = [
 ];
 
 const proofStrip = [
-  ["Live execution", "Watch real market sessions with context instead of guessing alone.", <Radio />],
-  ["Review loops", "Turn trades into notes, feedback, and better rules for next time.", <ClipboardCheck />],
-  ["Always-on room", "Stay connected with a 24/7 chatroom before, during, and after market hours.", <MessageCircle />],
-  ["Order flow study", "Replay Level 2 and Time & Sales examples so momentum becomes easier to read.", <Layers3 />]
+  {
+    title: "400+ hours of live market data recordings",
+    body: "Unlock a deep vault of live market recordings, Level 2 replays, and Time & Sales study sessions you can revisit anytime.",
+    tag: "Special bonus",
+    icon: <Layers3 />,
+    featured: true
+  },
+  {
+    title: "Live room access",
+    body: "Watch real market sessions with live commentary, setups, and context instead of guessing alone.",
+    tag: "Core room",
+    icon: <Radio />
+  },
+  {
+    title: "Trade review feedback",
+    body: "Turn trades into notes, comments, and better rules so mistakes become part of your process.",
+    tag: "Review loop",
+    icon: <ClipboardCheck />
+  },
+  {
+    title: "24/7 trader chat",
+    body: "Stay connected before the open, during the session, and after the close inside the always-on room.",
+    tag: "Always active",
+    icon: <MessageCircle />
+  }
 ];
 
 const homeOfferGroups = [
@@ -1386,6 +1518,18 @@ function CommunityPreview() {
           Click through the core spaces and see how DTSM turns market activity into a repeatable
           improvement loop.
         </p>
+        <div className="section-cta-center">
+          <a
+            className="primary-button"
+            href="#pricing"
+            onClick={(event) => {
+              trackEvent("pricing_click", { location: "community_preview" });
+              scrollToSection(event, "pricing");
+            }}
+          >
+            Join Now <ArrowRight size={18} />
+          </a>
+        </div>
       </div>
       <div
         className="preview-shell"
@@ -1637,8 +1781,8 @@ function HomePage({ menuOpen, setMenuOpen }) {
             </a>
           </div>
           <div className="hero-trial-note">
-            <span>30-Day Trial</span>
-            <strong>Just $11.99</strong>
+            <span>7 days free</span>
+            <strong>Free access to everything</strong>
           </div>
         </div>
         <div className="hero-product">
@@ -1651,11 +1795,12 @@ function HomePage({ menuOpen, setMenuOpen }) {
       </section>
 
       <section className="proof-strip" aria-label="DTSM core benefits">
-        {proofStrip.map(([title, body, icon]) => (
-          <article key={title}>
-            <div>{icon}</div>
-            <strong>{title}</strong>
-            <p>{body}</p>
+        {proofStrip.map((item) => (
+          <article className={item.featured ? "featured" : ""} key={item.title}>
+            <div>{item.icon}</div>
+            <small>{item.tag}</small>
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
           </article>
         ))}
       </section>
@@ -1837,11 +1982,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
           <span>Founders launch pricing</span>
           <strong>Early members get the lowest pricing DTSM plans to offer.</strong>
           <p>Join during the founders launch window and lock in early-member pricing while the community is still in its first growth phase.</p>
-        </div>
-        <div className="pricing-focus-bar">
-          <span>Best place to start: <strong>Live Access</strong></span>
-          <span>Try Live Access for <strong>$11.99 first month</strong></span>
-          <span>Elite includes a <strong>7 day free trial</strong></span>
         </div>
         <div className="pricing-grid">
           {plans.map((plan) => (
@@ -2145,45 +2285,6 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
         </div>
       </section>
 
-      <section className="section resource-command-section">
-        <div className="section-heading centered compact">
-          <span className="kicker">Start Here</span>
-          <h2>One free path that makes the next step obvious.</h2>
-          <p>
-            Instead of grabbing random lessons, use this order: learn the basics, build a routine,
-            review execution, then step into the live environment when you are ready.
-          </p>
-        </div>
-        <div className="resource-command-grid">
-          <div className="resource-command-main">
-            {resourcePath.map(([number, title, body]) => (
-              <article key={title}>
-                <span>{number}</span>
-                <div>
-                  <strong>{title}</strong>
-                  <p>{body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-          <aside className="resource-command-side">
-            <span>What this gives you</span>
-            <strong>A better way to learn than random trading content.</strong>
-            <p>
-              The point of the free Resources page is not more noise. It is helping you prepare
-              better, read setups more clearly, and review decisions with structure before you ever
-              jump into the full live room.
-            </p>
-            <div className="resource-command-pills">
-              <small><Check size={14} /> Free starter course</small>
-              <small><Check size={14} /> 2 hour replay</small>
-              <small><Check size={14} /> YouTube lessons</small>
-              <small><Check size={14} /> DTSM Discord preview</small>
-            </div>
-          </aside>
-        </div>
-      </section>
-
       <section className="section featured-resources-section">
         <div className="section-heading centered compact">
           <span className="kicker">Starter Kit</span>
@@ -2300,13 +2401,13 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
             <p>{group.description}</p>
           </div>
           <div className="resource-grid">
-            {group.cards.map(([title, body, icon, tag, time]) => (
-              <article className="resource-card" key={title}>
+            {group.cards.map((card) => (
+              <article className="resource-card" key={card.title}>
                 <div className="resource-card-top">
-                  <div className="card-icon">{icon}</div>
+                  <div className="card-icon">{card.icon}</div>
                   <div className="resource-card-meta">
-                    <span className="resource-status">{tag}</span>
-                    <small>{time}</small>
+                    <span className="resource-status">{card.tag}</span>
+                    <small>{card.time}</small>
                   </div>
                 </div>
                 <div className="resource-card-visual" aria-hidden="true">
@@ -2314,13 +2415,13 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
                   <i />
                   <i />
                 </div>
-                <h3>{title}</h3>
-                <p>{body}</p>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
                 <a
-                  href={group.eyebrow === "Preview DTSM" ? "/#preview" : youtubeLink}
-                  onClick={() => trackEvent(group.eyebrow === "Preview DTSM" ? "preview_click" : "youtube_click", { location: "resource_card" })}
+                  href={card.href}
+                  onClick={() => trackEvent(card.event, { location: "resource_card", resource: card.title })}
                 >
-                  {group.eyebrow === "Preview DTSM" ? "Preview DTSM" : "View Resource"} <ArrowRight size={15} />
+                  {card.cta} <ArrowRight size={15} />
                 </a>
               </article>
             ))}
@@ -2350,13 +2451,13 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
       <section className="final-cta">
         <div>
           <span className="kicker">Full Environment</span>
-          <h2>Want the full environment?</h2>
+          <h2>Ready for the full DTSM environment?</h2>
           <p>
-            Free resources can teach the basics. DTSM adds the live room, member feed, trade
-            reviews, recordings, and weekly accountability that help you keep improving after the lesson ends.
+            Free resources can teach the basics. DTSM adds the live room, 24/7 chat, trade
+            reviews, 400+ hours of live market data recordings, and weekly accountability that help you keep improving after the lesson ends.
           </p>
         </div>
-        <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: "resources_final_cta" })}>View Membership Plans <ArrowRight size={19} /></a>
+        <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: "resources_final_cta" })}>Unlock The Full Environment <ArrowRight size={19} /></a>
       </section>
 
       <SiteFooter />
@@ -2848,7 +2949,7 @@ function App() {
 createRoot(document.getElementById("root")).render(
   <>
     <App />
-    <Analytics />
-    <SpeedInsights />
+    {shouldUseVercelRuntime ? <Analytics /> : null}
+    {shouldUseVercelRuntime ? <SpeedInsights /> : null}
   </>
 );
