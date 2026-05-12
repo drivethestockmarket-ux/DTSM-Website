@@ -46,6 +46,7 @@ const chartsWatcherCode = "DTSM10";
 const youtubeLink = "https://www.youtube.com/@JoinDTSM";
 const discordLink = "https://discord.gg/dGpTPBcpnN";
 const loginLink = "https://login.circle.so/sign_in?request_host=drivethestockmarket.circle.so#email";
+const signupLink = "https://login.circle.so/sign_up?request_host=drivethestockmarket.circle.so&user%5Binvitation_token%5D";
 const supportEmail = "drivethestockmarket@gmail.com";
 const affiliateFormEndpoint = `https://formsubmit.co/ajax/${supportEmail}`;
 const gaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
@@ -104,6 +105,22 @@ const pageMeta = {
     title: "Free Trading Resources | DTSM Starter Course + Lessons",
     description: "Access the free DTSM Starter Course, trading basics, Level 2 lessons, Time and Sales resources, and tools to build a stronger execution routine."
   },
+  "/live-room": {
+    title: "Live Trading Room | DTSM",
+    description: "See how the DTSM Live Trading Room helps traders follow real sessions, hear live context, and stay grounded during the market."
+  },
+  "/community-feed": {
+    title: "Community Feed | DTSM",
+    description: "Learn how The Tape and 24/7 DTSM chat keep traders connected, sharing posts, and improving together."
+  },
+  "/study-library": {
+    title: "Study Library | DTSM",
+    description: "Explore the DTSM recordings archive, Level 2 replays, trade reviews, and weekly meetings built for post-market study."
+  },
+  "/about": {
+    title: "About DTSM | Trading Community Built Around Execution",
+    description: "Learn what DTSM stands for, how the community works, and why traders join for accountability, consistency, live market context, and real review."
+  },
   "/affiliates": {
     title: "DTSM Affiliate Program | 30% Recurring Partner Program",
     description: "Apply to partner with DTSM and earn 30% recurring commission by referring traders to a live execution-focused trading environment."
@@ -132,7 +149,7 @@ const navItems = [
   { label: "Resources", href: "/resources" },
   { label: "Affiliates", href: "/affiliates" },
   { label: "Pricing", id: "pricing" },
-  { label: "FAQ", id: "faq" }
+  { label: "About", href: "/about" }
 ];
 
 const resourceGroups = [
@@ -327,6 +344,25 @@ const resourceCollections = [
   }
 ];
 
+const ethosPillars = [
+  ["Show up consistently", "DTSM is built for traders who want a place to keep showing up, not disappear after one bad session.", <Clock3 />],
+  ["Trade with real context", "Members learn from live market examples, commentary, Level 2, Time & Sales, and actual decisions in motion.", <Radio />],
+  ["Review honestly", "Wins, losses, missed trades, and mistakes all become part of the review process instead of being ignored.", <ClipboardCheck />],
+  ["Improve together", "The point is not to impress people. It is to get around serious traders who want structure, feedback, and better habits.", <Users />]
+];
+
+const publicAnnouncements = [
+  ["Today", "Morning watchlist posted", "Premarket names, key levels, and scenarios are posted before the bell so members know what matters first.", <LineChart />],
+  ["New replay", "Live room recording uploaded", "Fresh recordings and breakdowns give members a way to review execution after the close.", <PlayCircle />],
+  ["This week", "Weekly meeting update", "The weekly group review and meeting schedule are posted inside Circle so members stay in rhythm.", <CalendarDays />]
+];
+
+const publicSchedule = [
+  ["Morning live trading", "Monday - Friday", "6:45 AM - 9:45 AM ET"],
+  ["Weekly community meeting", "Midweek", "Usually Wednesday or Thursday depending on the week"],
+  ["Announcements + uploads", "Inside Circle", "Fresh posts, replays, and updates are published throughout the week"]
+];
+
 const affiliateBenefits = [
   ["Live trading community", "A real product traders can log into daily, not a one-off download or hype funnel.", <Radio />],
   ["Execution-focused education", "Position DTSM around discipline, reviews, Level 2, Time & Sales, and better process.", <Target />],
@@ -392,24 +428,298 @@ const proofStrip = [
 
 const homeOfferGroups = [
   {
-    label: "Community",
-    title: "Stay connected instead of trading in isolation.",
-    body: "The Tape, comments, likes, 24/7 chat, and contributor visibility keep traders engaged around the process.",
-    items: ["The Tape", "24/7 chatroom", "Comments + likes", "Leaderboard"]
+    label: "Live Trading Room",
+    title: "Watch the market live",
+    micro: "Show up for the morning session, hear commentary, and follow the watchlist in real time.",
+    href: "/live-room",
+    icon: <Radio />,
+    items: ["Live session", "Watchlist", "Commentary"],
+    cta: "Learn about the Live Room"
   },
   {
-    label: "Live",
-    title: "Watch real sessions with context.",
-    body: "Live room access, weekly recaps, and Elite meetings help you stay close to real market examples.",
-    items: ["Live Trading Room", "Weekly recaps", "Elite meetings", "Market discussion"]
+    label: "The Tape + Chat",
+    title: "Post, chat, and ask questions",
+    micro: "Stay connected with traders through feed posts, screenshots, comments, and the 24/7 room.",
+    href: "/community-feed",
+    icon: <MessageSquareText />,
+    items: ["The Tape", "24/7 chat", "Comments + likes"],
+    cta: "Learn about the Feed"
   },
   {
-    label: "Study",
-    title: "Review what happened after the move.",
-    body: "Recordings, Level 2 and Time & Sales replays, and trade reviews help turn decisions into lessons.",
-    items: ["Recordings archive", "Level 2 replays", "Trade reviews", "Worksheets"]
+    label: "Recordings + Reviews",
+    title: "Replay sessions and review trades",
+    micro: "Study recordings, trade reviews, and weekly meetings after the market closes.",
+    href: "/study-library",
+    icon: <Layers3 />,
+    items: ["Recording archive", "Trade reviews", "Weekly meetings"],
+    cta: "Learn about the Library"
+  },
+  {
+    label: "Starter Course",
+    title: "Start free with the basics",
+    micro: "Use the free starter course and bonus replay to learn the platform before going deeper.",
+    href: "/resources",
+    icon: <Library />,
+    items: ["Free starter course", "2 hour bonus replay", "Beginner friendly"],
+    cta: "Start the Free Course"
   }
 ];
+
+const productDetailPages = {
+  "/live-room": {
+    kicker: "Live Room",
+    title: "Watch the market live with traders in the room.",
+    intro: "The live room is where members show up each morning, follow what is moving, and stay around real commentary instead of guessing alone.",
+    icon: <Radio />,
+    visualFirst: true,
+    stats: [
+      ["Session hours", "6:45 AM - 9:45 AM ET"],
+      ["Access", "Live Access + Elite"],
+      ["Best for", "Live execution + morning prep"]
+    ],
+    highlights: [
+      {
+        title: "Live commentary while setups form",
+        body: "Hear what is worth watching, what is being avoided, and what actually changes the plan in real time."
+      },
+      {
+        title: "A room to stay grounded",
+        body: "Instead of trading in silence, members can follow the flow of the room and stay closer to the process."
+      },
+      {
+        title: "Replay the same session later",
+        body: "Live Access and Elite can come back to recordings and review the exact session they watched."
+      }
+    ],
+    preview: {
+      label: "Inside the live room",
+      title: "A real morning session people can plug into every day.",
+      body: "Open the room, see what is in play, and follow the market with commentary while setups are forming.",
+      mainShot: {
+        title: "Real market post inside the live environment",
+        note: "Use a screenshot that feels active and in-motion so people instantly understand the room is tied to the market.",
+        image: "/assets/product-pages/community-feed-tape.png",
+        alt: "DTSM live market post inside Circle"
+      },
+      supportShots: [
+        {
+          title: "Daily live schedule",
+          note: "Show the recurring session structure so visitors understand when the room is active.",
+          image: "/assets/product-pages/live-room-schedule.png",
+          alt: "DTSM live room schedule inside Circle"
+        },
+        {
+          title: "Watchlist or commentary view",
+          note: "Add one clean screen with names in play, notes, or a live market callout."
+        }
+      ]
+    },
+    modules: [
+      {
+        title: "Show up for the morning session",
+        body: "Members know when to log in and what room they are stepping into each morning."
+      },
+      {
+        title: "Follow commentary in real time",
+        body: "The room stays focused on what matters while price, volume, and momentum are moving."
+      },
+      {
+        title: "Study the same session later",
+        body: "Sessions connect back into recordings and review, so the room is useful after the close too."
+      }
+    ],
+    proof: [
+      "Weekday live session",
+      "Best for traders who need real-time context",
+      "Connects directly to chat, feed, and recordings"
+    ],
+    workflow: [
+      ["Show up before the bell", "Check the watchlist, levels, and market focus before the session opens."],
+      ["Follow the live session", "Watch setups, commentary, and trade context as momentum builds or fades."],
+      ["Replay and review later", "Use the recording to study what was clean, what was avoided, and what can be repeated."]
+    ],
+    features: [
+      "Morning live trading session",
+      "Watchlist + key levels",
+      "Live trade context",
+      "Session replay access",
+      "Connected chat and feed"
+    ],
+    ctaTitle: "See the full daily environment.",
+    ctaBody: "The Live Room works best as part of the full DTSM system: chat, feed, recordings, review, and weekly meetings all reinforce the session."
+  },
+  "/community-feed": {
+    kicker: "Community Feed",
+    title: "See trades, charts, and conversation in one place.",
+    intro: "The Tape and the 24/7 chatroom give DTSM its daily pulse. This is where members post trades, ask questions, and stay connected around the process.",
+    icon: <MessageSquareText />,
+    visualFirst: true,
+    stats: [
+      ["Always active", "Before the open to after the close"],
+      ["Access", "All memberships"],
+      ["Best for", "Posts, screenshots, questions, and feedback"]
+    ],
+    highlights: [
+      {
+        title: "Trade screenshots and recap posts",
+        body: "Members can share setups, mistakes, ideas, and trade reviews in a way that other traders can actually respond to."
+      },
+      {
+        title: "Comments and likes that surface useful posts",
+        body: "The best notes, chart screenshots, and observations get engagement instead of disappearing into random noise."
+      },
+      {
+        title: "24/7 chatroom around the process",
+        body: "Questions, market talk, recap notes, and live reactions all stay in one always-on room."
+      }
+    ],
+    preview: {
+      label: "Inside The Tape",
+      title: "A feed built for screenshots, comments, and staying in the loop.",
+      body: "This is where members post what they saw, react to each other, and keep the room alive before the open and after the close.",
+      mainShot: {
+        title: "Live room schedule and session page",
+        note: "A clean session screenshot helps visitors understand this is part of a real working platform, not just a static feed.",
+        image: "/assets/product-pages/live-room-schedule.png",
+        alt: "DTSM live room schedule inside Circle"
+      },
+      supportShots: [
+        {
+          title: "The Tape post",
+          note: "Use a real post with chart, caption, and engagement so people can see how the feed actually feels.",
+          image: "/assets/product-pages/community-feed-tape.png",
+          alt: "DTSM The Tape feed inside Circle"
+        },
+        {
+          title: "Chat or review thread",
+          note: "Add one clean screenshot that shows questions, comments, or post-session feedback."
+        }
+      ]
+    },
+    modules: [
+      {
+        title: "Post trades and screenshots",
+        body: "Members can share charts, recap notes, and lessons in a format other traders can actually respond to."
+      },
+      {
+        title: "Get comments and reactions",
+        body: "Useful posts get feedback, which makes the feed more valuable than journaling alone."
+      },
+      {
+        title: "Stay connected all day",
+        body: "The chat and feed keep traders around the process before the open, during the session, and after the close."
+      }
+    ],
+    proof: [
+      "Best for staying connected",
+      "Built for screenshots, comments, and feedback",
+      "Works as the social layer of the whole community"
+    ],
+    workflow: [
+      ["Post what you saw", "Drop screenshots, ideas, recap notes, and market observations into the feed."],
+      ["Get feedback", "Other traders comment, react, and help sharpen what matters."],
+      ["Stay connected", "Use chat and the feed to stay around the process even when the live session ends."]
+    ],
+    features: [
+      "The Tape feed",
+      "24/7 chatroom",
+      "Comments + likes",
+      "Trade screenshots",
+      "Community feedback loop"
+    ],
+    ctaTitle: "Get inside the room with the other traders.",
+    ctaBody: "DTSM is stronger because it does not stop at content. The feed and chat keep the room alive between sessions and give traders a reason to keep showing up."
+  },
+  "/study-library": {
+    kicker: "Study Library",
+    title: "A post-market library built to turn live sessions into repeatable lessons.",
+    intro: "The Study Library gives members a deeper reason to stay around DTSM after the market closes. Recordings, replays, reviews, and weekly meetings make the environment useful long after the opening push is over.",
+    icon: <Layers3 />,
+    stats: [
+      ["Library depth", "400+ hours of live market data recordings"],
+      ["Access", "Full library in Live Access + Elite"],
+      ["Best for", "Review, replay, and pattern recognition"]
+    ],
+    highlights: [
+      {
+        title: "Full live session recordings",
+        body: "Replay the exact room, the exact context, and the exact setups instead of relying on memory."
+      },
+      {
+        title: "Level 2 and Time & Sales replays",
+        body: "Slow down order flow and momentum examples so the details are easier to study and repeat."
+      },
+      {
+        title: "Trade reviews and weekly meetings",
+        body: "Use deeper review and recurring meetings to turn wins and mistakes into better rules."
+      }
+    ],
+    preview: {
+      label: "Inside the study library",
+      title: "A replay library built for traders who want to get sharper.",
+      body: "This is where members come back after the session to replay examples, review trades, study Level 2, and keep building pattern recognition.",
+      mainShot: {
+        title: "Live recordings archive",
+        note: "A real course-and-recordings screenshot makes the value of the library feel immediate.",
+        image: "/assets/product-pages/study-library-recordings.png",
+        alt: "DTSM live trading recordings library inside Circle"
+      },
+      supportShots: [
+        {
+          title: "Level 2 replay module",
+          note: "Use the Level 2 clips area to show people that the study library goes deeper than just recordings.",
+          image: "/assets/product-pages/study-library-level2.png",
+          alt: "DTSM Level 2 trading clips inside Circle"
+        },
+        {
+          title: "Trade review example",
+          note: "Add one review with notes, chart, or lesson callouts."
+        },
+        {
+          title: "Weekly meeting archive",
+          note: "Show one saved review call or weekly meeting thumbnail."
+        }
+      ]
+    },
+    modules: [
+      {
+        title: "Full live session recordings",
+        body: "Members can replay the room, the commentary, and the exact market context instead of relying on memory."
+      },
+      {
+        title: "Level 2 and Time & Sales clips",
+        body: "Shorter study clips help members slow down order flow and focus on the details that matter."
+      },
+      {
+        title: "Trade review material",
+        body: "The library supports better review by giving traders a place to revisit decisions, mistakes, and lessons."
+      },
+      {
+        title: "Weekly meeting archive",
+        body: "Saved meetings and recaps help traders revisit the bigger lessons beyond a single morning session."
+      }
+    ],
+    proof: [
+      "400+ hours of recordings",
+      "Best for review and pattern recognition",
+      "Built to turn screen time into study time"
+    ],
+    workflow: [
+      ["Pick the session", "Open the replay, recording, or weekly meeting that matches what you want to study."],
+      ["Review the details", "Focus on entries, tape speed, Level 2 behavior, mistakes, and what actually worked."],
+      ["Bring it back to the room", "Use what you learned in the next live session, feed post, or trade review."]
+    ],
+    features: [
+      "Recording archive",
+      "Level 2 replays",
+      "Time & Sales study",
+      "Trade reviews",
+      "Weekly meeting archive"
+    ],
+    ctaTitle: "Turn the market into a study system.",
+    ctaBody: "The library is where members keep building pattern recognition, reviewing decisions, and getting more out of every session they show up for."
+  }
+};
 
 const homeJoinSteps = [
   ["Create your account", "Choose your plan and enter the DTSM community through Circle."],
@@ -425,9 +735,9 @@ const transformationCards = [
 ];
 
 const planGuides = [
-  ["Start here", "Starter", "You want the community feed, watchlist, and beginner resources so you can build a routine."],
-  ["Best daily experience", "Live Access", "You want live sessions, chat, full recordings, Level 2 study, and the most complete room."],
-  ["Most accountability", "Elite", "You want weekly meetings, trade review submissions, and deeper feedback around execution."]
+  ["Best place to start", "Live Access", "The full daily room with chat, recordings, Level 2 study, and the clearest picture of DTSM."],
+  ["Start with full access", "7 days free", "Elite opens the full environment for 7 days before renewing at $99.99/month unless cancelled."],
+  ["No lock-in", "Cancel anytime", "All plans are monthly, and trial plans can be cancelled before the next billing date."]
 ];
 
 const communityTestimonials = [
@@ -611,6 +921,19 @@ const previewTabs = {
 };
 
 const lookInsideTabs = {
+  Education: {
+    icon: <Library />,
+    title: "Start free, learn the basics, and keep building from there.",
+    status: "Free starter course",
+    summary: "New members can start with the free DTSM Starter Course, then keep going with bonus education and live recordings inside the same environment.",
+    mode: "education",
+    posts: [
+      ["Free course", "Small-cap basics, risk, momentum, Level 2, and Time & Sales foundations.", "48", "14"],
+      ["Bonus replay", "2 hour live trading recording with context you can study anytime.", "37", "11"],
+      ["Next step", "Move from the free path into the live room, feed, and review system when you are ready.", "41", "9"]
+    ],
+    stat: "Course + bonus replay"
+  },
   "Live Room": {
     icon: <Radio />,
     title: "Live execution, context, and market prep.",
@@ -1094,6 +1417,272 @@ function ContactPage({ menuOpen, setMenuOpen }) {
   );
 }
 
+function AboutPage({ menuOpen, setMenuOpen }) {
+  return (
+    <main>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      <section className="page-hero about-hero">
+        <div>
+          <span className="kicker">About DTSM</span>
+          <h1>Trade, study, and improve together.</h1>
+          <p>
+            DTSM is built for traders who want more than random content. It gives you live market
+            sessions, weekly meetings, recordings, and a real group of traders to stay connected with
+            as you keep improving.
+          </p>
+          <div className="hero-actions">
+            <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: "about_hero" })}>
+              View Membership Plans <ArrowRight size={19} />
+            </a>
+            <a className="secondary-button" href="/#preview">Preview The Community</a>
+          </div>
+        </div>
+        <div className="about-hero-card">
+          <span>What DTSM feels like</span>
+          <strong>A live trading room built around connection, repetition, and real market study.</strong>
+          <p>
+            The goal is to give traders a place they actually want to log into: show up for the
+            morning session, stay around other traders, study the replays, and keep getting sharper.
+          </p>
+          <div className="about-hero-points">
+            <small><Check size={15} /> Connect with traders around the world</small>
+            <small><Check size={15} /> Weekly meetings + live trading sessions</small>
+            <small><Check size={15} /> Recordings, study, and review</small>
+          </div>
+        </div>
+      </section>
+
+      <FounderSection />
+
+      <EthosSection
+        kicker="What We Believe"
+        title="Trading gets better when you stop doing it alone."
+        description="DTSM is built around consistency, execution, and connection so members have a better place to learn from the market and from each other."
+        ctaHref="/#pricing"
+        ctaLabel="Choose A Membership Plan"
+      />
+
+      <section className="section about-fit-section">
+        <div className="fit-card good">
+          <span className="kicker">Good Fit</span>
+          <h2>Who DTSM is for</h2>
+          {[
+            "Traders who want structure around the market",
+            "People who learn better from live examples than random videos",
+            "Members who want review, accountability, and repetition",
+            "Small-cap traders who want more context around execution"
+          ].map((item) => <p key={item}><Check size={17} /> {item}</p>)}
+        </div>
+        <div className="fit-card bad">
+          <span className="kicker">Not A Fit</span>
+          <h2>Who DTSM is not for</h2>
+          {[
+            "People looking for signals without understanding why",
+            "Anyone expecting guaranteed profits",
+            "Traders who do not want feedback or review",
+            "Hype-driven shortcut seekers"
+          ].map((item) => <p key={item}><X size={17} /> {item}</p>)}
+        </div>
+      </section>
+
+      <CommunityRhythmSection
+        kicker="Inside DTSM"
+        title="A weekly rhythm traders can actually plug into."
+        description="Morning sessions, weekly meetings, recordings, and updates all work together to keep members engaged and improving."
+        ctaHref="/#pricing"
+        ctaLabel="Join DTSM"
+        ctaLocation="about_rhythm"
+      />
+
+      <section className="final-cta">
+        <div>
+          <span className="kicker">Join The Room</span>
+          <h2>Step into a better trading environment.</h2>
+          <p>Choose your plan, get inside Circle, and put yourself around traders working on the process every week.</p>
+        </div>
+        <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: "about_final_cta" })}>
+          View Membership Plans <ArrowRight size={19} />
+        </a>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
+function ProductDetailPage({ menuOpen, setMenuOpen, path }) {
+  const product = productDetailPages[path];
+
+  return (
+    <main>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      <section className="page-hero product-hero">
+        <div>
+          <span className="kicker">{product.kicker}</span>
+          <h1>{product.title}</h1>
+          <p>{product.intro}</p>
+          <div className="hero-actions">
+            <a
+              className="primary-button"
+              href="/#pricing"
+              onClick={(event) => {
+                trackEvent("pricing_click", { location: `${path}_hero` });
+                goToHomeSection(event, "pricing", false);
+              }}
+            >
+              View Membership Plans <ArrowRight size={19} />
+            </a>
+            <a className="secondary-button" href="/#preview">
+              Preview The Community
+            </a>
+          </div>
+        </div>
+        <div className="product-hero-card">
+          <div className="card-icon product-hero-icon">{product.icon}</div>
+          <strong>{product.kicker} inside DTSM</strong>
+          <div className="product-hero-stats">
+            {product.stats.map(([label, value]) => (
+              <article key={label}>
+                <span>{label}</span>
+                <b>{value}</b>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section product-highlights-section">
+        <div className={`product-preview-shell${product.visualFirst ? " visual-first" : ""}`}>
+          <div className="product-preview-copy">
+            <span className="kicker">{product.preview.label}</span>
+            <h2>{product.preview.title}</h2>
+            <p>{product.preview.body}</p>
+            <div className="product-feature-list">
+              {product.features.map((feature) => (
+                <small key={feature}><Check size={15} /> {feature}</small>
+              ))}
+            </div>
+          </div>
+          <div className="product-preview-stage">
+            <div className="product-preview-bar">
+              <span />
+              <span />
+              <span />
+              <b>{product.kicker} on Circle</b>
+            </div>
+            <article className="product-shot main">
+              {product.preview.mainShot.image ? (
+                <img src={product.preview.mainShot.image} alt={product.preview.mainShot.alt} />
+              ) : null}
+              <small>{product.preview.mainShot.image ? "Real DTSM screenshot" : "Add screenshot here"}</small>
+              <strong>{product.preview.mainShot.title}</strong>
+              <p>{product.preview.mainShot.note}</p>
+            </article>
+            <div className="product-shot-grid">
+              {product.preview.supportShots.map((shot) => (
+                <article className="product-shot" key={shot.title}>
+                  {shot.image ? (
+                    <img src={shot.image} alt={shot.alt} />
+                  ) : null}
+                  <small>{shot.image ? "Real DTSM screenshot" : "Optional screenshot"}</small>
+                  <strong>{shot.title}</strong>
+                  <p>{shot.note}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={`product-module-shell${product.visualFirst ? " visual-first" : ""}`}>
+          <div className="product-module-lead">
+            <span className="kicker">What You Actually Get</span>
+            <h2>The parts of this product that make it useful day to day.</h2>
+            <p>
+              This is not just one page inside Circle. Each area opens a few different surfaces
+              that help traders show up, study, and stay connected.
+            </p>
+            <div className="product-proof-list">
+              {product.proof.map((item) => (
+                <small key={item}><Check size={15} /> {item}</small>
+              ))}
+            </div>
+          </div>
+          <div className="product-module-grid">
+            {product.modules.map((module) => (
+              <article key={module.title}>
+                <h3>{module.title}</h3>
+                <p>{module.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="section-heading centered compact">
+          <span className="kicker">What You Can Do Inside</span>
+          <h2>What makes this part of DTSM actually worth using.</h2>
+        </div>
+        <div className="product-highlight-grid">
+          {product.highlights.map((item) => (
+            <article key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section product-walkthrough-section">
+        <div className="product-walkthrough-copy">
+          <span className="kicker">How Members Use It</span>
+          <h2>Simple enough to follow. Clear enough to build a repeatable routine.</h2>
+          <p>
+            The goal is not just to open another tab. Each part of DTSM is meant to fit into a real
+            trading process so members know where to show up, what to study, and how to keep improving.
+          </p>
+        </div>
+        <div className="product-walkthrough-steps">
+          {product.workflow.map(([step, body], index) => (
+            <article key={step}>
+              <span>{`0${index + 1}`}</span>
+              <div>
+                <strong>{step}</strong>
+                <p>{body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section product-conversion-section">
+        <div>
+          <span className="kicker">Why It Matters</span>
+          <h2>{product.ctaTitle}</h2>
+          <p>{product.ctaBody}</p>
+        </div>
+        <div className="product-conversion-actions">
+          <a
+            className="primary-button"
+            href="/#pricing"
+            onClick={(event) => {
+              trackEvent("pricing_click", { location: `${path}_final_cta` });
+              goToHomeSection(event, "pricing", false);
+            }}
+          >
+            Choose Your Plan <ArrowRight size={19} />
+          </a>
+          <a className="secondary-button" href={loginLink} onClick={() => trackEvent("login_click", { location: `${path}_login` })}>
+            Member Login <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
 function ScannerEmbedPanel({
   compact = false,
   title = "ChartsWatcher Biggest Gainers",
@@ -1236,8 +1825,104 @@ function FounderSection() {
   );
 }
 
+function EthosSection({
+  kicker = "Why DTSM Exists",
+  title = "Built around real trading, honest review, and improving together.",
+  description = "DTSM is meant to feel like a room traders can keep coming back to: a place to prepare, participate, review decisions, and stay connected to other people doing the work.",
+  ctaHref = "/about",
+  ctaLabel = "Read The About Page"
+}) {
+  return (
+    <section className="section ethos-section">
+      <div className="section-heading centered compact">
+        <span className="kicker">{kicker}</span>
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+      <div className="ethos-grid">
+        {ethosPillars.map(([heading, body, icon]) => (
+          <article className="ethos-card" key={heading}>
+            <div className="card-icon">{icon}</div>
+            <h3>{heading}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+      <div className="section-cta-center">
+        <a className="secondary-button" href={ctaHref}>
+          {ctaLabel} <ArrowRight size={18} />
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function CommunityRhythmSection({
+  kicker = "Latest From DTSM",
+  title = "A public look at how the community stays active each week.",
+  description = "The goal is to make it obvious that content, live sessions, and updates keep moving inside DTSM. Morning sessions, recordings, announcements, and weekly meetings all work together.",
+  ctaHref = "/#pricing",
+  ctaLabel = "Join The Community",
+  ctaEvent = "pricing_click",
+  ctaLocation = "community_rhythm"
+}) {
+  return (
+    <section className="section rhythm-section">
+      <div className="section-heading centered compact">
+        <span className="kicker">{kicker}</span>
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+      <div className="rhythm-layout">
+        <div className="rhythm-feed">
+          <div className="rhythm-block-head">
+            <span>Inside Circle</span>
+            <strong>Recent activity previews</strong>
+          </div>
+          <div className="rhythm-feed-grid">
+            {publicAnnouncements.map(([label, heading, body, icon]) => (
+              <article className="rhythm-card" key={heading}>
+                <div className="card-icon">{icon}</div>
+                <small>{label}</small>
+                <strong>{heading}</strong>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="rhythm-public-note">
+            <Check size={16} />
+            <span>Public preview only. Full posts, comments, recordings, and updates live inside Circle.</span>
+          </div>
+        </div>
+        <aside className="rhythm-schedule">
+          <div className="rhythm-block-head">
+            <span>Live schedule</span>
+            <strong>What the week looks like</strong>
+          </div>
+          <div className="schedule-list">
+            {publicSchedule.map(([title, label, time]) => (
+              <article key={title}>
+                <strong>{title}</strong>
+                <small>{label}</small>
+                <span>{time}</span>
+              </article>
+            ))}
+          </div>
+          <a
+            className="primary-button"
+            href={ctaHref}
+            onClick={() => trackEvent(ctaEvent, { location: ctaLocation })}
+          >
+            {ctaLabel} <ArrowRight size={18} />
+          </a>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
 function HeroLookInside() {
-  const [activeTab, setActiveTab] = useState("Live Room");
+  const [activeTab, setActiveTab] = useState("Education");
   const [isPaused, setIsPaused] = useState(false);
   const active = lookInsideTabs[activeTab];
 
@@ -1293,7 +1978,11 @@ function HeroLookInside() {
                 <strong>{active.title}</strong>
                 <p>{active.summary}</p>
               </div>
-              <a href="#pricing" onClick={(event) => scrollToSection(event, "pricing")}>Join Room</a>
+              {activeTab === "Education" ? (
+                <a href={signupLink}>Start Now</a>
+              ) : (
+                <a href="#pricing" onClick={(event) => scrollToSection(event, "pricing")}>Join</a>
+              )}
             </div>
 
             <div className="look-content-grid">
@@ -1405,6 +2094,40 @@ function HeroLookInside() {
                     <div className="meeting-preview-chat">
                       <p><span>Brendan</span>Good trade idea, but the entry only counts if the reclaim holds.</p>
                       <p><span>Edward</span>That helped me slow down a lot this week.</p>
+                    </div>
+                  </div>
+                )}
+
+                {active.mode === "education" && (
+                  <div className="education-preview-card">
+                    <div className="education-course-panel">
+                      <div className="education-course-top">
+                        <span>Free Starter Course</span>
+                        <b>Bonus education</b>
+                      </div>
+                      <strong>DTSM Starter Course</strong>
+                      <p>
+                        Learn the language first, build a cleaner routine, and step into the rest of
+                        DTSM with better context.
+                      </p>
+                      <div className="education-course-list">
+                        <small><Check size={15} /> Small-cap trading basics</small>
+                        <small><Check size={15} /> Risk, momentum, Level 2</small>
+                        <small><Check size={15} /> Time & Sales foundations</small>
+                      </div>
+                    </div>
+                    <div className="education-bonus-panel">
+                      <div className="education-bonus-head">
+                        <span>Included bonus</span>
+                        <strong>2 hour live trading replay</strong>
+                      </div>
+                      <p>
+                        Watch a full session with commentary, setups, and context so the education
+                        feels connected to the real room.
+                      </p>
+                      <div className="education-bonus-pill">
+                        <PlayCircle size={16} /> Free course + bonus replay
+                      </div>
                     </div>
                   </div>
                 )}
@@ -1521,13 +2244,12 @@ function CommunityPreview() {
         <div className="section-cta-center">
           <a
             className="primary-button"
-            href="#pricing"
-            onClick={(event) => {
-              trackEvent("pricing_click", { location: "community_preview" });
-              scrollToSection(event, "pricing");
+            href={signupLink}
+            onClick={() => {
+              trackEvent("checkout_click", { plan: "signup", location: "community_preview" });
             }}
           >
-            Join Now <ArrowRight size={18} />
+            See Inside DTSM <ArrowRight size={18} />
           </a>
         </div>
       </div>
@@ -1756,14 +2478,13 @@ function HomePage({ menuOpen, setMenuOpen }) {
 
       <section id="top" className="hero">
         <div className="hero-copy">
-          <div className="eyebrow"><Sparkles size={17} /> Accountability-based live trading community</div>
           <h1>
-            Live Trading Community
-            <span>Built for Execution.</span>
+            Stock Market Community
+            <span>Built for Better Execution.</span>
           </h1>
           <p>
-            Log in daily to watch live setups, study Level 2 and Time & Sales, review trades, and
-            build a more disciplined small-cap trading process.
+            DTSM gives you daily live sessions, The Tape feed, 24/7 chat, and a deep recordings
+            library so you can follow the market, review your trades, and keep improving in one place.
           </p>
           <div className="hero-actions">
             <a
@@ -1781,8 +2502,13 @@ function HomePage({ menuOpen, setMenuOpen }) {
             </a>
           </div>
           <div className="hero-trial-note">
-            <span>7 days free</span>
-            <strong>Free access to everything</strong>
+            <span>7 days free access</span>
+            <strong>Everything opens on day one</strong>
+          </div>
+          <div className="hero-proof" aria-label="DTSM core access">
+            <span><Radio size={15} /> Live room</span>
+            <span><MessageSquareText size={15} /> Trader feed + chat</span>
+            <span><Library size={15} /> 400+ hours of recordings</span>
           </div>
         </div>
         <div className="hero-product">
@@ -1804,34 +2530,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
           </article>
         ))}
       </section>
-
-      <section className="section pain-section">
-        <div className="pain-copy">
-          <span className="kicker">The Real Problem</span>
-          <h2>More Content Will Not Fix<br />Inconsistent Execution.</h2>
-          <p>
-            DTSM gives you what most traders are missing after they buy more content: a room to log
-            into, a watchlist to follow, real trades to review, and a reason to keep showing up.
-          </p>
-          <div className="pain-hit-list">
-            <span><X size={15} /> Stop chasing random lessons</span>
-            <span><Check size={15} /> Start showing up with structure</span>
-          </div>
-        </div>
-        <div className="pain-panel">
-          {painPoints.map(([title, body], index) => (
-            <article key={title}>
-              <span>{`0${index + 1}`}</span>
-              <div>
-                <strong>{title}</strong>
-                <p>{body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <FounderSection />
 
       <section className="section reactions-section">
         <div className="section-heading centered compact">
@@ -1873,101 +2571,48 @@ function HomePage({ menuOpen, setMenuOpen }) {
         </div>
       </section>
 
-      <div id="preview">
-        <CommunityPreview />
-      </div>
-
       <section className="section home-offer-section">
         <div className="section-heading centered compact">
-          <span className="kicker">What You Actually Get</span>
-          <h2>Everything Is Built Around<br />Better Execution.</h2>
+          <span className="kicker">What's Inside DTSM</span>
+          <h2>What opens when you join DTSM.</h2>
           <p>
-            When you join, you are not dumped into a pile of content. You get the feed, live room,
-            chat, recordings, and trade reviews in one place so the next step is always clear.
+            When you join, you get a live room, a trader feed, a study library, and a free course
+            path so it is always clear where to start and what to use next.
           </p>
         </div>
-        <div className="home-offer-grid">
+        <div className="home-offer-quick-note">
+          <strong>Everything lives inside one Circle community.</strong>
+          <span>One login gives you the live room, feed, chat, recordings, reviews, and education.</span>
+        </div>
+        <div className="home-offer-grid-simple">
           {homeOfferGroups.map((group) => (
-            <article key={group.label}>
-              <span>{group.label}</span>
+            <article className="home-offer-simple-card" key={group.label}>
+              <div className="home-offer-simple-top">
+                <div className="card-icon">{group.icon}</div>
+                <span>{group.label}</span>
+              </div>
               <h3>{group.title}</h3>
-              <p>{group.body}</p>
-              <div>
+              <p>{group.micro}</p>
+              <div className="home-offer-list">
                 {group.items.map((item) => (
                   <small key={item}><Check size={15} /> {item}</small>
                 ))}
               </div>
-            </article>
-          ))}
-        </div>
-        <div className="section-cta-center">
-          <a
-            className="primary-button"
-            href="#pricing"
-            onClick={(event) => {
-              trackEvent("pricing_click", { location: "home_offer_section" });
-              scrollToSection(event, "pricing");
-            }}
-          >
-            View Membership Plans <ArrowRight size={18} />
-          </a>
-        </div>
-      </section>
-
-      <section className="section accountability-section">
-        <div className="accountability-copy">
-          <span className="kicker">Accountability</span>
-          <h2>The Environment That Keeps You Consistent</h2>
-          <p>
-            Most traders fail from inconsistency, not from a lack of random information. DTSM solves
-            that through environment, repetition, and a place to review real trading decisions.
-          </p>
-        </div>
-        <div className="pillar-grid">
-          {pillars.map((pillar) => (
-            <article className="pillar-card" key={pillar.title}>
-              <div className="card-icon">{pillar.icon}</div>
-              <h3>{pillar.title}</h3>
-              <p>{pillar.body}</p>
+              <a
+                className="home-offer-card-link"
+                href={group.href}
+                onClick={() => trackEvent("product_detail_click", { product: group.label, location: "home_offer" })}
+              >
+                {group.cta} <ArrowRight size={16} />
+              </a>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="section join-flow-section">
-        <div className="join-flow-copy">
-          <span className="kicker">After You Join</span>
-          <h2>You are not dropped into random content. You get a daily path.</h2>
-          <p>
-            The goal is to make the next action obvious: log in, see what is moving, follow the
-            room, study the replay, and bring decisions back for review.
-          </p>
-          <div className="section-cta-row">
-            <a
-              className="primary-button"
-              href="#pricing"
-              onClick={(event) => {
-                trackEvent("pricing_click", { location: "join_flow" });
-                scrollToSection(event, "pricing");
-              }}
-            >
-              View Membership Plans <ArrowRight size={18} />
-            </a>
-            <a className="secondary-button" href={loginLink} onClick={() => trackEvent("login_click", { location: "join_flow_login" })}>Member Login <ArrowRight size={18} /></a>
-          </div>
-        </div>
-        <div className="join-flow-panel">
-          {homeJoinSteps.map(([title, body], index) => (
-            <article key={title}>
-              <span>{`0${index + 1}`}</span>
-              <div>
-                <strong>{title}</strong>
-                <p>{body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <div id="preview">
+        <CommunityPreview />
+      </div>
 
       <section id="pricing" className="section pricing-section">
         <div className="section-heading centered">
@@ -1983,9 +2628,18 @@ function HomePage({ menuOpen, setMenuOpen }) {
           <strong>Early members get the lowest pricing DTSM plans to offer.</strong>
           <p>Join during the founders launch window and lock in early-member pricing while the community is still in its first growth phase.</p>
         </div>
+        <div className="plan-guide">
+          {planGuides.map(([label, title, body], index) => (
+            <article className={index === 1 ? "featured" : ""} key={title}>
+              <span>{label}</span>
+              <strong>{title}</strong>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
         <div className="pricing-grid">
           {plans.map((plan) => (
-            <article className={plan.popular ? "price-card popular" : "price-card"} key={plan.id}>
+            <article className={plan.popular ? `price-card ${plan.id} popular` : `price-card ${plan.id}`} key={plan.id}>
               {plan.popular && <div className="popular-badge">Most Popular</div>}
               <div className="price-card-head">
                 <span>{plan.outcome}</span>
@@ -2018,37 +2672,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
           <Check size={18} />
           <span>No financial advice. Educational content only. Trading involves risk. No guaranteed results.</span>
         </div>
-        <div className="trial-clarity-grid">
-          <article>
-            <span>Live Access trial</span>
-            <strong>$11.99 for your first month</strong>
-            <p>After the first month, Live Access continues at $49.99/month unless you cancel before renewal.</p>
-          </article>
-          <article>
-            <span>Elite trial</span>
-            <strong>7 days free</strong>
-            <p>After the 7-day trial, Elite continues at $99.99/month unless you cancel before the trial ends.</p>
-          </article>
-          <article>
-            <span>Cancel anytime</span>
-            <strong>No long-term contract</strong>
-            <p>Membership is monthly. You can cancel before your next billing date from your account.</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="discord-pricing-cta">
-        <div>
-          <span className="kicker">Not ready for paid access yet?</span>
-          <h2>Join the free DTSM Discord preview.</h2>
-          <p>
-            See what traders are watching, stay around market conversation, and get a feel for the
-            pace of DTSM before choosing a paid plan.
-          </p>
-        </div>
-        <a className="primary-button" href={discordLink} onClick={() => trackEvent("discord_click", { location: "post_pricing" })}>
-          Join Free Discord <MessageCircle size={18} />
-        </a>
       </section>
 
       <section className="section comparison-section">
@@ -2076,6 +2699,20 @@ function HomePage({ menuOpen, setMenuOpen }) {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="discord-pricing-cta">
+        <div>
+          <span className="kicker">Not ready for paid access yet?</span>
+          <h2>Join the free DTSM Discord preview.</h2>
+          <p>
+            See what traders are watching, stay around market conversation, and get a feel for the
+            pace of DTSM before choosing a paid plan.
+          </p>
+        </div>
+        <a className="primary-button" href={discordLink} onClick={() => trackEvent("discord_click", { location: "post_compare" })}>
+          Join Free Discord <MessageCircle size={18} />
+        </a>
       </section>
 
       <section className="section home-free-path-section">
@@ -2109,22 +2746,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
             <p>Use the ChartsWatcher scanner and DTSM workflow to turn movement into a cleaner plan.</p>
             <b>Open Scanner <ArrowRight size={16} /></b>
           </a>
-        </div>
-      </section>
-
-      <section className="section steps-section">
-        <div className="section-heading centered">
-          <span className="kicker">How DTSM Works</span>
-          <h2>Join, participate, review, repeat.</h2>
-        </div>
-        <div className="steps-grid">
-          {steps.map(([number, title, body]) => (
-            <article key={number}>
-              <span>{number}</span>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -2285,6 +2906,14 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
         </div>
       </section>
 
+      <EthosSection
+        kicker="What DTSM Is Built Around"
+        title="Resources teach the basics. DTSM gives you the room, rhythm, and review."
+        description="The free path helps you learn. The paid community helps you keep showing up, stay connected to real market examples, and improve with other traders."
+        ctaHref="/about"
+        ctaLabel="Why DTSM Exists"
+      />
+
       <section className="section featured-resources-section">
         <div className="section-heading centered compact">
           <span className="kicker">Starter Kit</span>
@@ -2392,6 +3021,15 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
       </section>
 
       <FreeChannelsSection />
+
+      <CommunityRhythmSection
+        kicker="Inside The Community"
+        title="See how new content and live sessions keep moving inside DTSM."
+        description="This public preview shows the kind of updates, replays, and recurring sessions that make the full community feel alive instead of static."
+        ctaHref="/#pricing"
+        ctaLabel="Unlock The Full Environment"
+        ctaLocation="resources_rhythm"
+      />
 
       {resourceGroups.map((group) => (
         <section className="section resources-section" key={group.title}>
@@ -2888,6 +3526,14 @@ function App() {
 
   if (path === "/resources") {
     return <ResourcesPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
+  }
+
+  if (productDetailPages[path]) {
+    return <ProductDetailPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} path={path} />;
+  }
+
+  if (path === "/about") {
+    return <AboutPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
   }
 
   if (path === "/scanner") {
