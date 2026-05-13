@@ -152,6 +152,7 @@ button {
 }
 
 .mobile-nav-intro,
+.mobile-nav-top-actions,
 .mobile-pathbar {
   display: none;
 }
@@ -8108,6 +8109,18 @@ footer p {
     border-bottom: 1px solid var(--line);
   }
 
+  .mobile-nav-top-actions {
+    display: grid;
+    padding: 2px 4px 10px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-nav-top-actions .header-login {
+    width: 100%;
+    justify-content: center;
+  }
+
   .mobile-nav-intro small {
     color: var(--green-dark);
     font-size: 0.74rem;
@@ -8140,6 +8153,14 @@ footer p {
     border-radius: 14px;
     font-size: 0.86rem;
     font-weight: 900;
+  }
+
+  .mobile-nav-shortcuts .mobile-nav-join {
+    grid-column: 1 / -1;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0f8a4d 0%, #18b165 100%);
+    border-color: rgba(0, 122, 59, 0.18);
+    box-shadow: 0 16px 32px rgba(0, 122, 59, 0.18);
   }
 
   .nav a {
@@ -8199,6 +8220,16 @@ footer p {
     color: #0f1714;
     background: #f3faf6;
     box-shadow: inset 0 0 0 1px rgba(25, 196, 119, 0.14);
+  }
+
+  .mobile-pathbar a:last-child {
+    color: #ffffff;
+    background: linear-gradient(135deg, #0d5b31 0%, #0b7d3f 100%);
+    box-shadow: 0 14px 28px rgba(0, 122, 59, 0.18);
+  }
+
+  .mobile-pathbar a:last-child svg {
+    color: #ffffff;
   }
 
   .pillar-grid,
@@ -8633,6 +8664,7 @@ footer p {
   }
 
   .hero-trial-note {
+    margin-inline: auto;
     width: 100%;
     justify-content: center;
   }

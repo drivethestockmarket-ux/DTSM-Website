@@ -1577,7 +1577,7 @@ function Header({ menuOpen, setMenuOpen }) {
       }
     },
     {
-      label: "Course",
+      label: "Education",
       href: "/resources",
       icon: <Library size={17} />,
       active: currentPath === "/resources",
@@ -1603,10 +1603,32 @@ function Header({ menuOpen, setMenuOpen }) {
           <strong>DTSM</strong>
         </a>
         <nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
+          <div className="mobile-nav-top-actions">
+            <a
+              className="header-login"
+              href={loginLink}
+              onClick={() => {
+                setMenuOpen(false);
+                trackEvent("login_click", { location: "mobile_nav_top" });
+              }}
+            >
+              Member Log In
+            </a>
+          </div>
           <div className="mobile-nav-intro">
             <small>Best place to start</small>
             <strong>See inside DTSM, then choose your plan.</strong>
             <div className="mobile-nav-shortcuts">
+              <a
+                className="mobile-nav-join"
+                href={checkoutLinks.pro}
+                onClick={() => {
+                  setMenuOpen(false);
+                  trackEvent("checkout_click", { plan: "pro", location: "mobile_menu_join" });
+                }}
+              >
+                Join Now For 7 Days Free
+              </a>
               <a
                 href="/#preview"
                 onClick={(event) => {
@@ -1645,11 +1667,11 @@ function Header({ menuOpen, setMenuOpen }) {
               </a>
             );
           })}
-          <div className="mobile-nav-actions">
-            <a
-              className="header-login"
-              href={loginLink}
-              onClick={() => {
+        <div className="mobile-nav-actions">
+          <a
+            className="header-login"
+            href={loginLink}
+            onClick={() => {
                 setMenuOpen(false);
                 trackEvent("login_click", { location: "mobile_nav" });
               }}
