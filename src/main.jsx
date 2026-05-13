@@ -29,6 +29,7 @@ import {
   TrendingUp,
   Users,
   Video,
+  House,
   X,
   Menu
 } from "lucide-react";
@@ -1555,73 +1556,151 @@ function goToHomeSection(event, id, isHome) {
 
 function Header({ menuOpen, setMenuOpen }) {
   const isHome = window.location.pathname === "/";
+  const currentPath = window.location.pathname;
+
+  const mobilePathItems = [
+    {
+      label: "Home",
+      href: "/",
+      icon: <House size={17} />,
+      active: currentPath === "/",
+      onClick: () => trackEvent("mobile_path_click", { target: "home" })
+    },
+    {
+      label: "Inside",
+      href: "/#preview",
+      icon: <Radio size={17} />,
+      active: currentPath === "/" && window.location.hash === "#preview",
+      onClick: (event) => {
+        trackEvent("mobile_path_click", { target: "preview" });
+        goToHomeSection(event, "preview", isHome);
+      }
+    },
+    {
+      label: "Course",
+      href: "/resources",
+      icon: <Library size={17} />,
+      active: currentPath === "/resources",
+      onClick: () => trackEvent("mobile_path_click", { target: "resources" })
+    },
+    {
+      label: "Plans",
+      href: "/#pricing",
+      icon: <Layers3 size={17} />,
+      active: currentPath === "/" && window.location.hash === "#pricing",
+      onClick: (event) => {
+        trackEvent("mobile_path_click", { target: "pricing" });
+        goToHomeSection(event, "pricing", isHome);
+      }
+    }
+  ];
 
   return (
-    <header className="site-header">
-      <a className="brand" href="/" aria-label="DTSM home">
-        <img className="brand-orb" src="/assets/dtsm-orb-logo.png" alt="" />
-        <strong>DTSM</strong>
-      </a>
-      <nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
-        {navItems.map((item) => {
-          const href = item.href || `/#${item.id}`;
-          return (
+    <>
+      <header className="site-header">
+        <a className="brand" href="/" aria-label="DTSM home">
+          <img className="brand-orb" src="/assets/dtsm-orb-logo.png" alt="" />
+          <strong>DTSM</strong>
+        </a>
+        <nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
+          <div className="mobile-nav-intro">
+            <small>Best place to start</small>
+            <strong>See inside DTSM, then choose your plan.</strong>
+            <div className="mobile-nav-shortcuts">
+              <a
+                href="/#preview"
+                onClick={(event) => {
+                  setMenuOpen(false);
+                  trackEvent("preview_click", { location: "mobile_menu_shortcut" });
+                  goToHomeSection(event, "preview", isHome);
+                }}
+              >
+                See Inside
+              </a>
+              <a
+                href="/resources"
+                onClick={() => {
+                  setMenuOpen(false);
+                  trackEvent("resource_click", { location: "mobile_menu_shortcut" });
+                }}
+              >
+                Free Course
+              </a>
+            </div>
+          </div>
+          {navItems.map((item) => {
+            const href = item.href || `/#${item.id}`;
+            return (
+              <a
+                key={item.label}
+                href={href}
+                onClick={(event) => {
+                  setMenuOpen(false);
+                  if (item.id) {
+                    goToHomeSection(event, item.id, isHome);
+                  }
+                }}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+          <div className="mobile-nav-actions">
             <a
-              key={item.label}
-              href={href}
-              onClick={(event) => {
+              className="header-login"
+              href={loginLink}
+              onClick={() => {
                 setMenuOpen(false);
-                if (item.id) {
-                  goToHomeSection(event, item.id, isHome);
-                }
+                trackEvent("login_click", { location: "mobile_nav" });
               }}
             >
-              {item.label}
+              Log In
             </a>
-          );
-        })}
-        <div className="mobile-nav-actions">
-          <a
-            className="header-login"
-            href={loginLink}
-            onClick={() => {
-              setMenuOpen(false);
-              trackEvent("login_click", { location: "mobile_nav" });
-            }}
-          >
+          </div>
+        </nav>
+        <div className="header-actions">
+          <a className="header-login" href={loginLink} onClick={() => trackEvent("login_click", { location: "header" })}>
             Log In
           </a>
+          <a
+            className="header-cta"
+            href="/#pricing"
+            onClick={(event) => {
+              trackEvent("pricing_click", { location: "header" });
+              goToHomeSection(event, "pricing", isHome);
+            }}
+          >
+            View Plans <ArrowRight size={17} />
+          </a>
         </div>
-      </nav>
-      <div className="header-actions">
-        <a className="header-login" href={loginLink} onClick={() => trackEvent("login_click", { location: "header" })}>
-          Log In
-        </a>
         <a
-          className="header-cta"
+          className="mobile-header-cta"
           href="/#pricing"
           onClick={(event) => {
-            trackEvent("pricing_click", { location: "header" });
+            trackEvent("pricing_click", { location: "mobile_header" });
             goToHomeSection(event, "pricing", isHome);
           }}
         >
           View Plans <ArrowRight size={17} />
         </a>
+        <button className="icon-button" aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X /> : <Menu />}
+        </button>
+      </header>
+      <div className="mobile-pathbar" aria-label="Quick mobile navigation">
+        {mobilePathItems.map((item) => (
+          <a
+            key={item.label}
+            className={item.active ? "active" : ""}
+            href={item.href}
+            onClick={item.onClick}
+          >
+            {item.icon}
+            <span>{item.label}</span>
+          </a>
+        ))}
       </div>
-      <a
-        className="mobile-header-cta"
-        href="/#pricing"
-        onClick={(event) => {
-          trackEvent("pricing_click", { location: "mobile_header" });
-          goToHomeSection(event, "pricing", isHome);
-        }}
-      >
-        View Plans <ArrowRight size={17} />
-      </a>
-      <button className="icon-button" aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? <X /> : <Menu />}
-      </button>
-    </header>
+    </>
   );
 }
 
@@ -2847,15 +2926,13 @@ function HomePage({ menuOpen, setMenuOpen }) {
               Preview The Community
             </a>
           </div>
-          <div className="hero-trial-note">
-            <span>7 days free access</span>
-            <strong>Everything opens on day one</strong>
-          </div>
-          <div className="hero-proof" aria-label="DTSM core access">
-            <span><Radio size={15} /> Live room</span>
-            <span><MessageSquareText size={15} /> Trader feed + chat</span>
-            <span><Library size={15} /> 400+ hours of recordings</span>
-          </div>
+          <a
+            className="hero-trial-note"
+            href={checkoutLinks.pro}
+            onClick={() => trackEvent("checkout_click", { plan: "pro", location: "hero_trial_note" })}
+          >
+            <strong>7 Days Free Access</strong>
+          </a>
         </div>
         <div className="hero-product">
           <HeroLookInside />
