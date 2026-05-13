@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
   ArrowRight,
   BarChart3,
+  BookOpen,
   CalendarDays,
   Check,
   ChevronDown,
@@ -18,6 +19,7 @@ import {
   MessageSquareText,
   Mic,
   MonitorUp,
+  Newspaper,
   PhoneOff,
   PlayCircle,
   Radio,
@@ -51,6 +53,14 @@ const supportEmail = "drivethestockmarket@gmail.com";
 const affiliateFormEndpoint = `https://formsubmit.co/ajax/${supportEmail}`;
 const gaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID;
+const defaultBlogAuthor = {
+  name: "Brendan Hogan",
+  title: "Drive the Stock Market",
+  role: "Active small-cap trader",
+  bio: "Expect scanner workflows, platform setups, trade review frameworks, and execution-focused lessons built to connect free education with the full DTSM environment.",
+  image: "/assets/founder-photo.png"
+};
+const blogTopicLanes = ["Scanners", "Strategy", "Beginner trading", "Trade reviews", "Tools"];
 const shouldUseVercelRuntime =
   typeof window !== "undefined" &&
   !["localhost", "127.0.0.1"].includes(window.location.hostname);
@@ -105,6 +115,10 @@ const pageMeta = {
     title: "Free Trading Resources | DTSM Starter Course + Lessons",
     description: "Access the free DTSM Starter Course, trading basics, Level 2 lessons, Time and Sales resources, and tools to build a stronger execution routine."
   },
+  "/blog": {
+    title: "Trading Blog | DTSM",
+    description: "Read DTSM blog posts on scanners, brokers, indicators, execution, and the routines traders use to improve with real market context."
+  },
   "/live-room": {
     title: "Live Trading Room | DTSM",
     description: "See how the DTSM Live Trading Room helps traders follow real sessions, hear live context, and stay grounded during the market."
@@ -143,10 +157,23 @@ const pageMeta = {
   }
 };
 
+function getPageMeta(path) {
+  if (blogPostMap[path]) {
+    return {
+      title: `${blogPostMap[path].title} | DTSM Blog`,
+      description: blogPostMap[path].excerpt,
+      keywords: blogPostMap[path].seoKeywords || "DTSM blog, day trading education, small-cap trading, trading community"
+    };
+  }
+
+  return pageMeta[path] || pageMeta["/"];
+}
+
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Scanner", href: "/scanner" },
   { label: "Resources", href: "/resources" },
+  { label: "Blog", href: "/blog" },
   { label: "Affiliates", href: "/affiliates" },
   { label: "Pricing", id: "pricing" },
   { label: "About", href: "/about" }
@@ -389,6 +416,322 @@ const affiliateAssets = [
   ["Offer clarity", "Starter, Live Access, and Elite give your audience a simple path based on involvement."],
   ["Brand-safe copy", "Educational positioning, no profit promises, no signals language, no misleading claims."],
   ["Launch support", "Use clean benefit points around The Tape, Live Room, recordings, weekly meetings, and reviews."]
+];
+
+const blogPosts = [
+  {
+    slug: "how-dtsm-uses-chartswatcher",
+    category: "Scanner Workflow",
+    title: "How we use ChartsWatcher to catch stocks before the big move",
+    excerpt: "A cleaner workflow for using scanners, volume, float, and news without turning the scanner into your entire strategy.",
+    date: "May 2026",
+    publishedAt: "May 13, 2026",
+    updatedAt: "May 13, 2026",
+    searchPhrase: "how to use ChartsWatcher for momentum trading",
+    hero: "/assets/blog/chartswatcher-layout.png",
+    videoId: "VdyBEMUfH3E",
+    seoKeywords: "how to use ChartsWatcher for momentum trading, best scanner for small account day traders, day trading scanner, stock scanner, morning watchlist, DTSM, Drive the Stock Market",
+    author: defaultBlogAuthor,
+    icon: <BarChart3 />,
+    cta: "Open The Scanner Page",
+    ctaHref: "/scanner",
+    partner: {
+      name: "ChartsWatcher",
+      logo: "/assets/blog/chartswatcher-logo.svg",
+      body: "Use the DTSM affiliate link to sign up for ChartsWatcher, then apply code DTSM10 at checkout for 10% off.",
+      code: chartsWatcherCode,
+      href: chartsWatcherLink,
+      cta: "Get ChartsWatcher With DTSM Link"
+    },
+    midCta: {
+      kicker: "Want the exact tool?",
+      title: "Try the same scanner platform I use in my workflow.",
+      body: "If you want scanners, charts, news, watchlists, and stock info in one place, ChartsWatcher is the platform I currently use every day.",
+      cta: "Sign Up Through The DTSM Link",
+      href: chartsWatcherLink,
+      note: `Use code ${chartsWatcherCode} for 10% off.`
+    },
+    comparison: [
+      {
+        title: "Why I switched",
+        body: "I switched because ChartsWatcher felt faster, more customizable, and cheaper for the way I trade without losing the tools I actually need."
+      },
+      {
+        title: "Who it is best for",
+        body: "It is especially useful for small account day traders who want a scanner-centered workflow without paying for an overbuilt tool stack."
+      },
+      {
+        title: "How I use it daily",
+        body: "I use it to build the morning watchlist, monitor scanners, check news, flip through charts, and stay organized when momentum starts showing up."
+      }
+    ],
+    bullets: ["Why scanners matter", "Why I switched", "Main setup", "Customization", "Momentum scanners", "Final takeaways"],
+    sections: [
+      {
+        heading: "Why scanners matter for small account day traders",
+        body: "One of the biggest challenges in day trading is finding the right stocks quickly before everyone else piles in. When you are trading with a small account, every second matters. You need to know what is moving, why it is moving, how much volume is coming in, what the float looks like, and whether the setup is even worth watching. That is where scanners and screeners come in. A good scanner helps you pull up stocks in real time based on the exact criteria you care about so you can build a system instead of randomly clicking through tickers.",
+        links: [
+          { label: "Use the DTSM scanner page", href: "/scanner" },
+          { label: "Start with the free course", href: "/resources" }
+        ]
+      },
+      {
+        heading: "Why I switched to ChartsWatcher",
+        body: "Before ChartsWatcher, I was using Day Trade Dash as my main scanner, charting, and news platform. It worked well, but after hearing enough traders in my Discord community talk about ChartsWatcher, I decided to test it. After using it, I fully switched over. The reasons were pretty simple: it felt faster, more reliable, easier to customize, and significantly cheaper for what I actually need. For a newer trader or a small account trader, those cost savings matter because software expenses stack up quickly.",
+        links: [
+          { label: "See how DTSM uses scanners and tools", href: "/about" }
+        ]
+      },
+      {
+        heading: "My main ChartsWatcher setup",
+        body: "My layout is built around speed. I want scanners on the right, charts on the left, news close by, stock info nearby, and watchlists ready for fast ticker switching. I also like having multiple timeframes open, especially the 1-minute, 10-second, 3-minute, and 5-minute, because that helps me understand both the bigger picture and the short-term execution at the same time. The goal is to move from idea to chart to decision without losing momentum.",
+        links: [
+          { label: "Preview the live room workflow", href: "/live-room" }
+        ]
+      },
+      {
+        heading: "Why customization matters",
+        body: "One of the best parts of ChartsWatcher is how customizable it is. You can build the entire platform around your own strategy by adding columns like symbol, price, float, volume, gap percentage, country, news, days since IPO, reverse split data, float rotation, and more. That matters because every trader is looking for something slightly different. For me, being able to filter out lower-quality names quickly saves time and helps me focus on the setups that actually fit how I trade.",
+        links: [
+          { label: "Explore the DTSM community feed", href: "/community-feed" }
+        ]
+      },
+      {
+        heading: "Building a fresh screen from scratch",
+        body: "If you are new to ChartsWatcher, it can look intimidating at first, but the workflow is actually simple. You can start with a blank screen and add windows one by one: a chart, a high-of-day scanner, a running-up scanner, a top gainers list, a news feed, a watchlist, and a stock info window. Once the layout feels right, you can save it and keep refining it. The point is not to make it fancy. The point is to make it fast and useful.",
+        links: [
+          { label: "See the DTSM study library", href: "/study-library" }
+        ]
+      },
+      {
+        heading: "Using scanners to find momentum",
+        body: "The real power of ChartsWatcher comes from the scanners. You can set up or import momentum scanners like high-of-day momentum, running-up, top gainers, and gap scanners. When a stock starts hitting the scanner, you can click it and the chart updates immediately. That speed matters because in small-cap trading, the difference between catching a clean setup early and chasing it late can be just a few seconds.",
+        links: [
+          { label: "Open the free scanner tools page", href: "/scanner" }
+        ]
+      },
+      {
+        heading: "Why the watchlist and news feed help so much",
+        body: "The watchlist feature is extremely useful because it lets you keep names close and click through them without typing tickers over and over. The built-in news feed matters too, because not every percentage mover is a clean momentum play. You want to know whether the move is tied to real news, a catalyst, a reverse split, or something else that changes the quality of the setup. Having the news feed and stock info on the same platform helps you avoid wasting time on bad names.",
+        links: [
+          { label: "Learn how the morning session works", href: "/live-room" }
+        ]
+      },
+      {
+        heading: "Real example: finding BENF early",
+        body: "One of the best examples from my own trading was BENF. It popped up on the scanner early, before a lot of volume came in. Because I already had the scanner running, I was able to pull the stock up quickly and watch the move develop from around the four-dollar area toward five and higher. The scanner helped me catch it early by surfacing the gap, the volume, the float context, and the momentum while it was still developing.",
+        links: [
+          { label: "See how trade ideas get shared in DTSM", href: "/community-feed" }
+        ]
+      },
+      {
+        heading: "Float rotation and external linking",
+        body: "Another feature I like is float rotation, because it gives extra context around how active a low-float stock really is. ChartsWatcher is also working on external linking with platforms like DAS Trader, which could eventually make the workflow even faster by letting traders click a ticker inside the scanner and update their execution platform automatically. For fast-moving small caps, that kind of speed improvement matters.",
+        links: [
+          { label: "Read more platform setup content", href: "/blog/ocean-one-for-day-traders" }
+        ]
+      },
+      {
+        heading: "Is ChartsWatcher worth it",
+        body: "For my trading style, yes. I use ChartsWatcher every day because it gives me scanners, charts, news, watchlists, stock info, custom layouts, and strong filtering in one place at a cost that still makes sense for smaller traders. The key thing to remember is that a scanner does not replace skill. It helps you find stocks faster. You still need to read the chart, understand the catalyst, manage risk, watch Level 2, and execute with discipline.",
+        links: [
+          { label: "Turn scanner ideas into real process inside DTSM", href: "/#pricing" }
+        ]
+      }
+    ],
+    takeaway: "The goal is simple: find the right stocks faster, build a better watchlist, and be prepared when momentum shows up.",
+    bottomCta: {
+      title: "Use the scanner, then step into the full environment.",
+      body: "ChartsWatcher helps you find names. DTSM helps you turn those names into a repeatable morning routine with live room context, feed posts, chat, recordings, and review.",
+      primary: { label: "Join DTSM", href: "/#pricing" },
+      secondary: [
+        { label: "Start The Free Course", href: "/resources" },
+        { label: "Watch More On YouTube", href: youtubeLink, external: true },
+        { label: "Join The Free Discord", href: discordLink, external: true },
+        { label: "Get ChartsWatcher With DTSM Link", href: chartsWatcherLink, external: true }
+      ]
+    },
+    related: [youtubeLink, "/scanner"]
+  },
+  {
+    slug: "ocean-one-for-day-traders",
+    category: "Platform Setup",
+    title: "Ocean One for day traders: what to set up before the opening bell",
+    excerpt: "A practical guide to setting up your platform so orders, watchlists, and execution tools feel cleaner when the market starts moving.",
+    date: "May 2026",
+    publishedAt: "May 13, 2026",
+    updatedAt: "May 13, 2026",
+    searchPhrase: "how to set up Ocean One for day trading",
+    hero: "/assets/product-pages/live-room-schedule.png",
+    author: defaultBlogAuthor,
+    icon: <MonitorUp />,
+    cta: "Preview The Live Room",
+    ctaHref: "/live-room",
+    bullets: ["Execution layout", "Morning prep setup", "What to simplify before market open"],
+    sections: [
+      {
+        heading: "Keep the layout simple",
+        body: "Your platform should help you move faster, not create more confusion. The most useful setup is the one that lets you see what matters quickly: watchlist, chart, execution, and any key notes.",
+        links: [
+          { label: "See the live room layout", href: "/live-room" }
+        ]
+      },
+      {
+        heading: "Build around the morning routine",
+        body: "Ocean One should support the way you actually trade. That means getting levels marked, keeping order entry clean, and removing anything that distracts from the setup you are trying to follow.",
+        links: [
+          { label: "Start with the free course", href: "/resources" }
+        ]
+      },
+      {
+        heading: "Where DTSM fits in",
+        body: "Inside DTSM, platform setup is only one part of the process. The room, the watchlist, the feed, and the recordings help traders turn a platform into a repeatable routine instead of just a layout.",
+        links: [
+          { label: "Explore the feed and chat", href: "/community-feed" },
+          { label: "See the study library", href: "/study-library" }
+        ]
+      }
+    ],
+    takeaway: "A cleaner platform layout makes it easier to stay calm, follow the plan, and execute with less friction.",
+    bottomCta: {
+      title: "Use a cleaner platform, then build the routine around it.",
+      body: "DTSM helps traders connect their tools to the actual workflow: prep, live room, chat, post-market review, and repetition.",
+      primary: { label: "View Membership Plans", href: "/#pricing" },
+      secondary: [
+        { label: "Preview The Live Room", href: "/live-room" },
+        { label: "Start The Free Course", href: "/resources" },
+        { label: "Watch More On YouTube", href: youtubeLink, external: true }
+      ]
+    },
+    related: [youtubeLink, "/resources"]
+  },
+  {
+    slug: "which-indicators-actually-help",
+    category: "Indicator Education",
+    title: "Which indicators actually help in small-cap day trading",
+    excerpt: "A straight answer on which indicators are useful, which ones traders overdo, and why context matters more than stacking signals.",
+    date: "May 2026",
+    publishedAt: "May 13, 2026",
+    updatedAt: "May 13, 2026",
+    searchPhrase: "best indicators for small cap day trading",
+    hero: "/assets/product-pages/study-library-level2.png",
+    author: defaultBlogAuthor,
+    icon: <LineChart />,
+    cta: "Start The Free Course",
+    ctaHref: "/resources",
+    bullets: ["What to keep", "What to avoid", "How indicators fit into execution"],
+    sections: [
+      {
+        heading: "Use indicators to support the read, not replace it",
+        body: "Indicators can be useful for structure, but they do not replace reading price action, volume, and the actual behavior of the stock. The cleaner the setup, the less you usually need.",
+        links: [
+          { label: "See how DTSM studies setups", href: "/study-library" }
+        ]
+      },
+      {
+        heading: "Keep the chart readable",
+        body: "A chart packed with indicators usually creates more hesitation than clarity. In small-cap trading, simple tools are often more helpful than layering every signal on the screen.",
+        links: [
+          { label: "Learn the beginner path first", href: "/resources" }
+        ]
+      },
+      {
+        heading: "What DTSM focuses on instead",
+        body: "DTSM is built more around context, repetition, Level 2, Time & Sales, and real trade reviews than around finding the perfect combination of indicators. That is what helps traders get better over time.",
+        links: [
+          { label: "Explore live room + feed workflow", href: "/live-room" },
+          { label: "See trade discussion inside DTSM", href: "/community-feed" }
+        ]
+      }
+    ],
+    takeaway: "If the chart only makes sense when five indicators agree, the setup probably is not as clean as it needs to be.",
+    bottomCta: {
+      title: "Keep the chart simple. Make the process stronger.",
+      body: "The real upgrade is not more indicators. It is seeing cleaner examples, reviewing them, and staying around traders who care about execution.",
+      primary: { label: "Start The Free Course", href: "/resources" },
+      secondary: [
+        { label: "See The Study Library", href: "/study-library" },
+        { label: "Join DTSM", href: "/#pricing" },
+        { label: "Watch More On YouTube", href: youtubeLink, external: true }
+      ]
+    },
+    related: [youtubeLink, "/study-library"]
+  },
+  {
+    slug: "how-to-review-a-red-day",
+    category: "Trade Review",
+    title: "How to review a red day without spiraling",
+    excerpt: "A simple review framework DTSM traders can use after a bad session to turn frustration into useful notes and better rules.",
+    date: "May 2026",
+    publishedAt: "May 13, 2026",
+    updatedAt: "May 13, 2026",
+    searchPhrase: "how to review a red day in day trading",
+    hero: "/assets/product-pages/community-feed-tape.png",
+    author: defaultBlogAuthor,
+    icon: <ClipboardCheck />,
+    cta: "See Trade Reviews",
+    ctaHref: "/study-library",
+    bullets: ["Post-market reset", "Mistake isolation", "One lesson to carry forward"],
+    sections: [
+      {
+        heading: "Review the decision, not just the result",
+        body: "A red day does not automatically mean every trade was bad. The real review starts by separating emotional pain from whether the setup, risk, and execution actually made sense.",
+        links: [
+          { label: "See the review side of DTSM", href: "/study-library" }
+        ]
+      },
+      {
+        heading: "Pull out one mistake that matters",
+        body: "You do not need ten lessons after a bad day. Usually one repeated mistake explains most of the damage: chasing, oversizing, ignoring the setup, or forcing an entry after the move already happened.",
+        links: [
+          { label: "Join the free course path", href: "/resources" }
+        ]
+      },
+      {
+        heading: "Turn the loss into tomorrow's rule",
+        body: "The review only helps if it changes something. That is why DTSM focuses on turning notes into a tighter process instead of just venting and moving on.",
+        links: [
+          { label: "See the community feed and chat", href: "/community-feed" },
+          { label: "Step into DTSM membership", href: "/#pricing" }
+        ]
+      }
+    ],
+    takeaway: "A review should calm you down, make the mistake clearer, and give you one rule to trade better next time.",
+    bottomCta: {
+      title: "Turn bad days into cleaner notes and better rules.",
+      body: "DTSM gives traders a room to review decisions, get feedback, and keep showing up after the tough sessions too.",
+      primary: { label: "See Trade Reviews", href: "/study-library" },
+      secondary: [
+        { label: "Join DTSM", href: "/#pricing" },
+        { label: "Join The Free Discord", href: discordLink, external: true },
+        { label: "Watch More On YouTube", href: youtubeLink, external: true }
+      ]
+    },
+    related: [youtubeLink, "/community-feed"]
+  }
+];
+
+const blogPostMap = Object.fromEntries(blogPosts.map((post) => [`/blog/${post.slug}`, post]));
+
+const blogExploreCards = [
+  {
+    title: "Preview the community",
+    body: "See the room, the feed, and the study library before joining.",
+    href: "/#preview",
+    cta: "Explore DTSM"
+  },
+  {
+    title: "Use the free scanner page",
+    body: "Put the scanner workflow into practice with the DTSM scanner tools page.",
+    href: "/scanner",
+    cta: "Open Scanner"
+  },
+  {
+    title: "Start the free course",
+    body: "Learn the basics first, then move into the full environment when you are ready.",
+    href: "/resources",
+    cta: "Start Free Course"
+  }
 ];
 
 const painPoints = [
@@ -1291,6 +1634,9 @@ function SiteFooter() {
       </div>
       <div className="footer-middle">
         <div className="footer-links">
+          <a href="/blog">
+            Blog
+          </a>
           <a href="/privacy">
             Privacy
           </a>
@@ -2531,46 +2877,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
         ))}
       </section>
 
-      <section className="section reactions-section">
-        <div className="section-heading centered compact">
-          <span className="kicker">Member Feedback</span>
-          <h2>Real traders are feeling the difference.</h2>
-          <p>
-            The win is not just more information. It is having a place to review decisions, stay
-            steady after bad days, and build better execution habits over time.
-          </p>
-        </div>
-        <div className="reaction-marquee" aria-label="Member testimonial cards">
-          <div className="reaction-track">
-            {[...communityTestimonials, ...communityTestimonials].map(([name, role, quote, tag], index) => (
-              <article className="reaction-card" key={`${tag}-${index}`}>
-                <div className="reaction-top">
-                  <span>{name}</span>
-                  <b>{role}</b>
-                </div>
-                <p>"{quote}"</p>
-                <div className="reaction-bottom">
-                  <strong>{tag}</strong>
-                  <em>Member feedback</em>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-        <div className="section-cta-center">
-          <a
-            className="secondary-button"
-            href="#pricing"
-            onClick={(event) => {
-              trackEvent("pricing_click", { location: "reactions_section" });
-              scrollToSection(event, "pricing");
-            }}
-          >
-            View Membership Plans <ArrowRight size={18} />
-          </a>
-        </div>
-      </section>
-
       <section className="section home-offer-section">
         <div className="section-heading centered compact">
           <span className="kicker">What's Inside DTSM</span>
@@ -2613,6 +2919,46 @@ function HomePage({ menuOpen, setMenuOpen }) {
       <div id="preview">
         <CommunityPreview />
       </div>
+
+      <section className="section reactions-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Member Feedback</span>
+          <h2>Real traders are feeling the difference.</h2>
+          <p>
+            The win is not just more information. It is having a place to review decisions, stay
+            steady after bad days, and build better execution habits over time.
+          </p>
+        </div>
+        <div className="reaction-marquee" aria-label="Member testimonial cards">
+          <div className="reaction-track">
+            {[...communityTestimonials, ...communityTestimonials].map(([name, role, quote, tag], index) => (
+              <article className="reaction-card" key={`${tag}-${index}`}>
+                <div className="reaction-top">
+                  <span>{name}</span>
+                  <b>{role}</b>
+                </div>
+                <p>"{quote}"</p>
+                <div className="reaction-bottom">
+                  <strong>{tag}</strong>
+                  <em>Member feedback</em>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+        <div className="section-cta-center">
+          <a
+            className="secondary-button"
+            href="#pricing"
+            onClick={(event) => {
+              trackEvent("pricing_click", { location: "reactions_section" });
+              scrollToSection(event, "pricing");
+            }}
+          >
+            View Membership Plans <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
 
       <section id="pricing" className="section pricing-section">
         <div className="section-heading centered">
@@ -3103,6 +3449,493 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
   );
 }
 
+function BlogPage({ menuOpen, setMenuOpen }) {
+  const featured = blogPosts[0];
+  const remaining = blogPosts.slice(1);
+
+  return (
+    <main>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      <section className="page-hero blog-hero">
+        <div>
+          <span className="kicker">DTSM Blog</span>
+          <h1>Trading lessons that connect the videos, tools, and community.</h1>
+          <p>
+            Use the blog to go deeper on scanners, execution, platform setup, indicators, and trade
+            review. It is built to make the YouTube content easier to apply inside a real trading routine.
+          </p>
+          <div className="hero-actions">
+            <a className="primary-button" href={youtubeLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { location: "blog_hero" })}>
+              Visit The YouTube Channel <ArrowRight size={19} />
+            </a>
+            <a className="secondary-button" href="/#pricing" onClick={(event) => goToHomeSection(event, "pricing", false)}>
+              View Membership Plans
+            </a>
+          </div>
+        </div>
+        <div className="blog-hero-card">
+          <span>Built around the JoinDTSM channel</span>
+          <strong>Turn free education into a cleaner routine.</strong>
+          <p>
+            The blog gives written breakdowns for scanners, platforms, indicators, and trade reviews
+            so visitors can learn fast and then step into the full DTSM environment when they want more context.
+          </p>
+          <div className="about-hero-points">
+            <small><Check size={15} /> Scanner workflows</small>
+            <small><Check size={15} /> Platform setup ideas</small>
+            <small><Check size={15} /> Indicator + execution education</small>
+          </div>
+        </div>
+      </section>
+
+      <section className="section blog-featured-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Featured Article</span>
+          <h2>Start with the workflow most visitors need first.</h2>
+        </div>
+        <article className="blog-featured-card">
+          <img src={featured.hero} alt={featured.title} />
+          <div className="blog-featured-copy">
+            <small>{featured.category}</small>
+            <h2>{featured.title}</h2>
+            <p>{featured.excerpt}</p>
+            <div className="blog-chip-row">
+              <span>{featured.date}</span>
+              <span>Based on DTSM education themes</span>
+            </div>
+            <a className="primary-button" href={`/blog/${featured.slug}`} onClick={() => trackEvent("blog_post_click", { slug: featured.slug, location: "blog_featured" })}>
+              Read The Article <ArrowRight size={18} />
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <section className="section blog-grid-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">What's To Come</span>
+          <h2>The next DTSM posts are already mapped out.</h2>
+          <p>
+            This section is meant to show visitors where the blog is heading next. The topics,
+            keyword targets, and content angles are planned now so the library can grow in a clean way.
+          </p>
+        </div>
+        <div className="blog-upcoming-intro">
+          <article>
+            <small>Publishing roadmap</small>
+            <strong>Built to expand across tools, execution, and review.</strong>
+            <p>Visitors can see the direction of the content now, even before every article is live.</p>
+          </article>
+          <article>
+            <small>What is ready</small>
+            <strong>{remaining.length} posts outlined next.</strong>
+            <p>Titles, search angles, and post structure are already in place so publishing can happen fast.</p>
+          </article>
+        </div>
+        <div className="blog-grid blog-upcoming-grid">
+          {remaining.map((post) => (
+            <article className="blog-card blog-upcoming-card" key={post.slug}>
+              <div className="blog-card-icon">{post.icon}</div>
+              <small>{post.category}</small>
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+              <div className="blog-chip-row">
+                <span>Coming soon</span>
+                <span>{post.searchPhrase}</span>
+              </div>
+              <div className="blog-upcoming-list">
+                {post.bullets.slice(0, 3).map((bullet) => (
+                  <small key={bullet}><Check size={14} /> {bullet}</small>
+                ))}
+              </div>
+              <span className="home-offer-card-link disabled" aria-disabled="true">
+                Publishing Soon <Clock3 size={16} />
+              </span>
+            </article>
+          ))}
+        </div>
+        <div className="blog-upcoming-note">
+          <span className="kicker">More To Come</span>
+          <strong>These previews are here to show the blog is being built out with intention.</strong>
+          <p>
+            More written breakdowns, screenshots, video-led articles, and tool guides will keep filling this out over time.
+          </p>
+        </div>
+      </section>
+
+      <section className="section blog-lanes-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Built In Lanes</span>
+          <h2>The blog is being built around the trading topics people search for most.</h2>
+          <p>
+            As the library grows, posts will naturally group into clean lanes so readers can go from one
+            question to the next without getting lost.
+          </p>
+        </div>
+        <div className="blog-topic-lanes">
+          {blogTopicLanes.map((lane) => (
+            <span key={lane}>{lane}</span>
+          ))}
+        </div>
+      </section>
+
+      <section className="section blog-channel-section">
+        <div className="blog-channel-copy">
+          <span className="kicker">From The Channel</span>
+          <h2>The blog works best alongside the JoinDTSM videos.</h2>
+          <p>
+            Use the written posts to clarify the workflow, then watch the videos for the live examples,
+            chart context, and real pacing that make the ideas easier to apply.
+          </p>
+        </div>
+        <div className="blog-channel-panel">
+          <article>
+            <strong>YouTube breakdowns</strong>
+            <p>Market breakdowns, scanner ideas, Level 2 lessons, and execution-focused education.</p>
+          </article>
+          <article>
+            <strong>Free course path</strong>
+            <p>Start with the free starter course, then move into the room, feed, and recordings when you want more.</p>
+          </article>
+          <a className="primary-button" href={youtubeLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { location: "blog_channel" })}>
+            Watch JoinDTSM On YouTube <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <section className="final-cta">
+        <div>
+          <span className="kicker">Step Into DTSM</span>
+          <h2>Use the free content, then join the full environment.</h2>
+          <p>The blog can teach the workflow. DTSM gives you the room, feed, recordings, and review loop to actually improve with it.</p>
+        </div>
+        <a className="primary-button" href="/#pricing" onClick={(event) => goToHomeSection(event, "pricing", false)}>
+          View Membership Plans <ArrowRight size={19} />
+        </a>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
+function BlogPostPage({ menuOpen, setMenuOpen, path }) {
+  const post = blogPostMap[path];
+  const author = post.author || defaultBlogAuthor;
+  const headingId = (heading) =>
+    heading
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+  return (
+    <main>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      <section className="page-hero blog-post-hero">
+        <div>
+          <span className="kicker">{post.category}</span>
+          <h1>{post.title}</h1>
+          <p>{post.excerpt}</p>
+          <div className="blog-chip-row">
+            <span>Published {post.publishedAt || post.date}</span>
+            <span>Updated {post.updatedAt || post.date}</span>
+            <span>{post.searchPhrase}</span>
+          </div>
+          <div className="blog-author-card">
+            <img src={author.image} alt={author.name} />
+            <div>
+              <strong>{author.name}</strong>
+              <span>{author.role} · {author.title}</span>
+              <p>{author.bio}</p>
+            </div>
+          </div>
+          <div className="hero-actions">
+            <a className="primary-button" href={post.ctaHref} onClick={(event) => {
+              if (post.ctaHref.startsWith("/#")) {
+                goToHomeSection(event, post.ctaHref.replace("/#", ""), false);
+              }
+              trackEvent("blog_cta_click", { slug: post.slug, location: "blog_post_hero" });
+            }}>
+              {post.cta} <ArrowRight size={18} />
+            </a>
+            <a className="secondary-button" href={youtubeLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { location: "blog_post_hero" })}>
+              Watch On YouTube
+            </a>
+          </div>
+        </div>
+        <div className="blog-post-hero-card">
+          {post.partner ? (
+            <div className="blog-post-hero-logo">
+              <img src={post.partner.logo} alt={`${post.partner.name} logo`} />
+            </div>
+          ) : null}
+          <img src={post.hero} alt={post.title} />
+        </div>
+      </section>
+
+      {post.videoId ? (
+        <section className="section blog-video-section">
+          <div className="section-heading centered compact blog-video-heading">
+            <span className="kicker">Watch The Breakdown</span>
+            <h2>Press play and follow the full Drive the Stock Market breakdown.</h2>
+            <p>
+              Watch the lesson first, then scroll down to revisit the key ideas in written form.
+            </p>
+          </div>
+          <div className="blog-video-shell centered">
+            <div className="blog-video-frame">
+              <iframe
+                src={`https://www.youtube.com/embed/${post.videoId}`}
+                title={post.title}
+                loading="eager"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="section blog-post-section">
+        <div className="blog-post-layout">
+          <aside className="blog-post-nav">
+            <div className="blog-post-side-card">
+              <span className="kicker">On This Page</span>
+              {post.sections.map((section) => (
+                <a key={section.heading} href={`#${headingId(section.heading)}`}>
+                  {section.heading}
+                </a>
+              ))}
+            </div>
+            <div className="blog-post-side-card">
+              <span className="kicker">Search Intent</span>
+              <strong>{post.searchPhrase}</strong>
+              <p>This post is written to answer one clear question and connect that answer back into the DTSM workflow.</p>
+            </div>
+            <div className="blog-post-side-card branded">
+              <span className="kicker">Drive the Stock Market</span>
+              <strong>Free content first. Real environment next.</strong>
+              <p>
+                The blog and YouTube channel teach the workflow. DTSM gives you the room, the feed,
+                the recordings, and the repetition to actually improve with it.
+              </p>
+              <a className="primary-button" href="/#pricing" onClick={(event) => goToHomeSection(event, "pricing", false)}>
+                View Membership Plans <ArrowRight size={18} />
+              </a>
+            </div>
+          </aside>
+          <article className="blog-post-body">
+            {post.sections.map((section, index) => (
+              <React.Fragment key={section.heading}>
+                <section id={headingId(section.heading)}>
+                  <h2>{section.heading}</h2>
+                  <p>{section.body}</p>
+                  {section.links?.length ? (
+                    <div className="blog-inline-links">
+                      {section.links.map((link) => (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          onClick={(event) => {
+                            if (link.href.startsWith("/#")) {
+                              goToHomeSection(event, link.href.replace("/#", ""), false);
+                            }
+                            trackEvent("blog_internal_link_click", { slug: post.slug, target: link.href, label: link.label });
+                          }}
+                        >
+                          {link.label} <ArrowRight size={15} />
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+                </section>
+                {post.midCta && index === 2 ? (
+                  <div className="blog-mid-cta">
+                    <span className="kicker">{post.midCta.kicker}</span>
+                    <h2>{post.midCta.title}</h2>
+                    <p>{post.midCta.body}</p>
+                    <div className="blog-mid-cta-actions">
+                      <a
+                        className="primary-button"
+                        href={post.midCta.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => trackEvent("chartswatcher_click", { location: "blog_post_mid_cta", slug: post.slug })}
+                      >
+                        {post.midCta.cta} <ArrowRight size={18} />
+                      </a>
+                      <span>{post.midCta.note}</span>
+                    </div>
+                  </div>
+                ) : null}
+              </React.Fragment>
+            ))}
+            <div className="blog-post-takeaway">
+              <span className="kicker">Takeaway</span>
+              <p>{post.takeaway}</p>
+            </div>
+            {post.comparison ? (
+              <div className="blog-post-comparison">
+                {post.comparison.map((item) => (
+                  <article key={item.title}>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </article>
+                ))}
+              </div>
+            ) : null}
+          </article>
+          <aside className="blog-post-side">
+            {post.partner ? (
+              <div className="blog-post-side-card partner">
+                <img src={post.partner.logo} alt={`${post.partner.name} logo`} />
+                <span className="kicker">Partner Tool</span>
+                <strong>{post.partner.name}</strong>
+                <p>{post.partner.body}</p>
+                <div className="blog-chip-row">
+                  <span>Code: {post.partner.code}</span>
+                  <span>DTSM link</span>
+                </div>
+                <a
+                  className="primary-button"
+                  href={post.partner.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackEvent("chartswatcher_click", { location: "blog_post_partner", slug: post.slug })}
+                >
+                  {post.partner.cta} <ArrowRight size={18} />
+                </a>
+              </div>
+            ) : null}
+            <div className="blog-post-side-card">
+              <span className="kicker">In This Post</span>
+              {post.bullets.map((bullet) => (
+                <small key={bullet}><Check size={15} /> {bullet}</small>
+              ))}
+            </div>
+            <div className="blog-post-side-card">
+              <span className="kicker">Next Step</span>
+              <strong>Use the post, then step into the full environment.</strong>
+              <p>The article teaches the idea. DTSM gives you live examples, recordings, and a community around the process.</p>
+              <a className="primary-button" href={post.ctaHref} onClick={(event) => {
+                if (post.ctaHref.startsWith("/#")) {
+                  goToHomeSection(event, post.ctaHref.replace("/#", ""), false);
+                }
+                trackEvent("blog_cta_click", { slug: post.slug, location: "blog_post_sidebar" });
+              }}>
+                {post.cta} <ArrowRight size={18} />
+              </a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {post.bottomCta ? (
+        <section className="section blog-bottom-cta-section">
+          <div className="blog-bottom-cta">
+            <span className="kicker">Next Step</span>
+            <h2>{post.bottomCta.title}</h2>
+            <p>{post.bottomCta.body}</p>
+            <div className="blog-bottom-cta-actions">
+              <a
+                className="primary-button"
+                href={post.bottomCta.primary.href}
+                onClick={(event) => {
+                  if (post.bottomCta.primary.href.startsWith("/#")) {
+                    goToHomeSection(event, post.bottomCta.primary.href.replace("/#", ""), false);
+                  }
+                  trackEvent("blog_cta_click", { slug: post.slug, location: "blog_bottom_primary" });
+                }}
+              >
+                {post.bottomCta.primary.label} <ArrowRight size={18} />
+              </a>
+              <div className="blog-bottom-cta-links">
+                {post.bottomCta.secondary.map((link) => (
+                  <a
+                    key={link.label}
+                    className="secondary-button"
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noreferrer" : undefined}
+                    onClick={(event) => {
+                      if (link.href.startsWith("/#")) {
+                        goToHomeSection(event, link.href.replace("/#", ""), false);
+                      }
+                      trackEvent("blog_cta_click", { slug: post.slug, location: "blog_bottom_secondary", label: link.label });
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="section blog-explore-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Explore DTSM</span>
+          <h2>Go deeper than the article.</h2>
+          <p>
+            If the post helped, the next step is seeing how the same ideas connect to the scanner page,
+            the free course, and the full DTSM environment.
+          </p>
+        </div>
+        <div className="blog-grid">
+          {blogExploreCards.map((card) => (
+            <article className="blog-card" key={card.title}>
+              <div className="blog-card-icon"><BookOpen size={22} /></div>
+              <small>Explore</small>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+              <a
+                className="home-offer-card-link"
+                href={card.href}
+                onClick={(event) => {
+                  if (card.href.startsWith("/#")) {
+                    goToHomeSection(event, card.href.replace("/#", ""), false);
+                  }
+                  trackEvent("blog_explore_click", { slug: post.slug, target: card.title });
+                }}
+              >
+                {card.cta} <ArrowRight size={16} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section blog-related-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Keep Going</span>
+          <h2>More ways to go deeper on the same idea.</h2>
+        </div>
+        <div className="blog-grid">
+          {blogPosts.filter((entry) => entry.slug !== post.slug).slice(0, 3).map((entry) => (
+            <article className="blog-card" key={entry.slug}>
+              <div className="blog-card-icon">{entry.icon}</div>
+              <small>{entry.category}</small>
+              <h3>{entry.title}</h3>
+              <p>{entry.excerpt}</p>
+              <div className="blog-chip-row">
+                <span>{entry.date}</span>
+              </div>
+              <a className="home-offer-card-link" href={`/blog/${entry.slug}`} onClick={() => trackEvent("blog_post_click", { slug: entry.slug, location: "blog_related" })}>
+                Read More <ArrowRight size={16} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
 function ScannerPage({ menuOpen, setMenuOpen }) {
   return (
     <main>
@@ -3499,19 +4332,78 @@ function AffiliatesPage({ menuOpen, setMenuOpen }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const path = window.location.pathname;
-  const meta = pageMeta[path] || pageMeta["/"];
+  const meta = getPageMeta(path);
 
   useEffect(() => {
     initAnalytics();
     document.title = meta.title;
-    let description = document.querySelector('meta[name="description"]');
-    if (!description) {
-      description = document.createElement("meta");
-      description.setAttribute("name", "description");
-      document.head.appendChild(description);
+    const ensureMeta = (selector, attribute, value) => {
+      let element = document.head.querySelector(selector);
+      if (!element) {
+        element = document.createElement("meta");
+        const [, attrValue] = selector.match(/\[(?:name|property)="([^"]+)"\]/) || [];
+        if (selector.includes("property=")) {
+          element.setAttribute("property", attrValue);
+        } else {
+          element.setAttribute("name", attrValue);
+        }
+        document.head.appendChild(element);
+      }
+      element.setAttribute(attribute, value);
+    };
+
+    ensureMeta('meta[name="description"]', "content", meta.description);
+    ensureMeta('meta[name="keywords"]', "content", meta.keywords || "DTSM, trading community, live trading, small-cap trading");
+    ensureMeta('meta[property="og:title"]', "content", meta.title);
+    ensureMeta('meta[property="og:description"]', "content", meta.description);
+    ensureMeta('meta[property="og:type"]', "content", blogPostMap[path] ? "article" : "website");
+    ensureMeta('meta[name="twitter:title"]', "content", meta.title);
+    ensureMeta('meta[name="twitter:description"]', "content", meta.description);
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
     }
-    description.setAttribute("content", meta.description);
-  }, [meta]);
+    canonical.setAttribute("href", `https://www.joindtsm.com${path}`);
+
+    const oldSchema = document.head.querySelector("#dtsm-schema");
+    if (oldSchema) oldSchema.remove();
+
+    if (blogPostMap[path]) {
+      const post = blogPostMap[path];
+      const schema = document.createElement("script");
+      schema.id = "dtsm-schema";
+      schema.type = "application/ld+json";
+      schema.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        image: `https://www.joindtsm.com${post.hero}`,
+        author: {
+          "@type": "Person",
+          name: post.author?.name || "Brendan Hogan"
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Drive the Stock Market",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://www.joindtsm.com/assets/dtsm-orb-logo.png"
+          }
+        },
+        mainEntityOfPage: `https://www.joindtsm.com${path}`,
+        datePublished: post.publishedAt || post.date,
+        dateModified: post.updatedAt || post.publishedAt || post.date,
+        articleSection: post.category,
+        keywords: post.seoKeywords || "",
+        about: post.searchPhrase || post.category
+      });
+      document.head.appendChild(schema);
+    }
+  }, [meta, path]);
 
   useEffect(() => {
     if (path !== "/" || !window.location.hash) return undefined;
@@ -3526,6 +4418,14 @@ function App() {
 
   if (path === "/resources") {
     return <ResourcesPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
+  }
+
+  if (path === "/blog") {
+    return <BlogPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
+  }
+
+  if (blogPostMap[path]) {
+    return <BlogPostPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} path={path} />;
   }
 
   if (productDetailPages[path]) {
