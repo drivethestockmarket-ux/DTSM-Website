@@ -155,6 +155,10 @@ const pageMeta = {
   "/contact": {
     title: "Contact DTSM | Support and Questions",
     description: "Contact DTSM for support, membership questions, partnership inquiries, or general help at drivethestockmarket@gmail.com."
+  },
+  "/start": {
+    title: "Join DTSM | 7 Days Free Access",
+    description: "Start with 7 days free inside DTSM and get live trading sessions, The Tape feed, 24/7 chat, recordings, and weekly review built to improve execution."
   }
 };
 
@@ -422,6 +426,7 @@ const affiliateAssets = [
 const blogPosts = [
   {
     slug: "how-dtsm-uses-chartswatcher",
+    published: true,
     category: "Scanner Workflow",
     title: "How we use ChartsWatcher to catch stocks before the big move",
     excerpt: "A cleaner workflow for using scanners, volume, float, and news without turning the scanner into your entire strategy.",
@@ -556,6 +561,7 @@ const blogPosts = [
   },
   {
     slug: "ocean-one-for-day-traders",
+    published: false,
     category: "Platform Setup",
     title: "Ocean One for day traders: what to set up before the opening bell",
     excerpt: "A practical guide to setting up your platform so orders, watchlists, and execution tools feel cleaner when the market starts moving.",
@@ -607,52 +613,104 @@ const blogPosts = [
     related: [youtubeLink, "/resources"]
   },
   {
-    slug: "which-indicators-actually-help",
+    slug: "best-indicators-to-use-to-day-trade-small-cap-stocks",
+    aliases: ["which-indicators-actually-help"],
+    published: true,
     category: "Indicator Education",
-    title: "Which indicators actually help in small-cap day trading",
-    excerpt: "A straight answer on which indicators are useful, which ones traders overdo, and why context matters more than stacking signals.",
+    title: "Best Indicators to Use to Day Trade Small-Cap Stocks",
+    excerpt: "Learn the best indicators to use to day trade small-cap stocks, including the 9 EMA, 20 EMA, VWAP, volume, MACD, and the 200 EMA.",
     date: "May 2026",
-    publishedAt: "May 13, 2026",
-    updatedAt: "May 13, 2026",
-    searchPhrase: "best indicators for small cap day trading",
-    hero: "/assets/product-pages/study-library-level2.png",
+    publishedAt: "May 14, 2026",
+    updatedAt: "May 14, 2026",
+    searchPhrase: "best indicators to use to day trade small-cap stocks",
+    hero: "/assets/blog/indicators-guide.png",
+    videoId: "8PEFAlvtNro",
+    seoKeywords: "best indicators to use to day trade small-cap stocks, best indicators for small cap day trading, day trading indicators, 9 EMA, 20 EMA, VWAP, MACD, 200 EMA, volume bars, small-cap trading, DTSM, Drive the Stock Market",
     author: defaultBlogAuthor,
     icon: <LineChart />,
-    cta: "Start The Free Course",
-    ctaHref: "/resources",
-    bullets: ["What to keep", "What to avoid", "How indicators fit into execution"],
+    cta: "Join DTSM",
+    ctaHref: "/#pricing",
+    midCta: {
+      kicker: "Platform I Use",
+      logo: "/assets/blog/chartswatcher-logo.svg",
+      title: "ChartsWatcher is how I keep these indicators organized in one workflow.",
+      body: "I use ChartsWatcher to track the 9 EMA, 20 EMA, VWAP, volume, MACD, and daily chart context without bouncing between tools. It helps me move from chart to scanner to news much faster during the session.",
+      cta: "Get ChartsWatcher With DTSM Link",
+      href: chartsWatcherLink,
+      note: `Use code ${chartsWatcherCode} for 10% off.`
+    },
+    bullets: ["Indicator mindset", "What I use daily", "How they work together", "Two live trade examples", "Daily checklist", "Final takeaway"],
     sections: [
       {
-        heading: "Use indicators to support the read, not replace it",
-        body: "Indicators can be useful for structure, but they do not replace reading price action, volume, and the actual behavior of the stock. The cleaner the setup, the less you usually need.",
+        heading: "Why indicators should not be used as blind buy signals",
+        body: "One of the most common questions I get on TikTok Live every morning is what indicators I use and how I use them. That question usually comes from traders looking for something that will make decisions easier. That makes sense, especially when you are new. But there is no single indicator that is right one hundred percent of the time. Indicators are not magic buy or sell signals. I use them as references that help me make a more educated trading decision. The real read still comes from price action, volume, Level 2, time and sales, key support and resistance, market context, and risk management.",
         links: [
-          { label: "See how DTSM studies setups", href: "/study-library" }
+          { label: "See how DTSM studies setups", href: "/study-library" },
+          { label: "Start with the free course", href: "/resources" }
         ]
       },
       {
-        heading: "Keep the chart readable",
-        body: "A chart packed with indicators usually creates more hesitation than clarity. In small-cap trading, simple tools are often more helpful than layering every signal on the screen.",
+        heading: "The main indicators I use every day",
+        body: "The core list is simple: the 9 EMA, the 20 EMA, VWAP, volume bars, MACD, and the 200 EMA. Each one gives me a different piece of information. The 9 EMA helps me see short-term momentum and fast pullbacks. The 20 EMA helps filter out noise and gives me a cleaner support area when the 9 EMA gets too tight. VWAP helps me understand intraday bias. Volume tells me whether the move actually has strength behind it. MACD helps show whether momentum is increasing or fading. The 200 EMA helps me understand the bigger picture on the daily chart.",
         links: [
-          { label: "Learn the beginner path first", href: "/resources" }
+          { label: "Learn the beginner path first", href: "/resources" },
+          { label: "Preview the live room workflow", href: "/live-room" }
         ]
       },
       {
-        heading: "What DTSM focuses on instead",
-        body: "DTSM is built more around context, repetition, Level 2, Time & Sales, and real trade reviews than around finding the perfect combination of indicators. That is what helps traders get better over time.",
+        heading: "How the 9 EMA and 20 EMA help with momentum and pullbacks",
+        body: "The 9 EMA is one of the most important short-term indicators I use because it reacts quickly to price. When a stock is moving strongly, it will often ride the 9 EMA as it pushes higher. If it pulls back to the 9 EMA and buyers step in, that can show momentum is still there. The downside is that the 9 EMA can get too tight when the stock is choppy. That is why I also use the 20 EMA. It is slower, but that is what makes it useful. The 20 EMA filters out some of the noise and often gives me a cleaner support area when the 9 EMA is too close to price action.",
         links: [
-          { label: "Explore live room + feed workflow", href: "/live-room" },
-          { label: "See trade discussion inside DTSM", href: "/community-feed" }
+          { label: "Explore live room + feed workflow", href: "/live-room" }
+        ]
+      },
+      {
+        heading: "Why VWAP, volume, and MACD matter together",
+        body: "VWAP is one of the most important indicators for understanding the stock’s overall intraday bias. If the stock is above VWAP, buyers may be in control. If the stock is below VWAP, sellers may be in control. Most of the time, I prefer trading stocks that are above VWAP. Volume is what helps confirm whether the move actually has real demand behind it. If price is moving higher but volume is not increasing, that can be a warning sign. MACD helps me see whether momentum is shifting positive or negative. I do not use MACD as a blind buy signal because it is a lagging indicator, but I do like it as one more visual reference when price action, volume, and support are already lining up.",
+        links: [
+          { label: "See trade discussion inside DTSM", href: "/community-feed" },
+          { label: "Watch scanners and momentum tools", href: "/scanner" }
+        ]
+      },
+      {
+        heading: "Why the 200 EMA and daily chart context matter",
+        body: "The 200 EMA is one of the most important indicators I use on the daily chart because it helps me understand the bigger picture. Small-cap stocks often react heavily around the 200 EMA because it can act as a major support or resistance level. When I see a stock popping up, I want to know how much room it has before it hits that daily chart resistance. If a stock is already running and the 200 EMA is sitting just above it, I know there may be a tougher ceiling coming soon. That context helps me avoid weaker trades and manage expectations better.",
+        links: [
+          { label: "See how reviews and recordings add context", href: "/study-library" }
+        ]
+      },
+      {
+        heading: "How these indicators worked in two live trades",
+        body: "In one live example, the stock was already one of the leading gainers on the day with strong volume, low float, and news. The setup was forming near VWAP and the 9 EMA, and I was waiting to see if buyers would step back in. The stock had VWAP support, 9 EMA support, strong relative volume, room on the daily chart, and MACD crossing positive. Once buyers stepped in and the stock started squeezing higher, I took the breakout and that trade turned into roughly a one hundred fifteen dollar winner. In a second example, the stock had already gapped over one hundred percent on the day and was holding above the 200 EMA on the daily chart. Instead of chasing the first move, I waited for the pullback toward the 20 EMA. Selling volume started to fade, buyers stepped back in, and the stock curled higher. That trade turned into around a two hundred dollar winner.",
+        links: [
+          { label: "See how live sessions and recaps connect together", href: "/live-room" }
+        ]
+      },
+      {
+        heading: "My daily indicator checklist",
+        body: "Before I take a trade, I am usually checking whether the stock is above VWAP, whether it is holding the 9 EMA or 20 EMA, whether volume is increasing on the move up, whether selling volume is decreasing on the pullback, whether MACD is positive or curling up, whether there is room on the daily chart, whether the stock is above or below the 200 EMA, and whether buyers are showing up on Level 2 and time and sales. If most of those things line up, I may have a cleaner setup. If they do not line up, I usually stay patient.",
+        links: [
+          { label: "Learn the basics before the live room", href: "/resources" },
+          { label: "See how traders review ideas together", href: "/community-feed" }
+        ]
+      },
+      {
+        heading: "Final thoughts on using indicators the right way",
+        body: "The indicators I use every day are simple: 9 EMA for short-term momentum, 20 EMA for cleaner pullback support, VWAP for intraday bias, volume for confirmation, MACD for momentum direction, and the 200 EMA for daily chart context. These indicators help me understand the strength of a stock, but they do not make the trade for me. At the end of the day, you still need experience, screen time, risk management, and discipline. The goal is not to find the perfect indicator. The goal is to understand how all the pieces connect together so you can make better trading decisions.",
+        links: [
+          { label: "Join DTSM to see this in real time", href: "/#pricing" }
         ]
       }
     ],
-    takeaway: "If the chart only makes sense when five indicators agree, the setup probably is not as clean as it needs to be.",
+    takeaway: "Indicators are references, not guarantees. The edge comes from how they line up with price action, volume, context, and discipline.",
     bottomCta: {
-      title: "Keep the chart simple. Make the process stronger.",
-      body: "The real upgrade is not more indicators. It is seeing cleaner examples, reviewing them, and staying around traders who care about execution.",
-      primary: { label: "Start The Free Course", href: "/resources" },
+      title: "Want to learn this in real time?",
+      body: "Inside Drive the Stock Market, we focus on real examples, live trading breakdowns, Level 2, time and sales, and small-cap momentum setups. It is not a callout room. It is a live trading community built around learning, execution, and getting better every day.",
+      primary: { label: "Join DTSM", href: "/#pricing" },
       secondary: [
+        { label: "Start The Free Course", href: "/resources" },
         { label: "See The Study Library", href: "/study-library" },
-        { label: "Join DTSM", href: "/#pricing" },
+        { label: "See The Live Room", href: "/live-room" },
         { label: "Watch More On YouTube", href: youtubeLink, external: true }
       ]
     },
@@ -660,6 +718,7 @@ const blogPosts = [
   },
   {
     slug: "how-to-review-a-red-day",
+    published: false,
     category: "Trade Review",
     title: "How to review a red day without spiraling",
     excerpt: "A simple review framework DTSM traders can use after a bad session to turn frustration into useful notes and better rules.",
@@ -712,7 +771,12 @@ const blogPosts = [
   }
 ];
 
-const blogPostMap = Object.fromEntries(blogPosts.map((post) => [`/blog/${post.slug}`, post]));
+const blogPostMap = Object.fromEntries(
+  blogPosts.flatMap((post) => [
+    [`/blog/${post.slug}`, post],
+    ...((post.aliases || []).map((alias) => [`/blog/${alias}`, post]))
+  ])
+);
 
 const blogExploreCards = [
   {
@@ -2370,28 +2434,10 @@ function CommunityRhythmSection({
 
 function HeroLookInside() {
   const [activeTab, setActiveTab] = useState("Education");
-  const [isPaused, setIsPaused] = useState(false);
   const active = lookInsideTabs[activeTab];
 
-  useEffect(() => {
-    if (isPaused) return undefined;
-    const timer = window.setInterval(() => {
-      setActiveTab((current) => {
-        const currentIndex = lookInsideTabNames.indexOf(current);
-        return lookInsideTabNames[(currentIndex + 1) % lookInsideTabNames.length];
-      });
-    }, 4200);
-
-    return () => window.clearInterval(timer);
-  }, [isPaused]);
-
   return (
-    <div
-      className="hero-visual"
-      aria-label="Interactive DTSM community preview"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
+    <div className="hero-visual" aria-label="Interactive DTSM community preview">
       <div className="look-window">
         <div className="look-topbar">
           <span />
@@ -2418,7 +2464,7 @@ function HeroLookInside() {
               );
             })}
           </aside>
-          <section className="look-main" key={activeTab}>
+          <section className="look-main">
             <div className="look-status">
               <div>
                 <small>{active.status}</small>
@@ -2520,9 +2566,12 @@ function HeroLookInside() {
                 {active.mode === "call" && (
                   <div className="meeting-preview-card">
                     <div className="meeting-preview-stage">
-                      <span className="live-dot">Live call</span>
+                      <div className="meeting-preview-head">
+                        <span className="live-dot">Live call</span>
+                        <b>4 traders in room</b>
+                      </div>
                       <strong>Weekly execution review in progress</strong>
-                      <small>Talking through what worked this week, what got forced, and what rule to carry into next week.</small>
+                      <small>Talking through what worked, what got forced, and what to clean up before the next session.</small>
                       <div className="meeting-preview-grid">
                         {[
                           ["BH", "Brendan", true],
@@ -2537,10 +2586,20 @@ function HeroLookInside() {
                           </article>
                         ))}
                       </div>
+                      <div className="meeting-preview-controls" aria-hidden="true">
+                        <span><Mic size={14} /> Live audio</span>
+                        <span><Video size={14} /> Screen share</span>
+                        <span><MessageCircle size={14} /> Notes in chat</span>
+                      </div>
                     </div>
                     <div className="meeting-preview-chat">
+                      <div className="meeting-preview-chat-head">
+                        <strong>Call chat</strong>
+                        <span>Review notes</span>
+                      </div>
                       <p><span>Brendan</span>Good trade idea, but the entry only counts if the reclaim holds.</p>
                       <p><span>Edward</span>That helped me slow down a lot this week.</p>
+                      <div className="meeting-preview-chat-pill">Weekly review, psychology, and execution notes stay here after the call.</div>
                     </div>
                   </div>
                 )}
@@ -2923,44 +2982,49 @@ function HomePage({ menuOpen, setMenuOpen }) {
     <main>
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-      <section id="top" className="hero">
-        <div className="hero-copy">
-          <h1>
-            Stock Market Community
-            <span>Built for Better Execution.</span>
-          </h1>
-          <p>
-            DTSM gives you daily live sessions, The Tape feed, 24/7 chat, and a deep recordings
-            library so you can follow the market, review your trades, and keep improving in one place.
-          </p>
-          <div className="hero-actions">
-            <a
-              className="primary-button"
-              href="#pricing"
-              onClick={(event) => {
-                trackEvent("pricing_click", { location: "hero" });
-                scrollToSection(event, "pricing");
-              }}
-            >
-              View Membership Plans <ArrowRight size={19} />
-            </a>
-            <a className="secondary-button" href="#preview" onClick={(event) => scrollToSection(event, "preview")}>
-              Preview The Community
-            </a>
+      <section className="section home-prehero">
+        <div className="home-prehero-shell">
+          <div className="home-prehero-copy">
+            <h1>
+              Stop Trading Alone
+              <span>Join the Community.</span>
+            </h1>
+            <p>
+              Watch the market live, stay around real traders, and sharpen your execution every day.
+            </p>
+            <div className="home-prehero-actions">
+              <a
+                className="home-prehero-primary"
+                href="/start"
+                onClick={() => trackEvent("ad_page_click", { location: "home_prehero" })}
+              >
+                Start 7 Days Free <ArrowRight size={18} />
+              </a>
+              <a
+                className="home-prehero-secondary"
+                href="#preview"
+                onClick={(event) => scrollToSection(event, "preview")}
+              >
+                Preview DTSM
+              </a>
+            </div>
+            <div className="home-prehero-proof" aria-label="DTSM proof points">
+              <div>
+                <PlayCircle size={18} />
+                <span>400+ hours of live recordings</span>
+              </div>
+              <div>
+                <CalendarDays size={18} />
+                <span>Weekly meetings</span>
+              </div>
+              <div>
+                <MessageCircle size={18} />
+                <span>24/7 trader chatroom</span>
+              </div>
+            </div>
           </div>
-          <a
-            className="hero-trial-note"
-            href={checkoutLinks.pro}
-            onClick={() => trackEvent("checkout_click", { plan: "pro", location: "hero_trial_note" })}
-          >
-            <strong>7 Days Free Access</strong>
-          </a>
-        </div>
-        <div className="hero-product">
-          <HeroLookInside />
-          <div className="founder-badge">
-            <img src="/assets/founder-photo.png" alt="DTSM founder" />
-            <span>Built by an active small-cap trader</span>
+          <div className="home-prehero-preview">
+            <HeroLookInside />
           </div>
         </div>
       </section>
@@ -3549,46 +3613,16 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
 }
 
 function BlogPage({ menuOpen, setMenuOpen }) {
-  const featured = blogPosts[0];
-  const remaining = blogPosts.slice(1);
+  const publishedPosts = blogPosts.filter((post) => post.published);
+  const featured = publishedPosts[0];
+  const latestPosts = publishedPosts.slice(1);
+  const remaining = blogPosts.filter((post) => !post.published);
 
   return (
     <main>
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-      <section className="page-hero blog-hero">
-        <div>
-          <span className="kicker">DTSM Blog</span>
-          <h1>Trading lessons that connect the videos, tools, and community.</h1>
-          <p>
-            Use the blog to go deeper on scanners, execution, platform setup, indicators, and trade
-            review. It is built to make the YouTube content easier to apply inside a real trading routine.
-          </p>
-          <div className="hero-actions">
-            <a className="primary-button" href={youtubeLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { location: "blog_hero" })}>
-              Visit The YouTube Channel <ArrowRight size={19} />
-            </a>
-            <a className="secondary-button" href="/#pricing" onClick={(event) => goToHomeSection(event, "pricing", false)}>
-              View Membership Plans
-            </a>
-          </div>
-        </div>
-        <div className="blog-hero-card">
-          <span>Built around the JoinDTSM channel</span>
-          <strong>Turn free education into a cleaner routine.</strong>
-          <p>
-            The blog gives written breakdowns for scanners, platforms, indicators, and trade reviews
-            so visitors can learn fast and then step into the full DTSM environment when they want more context.
-          </p>
-          <div className="about-hero-points">
-            <small><Check size={15} /> Scanner workflows</small>
-            <small><Check size={15} /> Platform setup ideas</small>
-            <small><Check size={15} /> Indicator + execution education</small>
-          </div>
-        </div>
-      </section>
-
-      <section className="section blog-featured-section">
+      <section className="section blog-featured-section blog-featured-hero">
         <div className="section-heading centered compact">
           <span className="kicker">Featured Article</span>
           <h2>Start with the workflow most visitors need first.</h2>
@@ -3609,6 +3643,40 @@ function BlogPage({ menuOpen, setMenuOpen }) {
           </div>
         </article>
       </section>
+
+      {latestPosts.length ? (
+        <section className="section blog-grid-section">
+          <div className="section-heading centered compact">
+            <span className="kicker">Latest Articles</span>
+            <h2>New DTSM breakdowns you can jump into right now.</h2>
+            <p>
+              Fresh posts from the blog, built around the videos, tools, and real trading ideas
+              people are trying to understand better.
+            </p>
+          </div>
+          <div className="blog-latest-list">
+            {latestPosts.map((post) => (
+              <article className="blog-latest-item" key={post.slug}>
+                <img src={post.hero} alt={post.title} />
+                <div className="blog-latest-copy">
+                  <div className="blog-latest-meta">
+                    <small>{post.category}</small>
+                    <span>{post.publishedAt}</span>
+                  </div>
+                  <h3>{post.title}</h3>
+                  <p>{post.excerpt}</p>
+                  <div className="blog-chip-row">
+                    <span>{post.searchPhrase}</span>
+                  </div>
+                  <a className="home-offer-card-link" href={`/blog/${post.slug}`} onClick={() => trackEvent("blog_post_click", { slug: post.slug, location: "blog_latest" })}>
+                    Read The Article <ArrowRight size={16} />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="section blog-grid-section">
         <div className="section-heading centered compact">
@@ -3853,6 +3921,11 @@ function BlogPostPage({ menuOpen, setMenuOpen, path }) {
                 {post.midCta && index === 2 ? (
                   <div className="blog-mid-cta">
                     <span className="kicker">{post.midCta.kicker}</span>
+                    {post.midCta.logo ? (
+                      <div className="blog-mid-cta-logo">
+                        <img src={post.midCta.logo} alt="" />
+                      </div>
+                    ) : null}
                     <h2>{post.midCta.title}</h2>
                     <p>{post.midCta.body}</p>
                     <div className="blog-mid-cta-actions">
@@ -4013,7 +4086,7 @@ function BlogPostPage({ menuOpen, setMenuOpen, path }) {
           <h2>More ways to go deeper on the same idea.</h2>
         </div>
         <div className="blog-grid">
-          {blogPosts.filter((entry) => entry.slug !== post.slug).slice(0, 3).map((entry) => (
+          {blogPosts.filter((entry) => entry.published && entry.slug !== post.slug).slice(0, 3).map((entry) => (
             <article className="blog-card" key={entry.slug}>
               <div className="blog-card-icon">{entry.icon}</div>
               <small>{entry.category}</small>
@@ -4428,6 +4501,236 @@ function AffiliatesPage({ menuOpen, setMenuOpen }) {
   );
 }
 
+function AdLandingPage() {
+  const quickWins = [
+    "Live trading room every weekday from 6:45 AM - 9:45 AM ET",
+    "The Tape feed, 24/7 chat, and trader discussion in one place",
+    "400+ hours of recordings, Level 2 replays, and weekly review"
+  ];
+
+  const openingStack = [
+    ["Live room", "Daily live market session with commentary and watchlist context."],
+    ["The Tape", "A social feed for trades, screenshots, lessons, and notes."],
+    ["24/7 chat", "A place to ask questions and stay around the process all day."],
+    ["Study library", "Recordings, Level 2 clips, and review material to revisit anytime."]
+  ];
+
+  const weekFlow = [
+    ["Step 1", "Join and log in", "Open Circle and step into the room, feed, chat, and starter education right away."],
+    ["Step 2", "Show up live", "Use the morning session, watchlist, and market commentary to follow cleaner setups."],
+    ["Step 3", "Review and improve", "Come back to recordings, trade reviews, and weekly meetings so the lesson sticks."]
+  ];
+
+  const fitCards = {
+    good: [
+      "You want a real place to show up consistently",
+      "You learn better from live examples than random videos",
+      "You want more structure around preparation, execution, and review"
+    ],
+    bad: [
+      "You only want alerts with no process behind them",
+      "You are looking for hype instead of repetition",
+      "You do not want to review your own decisions"
+    ]
+  };
+
+  const faqShort = [
+    ["Is this a signals group?", "No. DTSM is a live trading community built around execution, repetition, and review."],
+    ["What opens during the free trial?", "The full Elite environment opens during the 7-day trial so you can see the room, feed, chat, recordings, and meetings."],
+    ["Can I cancel anytime?", "Yes. Membership is monthly and you can cancel before your next billing date."],
+    ["Is this beginner friendly?", "Yes. The free starter course and the structure inside DTSM make it easier to understand what to focus on first."]
+  ];
+
+  return (
+    <main className="ad-page">
+      <header className="ad-header">
+        <a className="brand" href="/" aria-label="DTSM home">
+          <img className="brand-orb" src="/assets/dtsm-orb-logo.png" alt="" />
+          <strong>DTSM</strong>
+        </a>
+        <div className="ad-header-actions">
+          <a className="header-login" href={loginLink} onClick={() => trackEvent("login_click", { location: "ad_header" })}>
+            Log In
+          </a>
+          <a className="header-cta" href={checkoutLinks.pro} onClick={() => trackEvent("checkout_click", { plan: "pro", location: "ad_header" })}>
+            Start 7 Days Free <ArrowRight size={17} />
+          </a>
+        </div>
+      </header>
+
+      <section className="page-hero ad-hero">
+        <div>
+          <span className="kicker">Live Trading Community</span>
+          <h1>Stop trading alone. Start improving with a real environment.</h1>
+          <p>
+            DTSM gives traders a live room, a social feed, 24/7 chat, and a deep recordings library
+            so the next move is always clear: show up, study real examples, and improve your execution.
+          </p>
+          <div className="ad-value-list">
+            {quickWins.map((item) => (
+              <span key={item}><Check size={16} /> {item}</span>
+            ))}
+          </div>
+          <div className="hero-actions">
+            <a className="primary-button" href={checkoutLinks.pro} onClick={() => trackEvent("checkout_click", { plan: "pro", location: "ad_hero" })}>
+              Start 7 Days Free <ArrowRight size={18} />
+            </a>
+            <a className="secondary-button" href="/resources">
+              Start With The Free Course
+            </a>
+          </div>
+          <div className="ad-hero-note">
+            <strong>7 Days Free Access</strong>
+            <span>Then $99.99/month unless cancelled before renewal.</span>
+          </div>
+        </div>
+        <div className="ad-hero-stage">
+          <div className="ad-stage-window">
+            <div className="ad-stage-topbar">
+              <span />
+              <span />
+              <span />
+              <b>DTSM on Circle</b>
+            </div>
+            <img src="/assets/product-pages/live-room-schedule.png" alt="DTSM live trading room schedule" />
+          </div>
+          <div className="ad-stage-floating top">
+            <small>Live room</small>
+            <strong>Weekday session</strong>
+            <p>6:45 AM - 9:45 AM ET</p>
+          </div>
+          <div className="ad-stage-floating bottom">
+            <small>What opens</small>
+            <strong>Feed, chat, recordings, meetings</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="section ad-proof-strip">
+        <article>
+          <small>What this is</small>
+          <strong>A real trading environment</strong>
+          <p>Live sessions, market context, discussion, and review all connected in one place.</p>
+        </article>
+        <article>
+          <small>What you get today</small>
+          <strong>Immediate access to the full setup</strong>
+          <p>See the room, feed, chat, recordings, and meetings during the 7-day trial.</p>
+        </article>
+        <article>
+          <small>Why it matters</small>
+          <strong>Consistency comes from environment</strong>
+          <p>More content is not the answer if you still trade alone and never review your decisions.</p>
+        </article>
+      </section>
+
+      <section className="section ad-section">
+        <div className="section-heading compact">
+          <span className="kicker">What Opens</span>
+          <h2>Everything is built around better execution.</h2>
+          <p>
+            You are not buying random lessons. You are stepping into a room, a feed, a chat, and a
+            study library that work together so it is obvious where to start and how to improve.
+          </p>
+        </div>
+        <div className="ad-open-grid">
+          {openingStack.map(([title, body]) => (
+            <article key={title}>
+              <strong>{title}</strong>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section ad-section ad-week-section">
+        <div className="section-heading compact">
+          <span className="kicker">What Happens Next</span>
+          <h2>Here is the simple path after someone joins.</h2>
+        </div>
+        <div className="ad-week-grid">
+          {weekFlow.map(([step, title, body]) => (
+            <article key={step}>
+              <span>{step}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section ad-fit-section">
+        <div className="fit-card good">
+          <span className="kicker">Best For</span>
+          <h2>Traders who want structure</h2>
+          {fitCards.good.map((item) => <p key={item}><Check size={17} /> {item}</p>)}
+        </div>
+        <div className="fit-card bad">
+          <span className="kicker">Not For</span>
+          <h2>Traders looking for shortcuts</h2>
+          {fitCards.bad.map((item) => <p key={item}><X size={17} /> {item}</p>)}
+        </div>
+      </section>
+
+      <section className="section ad-offer-section">
+        <div className="ad-offer-card">
+          <span className="kicker">Start Here</span>
+          <h2>Get full DTSM access free for 7 days.</h2>
+          <p>
+            This is the cleanest way to see if the environment fits you. Step into the full Elite
+            setup, use the room, study the feed, watch the recordings, and decide from inside the product.
+          </p>
+          <div className="ad-offer-points">
+            <small><Check size={15} /> Full environment access</small>
+            <small><Check size={15} /> Weekly meetings included</small>
+            <small><Check size={15} /> Cancel anytime</small>
+          </div>
+          <div className="hero-actions">
+            <a className="primary-button" href={checkoutLinks.pro} onClick={() => trackEvent("checkout_click", { plan: "pro", location: "ad_offer" })}>
+              Start 7 Days Free <ArrowRight size={18} />
+            </a>
+            <a className="secondary-button" href="/#pricing">
+              See All Plans
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section faq-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Questions</span>
+          <h2>What people usually want to know first.</h2>
+        </div>
+        <div className="faq-layout single">
+          <div>
+            {faqShort.map(([q, a]) => (
+              <article className="faq-item" key={q}>
+                <h3>{q}</h3>
+                <p>{a}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="final-cta ad-final-cta">
+        <div>
+          <span className="kicker">Ready To Step In?</span>
+          <h2>Join DTSM and see the full environment for yourself.</h2>
+          <p>
+            Live room. Feed. Chat. Recordings. Review. Everything connected in one place.
+          </p>
+        </div>
+        <a className="primary-button" href={checkoutLinks.pro} onClick={() => trackEvent("checkout_click", { plan: "pro", location: "ad_final" })}>
+          Start 7 Days Free <ArrowRight size={19} />
+        </a>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const path = window.location.pathname;
@@ -4465,13 +4768,15 @@ function App() {
       canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute("href", `https://www.joindtsm.com${path}`);
+    const canonicalPath = blogPostMap[path] ? `/blog/${blogPostMap[path].slug}` : path;
+    canonical.setAttribute("href", `https://www.joindtsm.com${canonicalPath}`);
 
     const oldSchema = document.head.querySelector("#dtsm-schema");
     if (oldSchema) oldSchema.remove();
 
     if (blogPostMap[path]) {
       const post = blogPostMap[path];
+      const canonicalPath = `/blog/${post.slug}`;
       const schema = document.createElement("script");
       schema.id = "dtsm-schema";
       schema.type = "application/ld+json";
@@ -4493,7 +4798,7 @@ function App() {
             url: "https://www.joindtsm.com/assets/dtsm-orb-logo.png"
           }
         },
-        mainEntityOfPage: `https://www.joindtsm.com${path}`,
+        mainEntityOfPage: `https://www.joindtsm.com${canonicalPath}`,
         datePublished: post.publishedAt || post.date,
         dateModified: post.updatedAt || post.publishedAt || post.date,
         articleSection: post.category,
@@ -4586,6 +4891,10 @@ function App() {
 
   if (path === "/contact") {
     return <ContactPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
+  }
+
+  if (path === "/start") {
+    return <AdLandingPage />;
   }
 
   return <HomePage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
