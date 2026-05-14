@@ -2995,8 +2995,8 @@ function HomePage({ menuOpen, setMenuOpen }) {
             <div className="home-prehero-actions">
               <a
                 className="home-prehero-primary"
-                href="/start"
-                onClick={() => trackEvent("ad_page_click", { location: "home_prehero" })}
+                href={checkoutLinks.pro}
+                onClick={() => trackEvent("checkout_click", { plan: "pro", location: "home_prehero" })}
               >
                 Start 7 Days Free <ArrowRight size={18} />
               </a>
