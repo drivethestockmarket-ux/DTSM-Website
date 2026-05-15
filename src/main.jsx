@@ -173,8 +173,8 @@ const pageMeta = {
 function getPageMeta(path) {
   if (blogPostMap[path]) {
     return {
-      title: `${blogPostMap[path].title} | DTSM Blog`,
-      description: blogPostMap[path].excerpt,
+      title: blogPostMap[path].seoTitle || `${blogPostMap[path].title} | DTSM Blog`,
+      description: blogPostMap[path].seoDescription || blogPostMap[path].excerpt,
       keywords: blogPostMap[path].seoKeywords || "DTSM blog, day trading education, small-cap trading, trading community"
     };
   }
@@ -566,6 +566,155 @@ const blogPosts = [
       ]
     },
     related: [youtubeLink, "/scanner"]
+  },
+  {
+    slug: "how-to-read-level-2-time-and-sales",
+    published: true,
+    category: "Order Flow Education",
+    title: "How to Read Level 2 and Time & Sales for Momentum Trading",
+    excerpt: "Learn how Level 2, Time & Sales, bid, ask, spread, and tape speed help small-cap momentum traders read buyers and sellers in real time.",
+    seoTitle: "How to Read Level 2 & Time and Sales | DTSM",
+    seoDescription: "Learn how to read Level 2, Time & Sales, bid, ask, spread, and tape speed for small-cap momentum trading with real execution examples.",
+    date: "May 2026",
+    publishedAt: "May 15, 2026",
+    updatedAt: "May 15, 2026",
+    publishedAtIso: "2026-05-15",
+    updatedAtIso: "2026-05-15",
+    searchPhrase: "how to read Level 2 and Time and Sales for momentum trading",
+    hero: "/assets/blog/level-2-time-sales.png",
+    videoId: "jMfeO_1OwC0",
+    videoStart: 7,
+    youtubeUrl: "https://www.youtube.com/watch?v=jMfeO_1OwC0&t=7s",
+    videoTitle: "How to Read Level 2 and Time & Sales for Momentum Trading",
+    videoDescription: "A practical Level 2 and Time & Sales lesson for small-cap momentum traders who want to read buyers, sellers, spread, tape speed, and real-time order flow.",
+    seoKeywords: "how to read Level 2, Time and Sales for momentum trading, Level 2 trading, tape reading, bid ask spread, small-cap momentum trading, DTSM, Drive the Stock Market",
+    author: defaultBlogAuthor,
+    icon: <Layers3 />,
+    cta: "Join DTSM",
+    ctaHref: "/#pricing",
+    midCta: {
+      kicker: "Live Trading Recordings",
+      title: "Study the same kind of Level 2 and Time & Sales examples inside DTSM.",
+      body: "Live Access unlocks the live room, session recordings, Level 2 and Time & Sales replays, weekly recaps, and the review material that helps you keep practicing after the lesson ends.",
+      cta: "Unlock Live Access",
+      href: checkoutLinks.live,
+      note: "Includes live trading recordings and replay study."
+    },
+    comparison: [
+      {
+        title: "Quick answer",
+        body: "Use the chart to define the setup, then use Level 2 to watch the bid and ask while Time & Sales confirms what is actually trading."
+      },
+      {
+        title: "Best confirmation",
+        body: "Look for the bid holding near a key level, buyers hitting the ask, green prints, expanding volume, and price reacting quickly."
+      },
+      {
+        title: "Biggest warning",
+        body: "Be careful when green prints come through but price stalls, the spread widens, the bid disappears, or a large seller absorbs the move."
+      }
+    ],
+    bullets: ["Charts vs order flow", "Bid and ask basics", "Time & Sales prints", "Spread risk", "Tape speed", "Practice routine"],
+    sections: [
+      {
+        heading: "Charts show where price has been",
+        body: "Most beginner traders spend almost all of their time staring at charts. Charts matter because they show previous price action, support, resistance, breakouts, pullbacks, and areas where a stock has already reacted. The problem is that a chart is not the full picture. If you are trading small-cap momentum stocks, you also need a way to understand what is happening right now while buyers and sellers are fighting over price.",
+        links: [
+          { label: "Start with the free course", href: "/resources" },
+          { label: "See the live room workflow", href: "/live-room" }
+        ]
+      },
+      {
+        heading: "Level 2 is the windshield",
+        body: "A simple way to think about it is driving a car. A chart is like the rearview mirror because it shows what already happened. Level 2 is more like the windshield because it helps you see what is sitting directly in front of price. You can see where buyers are bidding, where sellers are offering shares, and where price may have trouble moving through. If there is open road and momentum behind the stock, price may move quickly. If there is traffic sitting ahead, you need to slow down and pay attention.",
+        links: [
+          { label: "See order-flow study inside DTSM", href: "/study-library" }
+        ]
+      },
+      {
+        heading: "What the bid and ask actually mean",
+        body: "Level 2 shows the current buyers and sellers in the market. The bid is where buyers are trying to buy shares. The ask is where sellers are trying to sell shares. The market works like an auction. Buyers bid for shares, sellers offer shares, and price moves when those orders get filled. When buyers are aggressive, they usually buy at the ask and can push price higher. When sellers are aggressive, they usually sell into the bid and can push price lower.",
+        links: [
+          { label: "Read about the DTSM trading process", href: "/about" }
+        ]
+      },
+      {
+        heading: "Time & Sales shows what really traded",
+        body: "Level 2 shows orders that are currently sitting in the market, but Time & Sales shows transactions that actually went through. That matters because not every order on Level 2 is meaningful. Some orders appear and disappear quickly. Some get moved around. When something prints on Time & Sales, a real trade happened. On many platforms, green prints usually show buyers hitting the ask, while red prints usually show sellers hitting the bid.",
+        links: [
+          { label: "Study recordings and replays", href: "/study-library" }
+        ]
+      },
+      {
+        heading: "Combine Level 2 with the tape",
+        body: "The real skill is not looking at Level 2 or Time & Sales by themselves. It is combining them. If a stock pulls back into a key area and the bid keeps holding, that can tell you buyers may be defending the level. If green prints then start coming through on Time & Sales, that can confirm buyers are stepping in. The chart gives you the setup area, while Level 2 and the tape help you judge whether the setup has real-time support.",
+        links: [
+          { label: "Preview the community feed", href: "/community-feed" }
+        ]
+      },
+      {
+        heading: "Watch the ask for sellers and walls",
+        body: "The ask tells you where sellers are sitting. If there is only a small amount of size on the ask and buyers are aggressively hitting it, price may move through quickly. But if there is a large seller sitting just above price, that can act like a wall. The important part is not simply seeing a big order. The important part is watching the reaction. Does price push through the seller? Does the tape speed up? Does volume expand? Or does price stall?",
+        links: [
+          { label: "See how live sessions add context", href: "/live-room" }
+        ]
+      },
+      {
+        heading: "Respect the spread",
+        body: "The spread is the difference between the bid and the ask. A tight spread might be one, two, or three cents. A wide spread might be seven, ten, or more cents. Wide spreads make entries and exits harder because you can be down immediately just from the difference between where buyers are bidding and sellers are offering. In fast-moving small-cap stocks, that extra slippage can add risk very quickly.",
+        links: [
+          { label: "Learn risk basics first", href: "/resources" }
+        ]
+      },
+      {
+        heading: "Use the chart first, then read order flow",
+        body: "My process usually starts with the chart. I want to know the important levels before thinking about an entry: high of day, support, resistance, previous rejection areas, and where a squeeze could happen if price breaks. Once price gets near the area I care about, I shift more focus to Level 2 and Time & Sales. I want to see buyers hitting the ask, green prints coming through, the bid holding, and enough volume for the stock to actually break.",
+        links: [
+          { label: "Open the scanner workflow", href: "/scanner" }
+        ]
+      },
+      {
+        heading: "Momentum should move",
+        body: "This is especially important with momentum trading because speed matters. A lot of times, I am buying on the ask because I want confirmation that buyers are stepping in. If I enter and the stock immediately starts moving, that is useful feedback. If I enter and nothing happens, that can become a problem. When a momentum stock is supposed to move and it does not, sellers can step in fast, the tape can flip red, and the bid can disappear.",
+        links: [
+          { label: "See trade review material", href: "/study-library" }
+        ]
+      },
+      {
+        heading: "When green prints are not enough",
+        body: "Sometimes a setup looks good, green orders start coming through, and price still does not pull away. That can be a warning sign. If buyers are coming in but price is not moving, sellers may be absorbing the move. In that situation, taking profit, reducing risk, or stepping away can be smarter than hoping the stock eventually squeezes. A good trade is not always a huge winner. Sometimes it is recognizing that the move is not acting right.",
+        links: [
+          { label: "Join DTSM for more examples", href: "/#pricing" }
+        ]
+      },
+      {
+        heading: "Level 2 is not a magic indicator",
+        body: "The biggest mistake beginner traders make is treating Level 2 like it predicts the future. It does not. Level 2 is a tool for understanding the current auction between buyers and sellers. It works best when you combine it with chart levels, volume, price action, Time & Sales, and risk management. A big bid does not guarantee a move higher. A big ask does not guarantee rejection. You still have to watch how price reacts.",
+        links: [
+          { label: "Read more DTSM education", href: "/blog" }
+        ]
+      },
+      {
+        heading: "Practice by watching before forcing trades",
+        body: "One of the best ways to improve is simply watching. Pick a momentum stock and study what happens when the bid holds, when a seller appears, when the tape turns green, when green prints come through but price does not move, and when the spread widens. At first, Level 2 looks chaotic. Over time, you start to understand the rhythm. Charts show where price has been. Level 2 shows where buyers and sellers are sitting. Time & Sales shows what is actually executing.",
+        links: [
+          { label: "Start 7 days free inside DTSM", href: "/#pricing" }
+        ]
+      }
+    ],
+    takeaway: "Level 2 and Time & Sales do not replace charts. They complete the picture by showing what buyers and sellers are doing in real time, which is exactly what small-cap momentum traders need to practice.",
+    bottomCta: {
+      title: "Want to learn Level 2 with real market examples?",
+      body: "Inside Drive The Stock Market, we break down small-cap momentum trades using charts, Level 2, Time & Sales, live room context, and recordings traders can study after the session.",
+      primary: { label: "Join DTSM", href: "/#pricing" },
+      secondary: [
+        { label: "See The Study Library", href: "/study-library" },
+        { label: "Preview The Live Room", href: "/live-room" },
+        { label: "Start The Free Course", href: "/resources" },
+        { label: "Watch More On YouTube", href: youtubeLink, external: true }
+      ]
+    },
+    related: [youtubeLink, "/study-library"]
   },
   {
     slug: "ocean-one-for-day-traders",
@@ -3895,7 +4044,7 @@ function BlogPostPage({ menuOpen, setMenuOpen, path }) {
             }}>
               {post.cta} <ArrowRight size={18} />
             </a>
-            <a className="secondary-button" href={youtubeLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { location: "blog_post_hero" })}>
+            <a className="secondary-button" href={post.youtubeUrl || youtubeLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("youtube_click", { location: "blog_post_hero", slug: post.slug })}>
               Watch On YouTube
             </a>
           </div>
@@ -3922,7 +4071,7 @@ function BlogPostPage({ menuOpen, setMenuOpen, path }) {
           <div className="blog-video-shell centered">
             <div className="blog-video-frame">
               <iframe
-                src={`https://www.youtube.com/embed/${post.videoId}`}
+                src={`https://www.youtube.com/embed/${post.videoId}${post.videoStart ? `?start=${post.videoStart}` : ""}`}
                 title={post.title}
                 loading="eager"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -4003,7 +4152,7 @@ function BlogPostPage({ menuOpen, setMenuOpen, path }) {
                         href={post.midCta.href}
                         target="_blank"
                         rel="noreferrer"
-                        onClick={() => trackEvent("chartswatcher_click", { location: "blog_post_mid_cta", slug: post.slug })}
+                        onClick={() => trackEvent("blog_mid_cta_click", { location: "blog_post_mid_cta", slug: post.slug, href: post.midCta.href })}
                       >
                         {post.midCta.cta} <ArrowRight size={18} />
                       </a>
@@ -5099,6 +5248,11 @@ function App() {
 
   useEffect(() => {
     initAnalytics();
+    const post = blogPostMap[path];
+    const canonicalPath = post ? `/blog/${post.slug}` : path;
+    const canonicalUrl = `https://www.joindtsm.com${canonicalPath}`;
+    const fallbackImage = "https://www.joindtsm.com/assets/dtsm-orb-logo.png";
+    const shareImage = post?.hero ? `https://www.joindtsm.com${post.hero}` : fallbackImage;
     document.title = meta.title;
     const ensureMeta = (selector, attribute, value) => {
       let element = document.head.querySelector(selector);
@@ -5119,9 +5273,27 @@ function App() {
     ensureMeta('meta[name="keywords"]', "content", meta.keywords || "DTSM, trading community, live trading, small-cap trading");
     ensureMeta('meta[property="og:title"]', "content", meta.title);
     ensureMeta('meta[property="og:description"]', "content", meta.description);
-    ensureMeta('meta[property="og:type"]', "content", blogPostMap[path] ? "article" : "website");
+    ensureMeta('meta[property="og:type"]', "content", post ? "article" : "website");
+    ensureMeta('meta[property="og:url"]', "content", canonicalUrl);
+    ensureMeta('meta[property="og:image"]', "content", shareImage);
+    ensureMeta('meta[name="twitter:card"]', "content", "summary_large_image");
     ensureMeta('meta[name="twitter:title"]', "content", meta.title);
     ensureMeta('meta[name="twitter:description"]', "content", meta.description);
+    ensureMeta('meta[name="twitter:image"]', "content", shareImage);
+
+    const clearMeta = (selector) => {
+      document.head.querySelector(selector)?.remove();
+    };
+
+    if (post) {
+      ensureMeta('meta[property="article:published_time"]', "content", post.publishedAtIso || post.publishedAt || post.date);
+      ensureMeta('meta[property="article:modified_time"]', "content", post.updatedAtIso || post.updatedAt || post.publishedAt || post.date);
+      ensureMeta('meta[property="article:section"]', "content", post.category);
+    } else {
+      clearMeta('meta[property="article:published_time"]');
+      clearMeta('meta[property="article:modified_time"]');
+      clearMeta('meta[property="article:section"]');
+    }
 
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -5129,15 +5301,25 @@ function App() {
       canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    const canonicalPath = blogPostMap[path] ? `/blog/${blogPostMap[path].slug}` : path;
-    canonical.setAttribute("href", `https://www.joindtsm.com${canonicalPath}`);
+    canonical.setAttribute("href", canonicalUrl);
 
     const oldSchema = document.head.querySelector("#dtsm-schema");
     if (oldSchema) oldSchema.remove();
 
-    if (blogPostMap[path]) {
-      const post = blogPostMap[path];
-      const canonicalPath = `/blog/${post.slug}`;
+    if (post) {
+      const videoSchema = post.videoId
+        ? {
+            video: {
+              "@type": "VideoObject",
+              name: post.videoTitle || post.title,
+              description: post.videoDescription || post.seoDescription || post.excerpt,
+              thumbnailUrl: [`https://img.youtube.com/vi/${post.videoId}/maxresdefault.jpg`],
+              uploadDate: post.videoUploadDate || post.publishedAtIso || post.publishedAt || post.date,
+              embedUrl: `https://www.youtube.com/embed/${post.videoId}${post.videoStart ? `?start=${post.videoStart}` : ""}`,
+              contentUrl: post.youtubeUrl || `https://www.youtube.com/watch?v=${post.videoId}`
+            }
+          }
+        : {};
       const schema = document.createElement("script");
       schema.id = "dtsm-schema";
       schema.type = "application/ld+json";
@@ -5145,8 +5327,11 @@ function App() {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: post.title,
-        description: post.excerpt,
-        image: `https://www.joindtsm.com${post.hero}`,
+        description: post.seoDescription || post.excerpt,
+        image: [`https://www.joindtsm.com${post.hero}`],
+        url: canonicalUrl,
+        inLanguage: "en-US",
+        isAccessibleForFree: true,
         author: {
           "@type": "Person",
           name: post.author?.name || "Brendan Hogan"
@@ -5159,12 +5344,13 @@ function App() {
             url: "https://www.joindtsm.com/assets/dtsm-orb-logo.png"
           }
         },
-        mainEntityOfPage: `https://www.joindtsm.com${canonicalPath}`,
-        datePublished: post.publishedAt || post.date,
-        dateModified: post.updatedAt || post.publishedAt || post.date,
+        mainEntityOfPage: canonicalUrl,
+        datePublished: post.publishedAtIso || post.publishedAt || post.date,
+        dateModified: post.updatedAtIso || post.updatedAt || post.publishedAt || post.date,
         articleSection: post.category,
         keywords: post.seoKeywords || "",
-        about: post.searchPhrase || post.category
+        about: post.searchPhrase || post.category,
+        ...videoSchema
       });
       document.head.appendChild(schema);
     }
