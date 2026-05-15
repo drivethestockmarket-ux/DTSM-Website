@@ -14,6 +14,7 @@ import {
   Heart,
   Layers3,
   Library,
+  Laptop,
   LineChart,
   MessageCircle,
   MessageSquareText,
@@ -24,6 +25,9 @@ import {
   PlayCircle,
   Radio,
   Sparkles,
+  Smartphone,
+  ShieldCheck,
+  Tablet,
   Target,
   Trophy,
   TrendingUp,
@@ -159,6 +163,10 @@ const pageMeta = {
   "/start": {
     title: "Join DTSM | 7 Days Free Access",
     description: "Start with 7 days free inside DTSM and get live trading sessions, The Tape feed, 24/7 chat, recordings, and weekly review built to improve execution."
+  },
+  "/fuga-trading-journal": {
+    title: "Fuga Trading Journal | Free With DTSM Elite",
+    description: "Preview the Fuga Trading Journal, a cross-platform trade review tool built for small-cap momentum traders and included free with DTSM Elite membership."
   }
 };
 
@@ -1560,6 +1568,38 @@ const workflowCards = [
   }
 ];
 
+const fugaFeatureCards = [
+  {
+    icon: <ClipboardCheck />,
+    title: "Built for small-cap momentum review",
+    body: "Log the setup, catalyst, float context, volume, entry reason, exit quality, and the exact mistake or strength that mattered."
+  },
+  {
+    icon: <BarChart3 />,
+    title: "Cleaner than generic journaling",
+    body: "Fuga keeps the review centered on fast movers, intraday levels, risk, tape feel, and whether the trade matched the plan."
+  },
+  {
+    icon: <Target />,
+    title: "Turn trades into rules",
+    body: "Tag patterns, score execution, isolate repeated mistakes, and build a review loop that fits the way DTSM traders study."
+  }
+];
+
+const fugaDeviceCards = [
+  ["Mac", "Review trades from a desktop workflow with room for charts, notes, screenshots, and daily recap work.", <Laptop />],
+  ["Windows", "Use Fuga from the same workstation where scanners, brokers, and charting tools already live.", <MonitorUp />],
+  ["Mobile", "Check notes, add quick reflections, and keep the review habit alive when you are away from the desk.", <Smartphone />],
+  ["Tablet", "Study charts and recaps on a larger touch screen when you want a lighter review setup.", <Tablet />]
+];
+
+const fugaWorkflow = [
+  ["Import", "Bring in trades, screenshots, broker exports, or manual notes after the session."],
+  ["Tag", "Mark setup type, catalyst, float, volume, risk, entry quality, exit quality, and emotion."],
+  ["Review", "Find repeated mistakes, best setups, time-of-day patterns, and what to fix tomorrow."],
+  ["Improve", "Turn the recap into rules, checklists, and weekly Elite meeting discussion points."]
+];
+
 const scannerSteps = [
   ["01", "Scan", "Find names with unusual movement, volume, and attention."],
   ["02", "Filter", "Separate clean opportunities from random movers and low-quality noise."],
@@ -1616,6 +1656,35 @@ function goToHomeSection(event, id, isHome) {
 
   event.preventDefault();
   window.location.assign(`/#${id}`);
+}
+
+function CountUpNumber({ value, prefix = "", suffix = "", decimals = 0, className = "" }) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    let frame;
+    const duration = 1400;
+    const start = performance.now();
+
+    const animate = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(value * eased);
+      if (progress < 1) frame = requestAnimationFrame(animate);
+    };
+
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [value]);
+
+  return (
+    <strong className={className}>
+      {prefix}{displayValue.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      })}{suffix}
+    </strong>
+  );
 }
 
 function Header({ menuOpen, setMenuOpen }) {
@@ -4731,6 +4800,298 @@ function AdLandingPage() {
   );
 }
 
+function FugaTradingJournalPage({ menuOpen, setMenuOpen }) {
+  return (
+    <main>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      <section className="page-hero fuga-hero">
+        <div className="fuga-hero-copy">
+          <div className="fuga-logo-lockup">
+            <img src="/assets/fuga/fuga-logo-transparent.png" alt="Fuga Trading Journal logo" />
+          </div>
+          <h1><span>Fuga Trading</span> Journal</h1>
+          <p>
+            A sharper trading journal built for small-cap momentum traders. Track the trade, score
+            the execution, and turn every session into a cleaner rule for tomorrow.
+          </p>
+          <div className="fuga-savings-callout">
+            <span>Trading software value</span>
+            <strong><s>$50/mo</s> $0 with Elite</strong>
+            <small>Save on a separate journal subscription while keeping review inside the DTSM workflow.</small>
+          </div>
+          <div className="hero-actions">
+            <a
+              className="primary-button"
+              href={checkoutLinks.pro}
+              onClick={() => trackEvent("checkout_click", { plan: "pro", location: "fuga_hero" })}
+            >
+              Start 7 Days Free <ArrowRight size={18} />
+            </a>
+            <a className="secondary-button" href="#fuga-preview">
+              Preview The Journal
+            </a>
+          </div>
+          <div className="fuga-availability">
+            <span><Laptop size={16} /> Mac</span>
+            <span><MonitorUp size={16} /> Windows</span>
+            <span><Smartphone size={16} /> Mobile</span>
+            <span><Tablet size={16} /> Tablet</span>
+          </div>
+        </div>
+
+        <div className="fuga-dashboard" aria-label="Fuga Trading Journal interface preview">
+          <div className="fuga-dashboard-topbar">
+            <span />
+            <span />
+            <span />
+            <strong>Fuga Journal</strong>
+          </div>
+          <div className="fuga-dashboard-body">
+            <div className="fuga-dashboard-heading">
+              <div>
+                <small>Live Journal Preview</small>
+                <strong>Graph on top. Trading statistics below.</strong>
+              </div>
+              <span>Elite included</span>
+            </div>
+            <div className="fuga-real-preview">
+              <div className="fuga-real-graph">
+                <div className="fuga-chart-panel" aria-label="Fuga intraday profit and loss graph">
+                  <div className="fuga-chart-header">
+                    <span>Intraday P&L</span>
+                    <CountUpNumber value={1284.52} prefix="+$" decimals={2} className="positive" />
+                  </div>
+                  <div className="fuga-chart-area">
+                    <div className="fuga-y-axis">
+                      <span>$1.4K</span>
+                      <span>$1.0K</span>
+                      <span>$600</span>
+                      <span>$300</span>
+                      <span>$0</span>
+                    </div>
+                    <div className="fuga-line-chart">
+                      <svg viewBox="0 0 820 210" role="img" aria-label="Rising intraday P&L line">
+                        <defs>
+                          <linearGradient id="fugaArea" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0%" stopColor="#3fd28f" stopOpacity="0.34" />
+                            <stop offset="100%" stopColor="#3fd28f" stopOpacity="0.02" />
+                          </linearGradient>
+                        </defs>
+                        <path className="fuga-area-path" d="M0,190 L38,168 L76,156 L112,151 L148,145 L184,151 L224,154 L262,155 L300,158 L322,178 L346,150 L384,145 L420,126 L464,118 L500,111 L528,70 L558,55 L604,50 L650,42 L694,38 L734,35 L770,36 L802,54 L820,62 L820,190 Z" />
+                        <path className="fuga-line-path" d="M0,190 L38,168 L76,156 L112,151 L148,145 L184,151 L224,154 L262,155 L300,158 L322,178 L346,150 L384,145 L420,126 L464,118 L500,111 L528,70 L558,55 L604,50 L650,42 L694,38 L734,35 L770,36 L802,54 L820,62" />
+                      </svg>
+                    </div>
+                    <div className="fuga-x-axis">
+                      <span>03:00</span>
+                      <span>03:54</span>
+                      <span>04:15</span>
+                      <span>04:31</span>
+                      <span>04:40</span>
+                      <span>04:57</span>
+                      <span>05:11</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="fuga-live-badge">
+                  <span>Net P&L</span>
+                  <CountUpNumber value={1284.52} prefix="+$" decimals={2} className="positive" />
+                </div>
+              </div>
+              <div className="fuga-real-stats">
+                <div className="fuga-range-tabs" aria-label="Fuga statistics range">
+                  <span>7D</span>
+                  <strong>30D</strong>
+                  <span>60D</span>
+                  <span>90D</span>
+                  <span>ALL</span>
+                </div>
+                <div className="fuga-native-stat-grid" aria-label="Fuga trading statistics dashboard">
+                  <article>
+                    <span>Net P&L</span>
+                    <CountUpNumber value={1284.52} prefix="+$" decimals={2} className="positive" />
+                  </article>
+                  <article>
+                    <span>Gross P&L</span>
+                    <CountUpNumber value={1846.04} prefix="+$" decimals={2} className="positive" />
+                  </article>
+                  <article>
+                    <span>Total Fees</span>
+                    <CountUpNumber value={248.61} prefix="$" decimals={2} className="negative" />
+                  </article>
+                  <article>
+                    <span>Trade Count</span>
+                    <CountUpNumber value={124} className="neutral" />
+                  </article>
+                  <article>
+                    <span>Win Rate</span>
+                    <CountUpNumber value={55.6} suffix="%" decimals={1} className="gold" />
+                  </article>
+                  <article>
+                    <span>Profit Factor</span>
+                    <CountUpNumber value={2.84} decimals={2} className="gold" />
+                  </article>
+                  <article>
+                    <span>Avg Winner</span>
+                    <CountUpNumber value={162.19} prefix="$" decimals={2} className="positive" />
+                  </article>
+                  <article>
+                    <span>Avg Loser</span>
+                    <CountUpNumber value={71.30} prefix="-$" decimals={2} className="negative" />
+                  </article>
+                  <article>
+                    <span>Largest Winner</span>
+                    <CountUpNumber value={539.91} prefix="$" decimals={2} className="positive" />
+                  </article>
+                  <article>
+                    <span>Largest Loser</span>
+                    <CountUpNumber value={152.24} prefix="-$" decimals={2} className="negative" />
+                  </article>
+                </div>
+                <div className="fuga-countup-grid compact" aria-label="Highlighted animated Fuga journal statistics">
+                  <article>
+                    <span>Gross P&L</span>
+                    <CountUpNumber value={1846.04} prefix="+$" decimals={2} className="positive" />
+                  </article>
+                  <article>
+                    <span>Volume Traded</span>
+                    <CountUpNumber value={12450} className="neutral" />
+                  </article>
+                  <article>
+                    <span>Win Rate</span>
+                    <CountUpNumber value={55.6} suffix="%" decimals={1} className="gold" />
+                  </article>
+                  <article>
+                    <span>Profit Factor</span>
+                    <CountUpNumber value={2.84} decimals={2} className="gold" />
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="fuga-preview" className="section fuga-picture-section">
+        <div className="fuga-picture-copy">
+          <span className="kicker">Product Visuals</span>
+          <h2>Launch-ready areas for real Fuga screenshots.</h2>
+          <p>
+            The page has dedicated visual slots for the dashboard, trade detail view, calendar,
+            analytics, and mobile experience so the launch can swap in real Fuga screenshots cleanly.
+          </p>
+        </div>
+        <div className="fuga-picture-grid">
+          <article className="large">
+            <span>Picture area: trade detail + chart screenshot</span>
+            <strong>Entry, exit, chart, notes, and execution grade in one view.</strong>
+          </article>
+          <article>
+            <span>Picture area: calendar</span>
+            <strong>Spot green days, red days, and process quality.</strong>
+          </article>
+          <article>
+            <span>Picture area: mobile</span>
+            <strong>Quick review from phone or tablet.</strong>
+          </article>
+        </div>
+      </section>
+
+      <section className="section fuga-intro-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Why It Matters</span>
+          <h2>Stop logging trades. Start finding the pattern behind your decisions.</h2>
+          <p>
+            Small-cap traders need more than a profit calendar. You need to know which setups paid,
+            which entries were late, which exits were emotional, and which rules actually protected you.
+          </p>
+        </div>
+        <div className="fuga-feature-grid">
+          {fugaFeatureCards.map((card) => (
+            <article key={card.title}>
+              <div>{card.icon}</div>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section fuga-device-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Access Anywhere</span>
+          <h2>Made for Mac, Windows, and mobile users.</h2>
+          <p>
+            Fuga is being positioned as a cross-platform trading journal Elite members can use from
+            the workstation, laptop, phone, or tablet that already fits their routine.
+          </p>
+        </div>
+        <div className="fuga-device-grid">
+          {fugaDeviceCards.map(([title, body, icon]) => (
+            <article key={title}>
+              <div>{icon}</div>
+              <strong>{title}</strong>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section fuga-workflow-section">
+        <div className="section-heading compact">
+          <span className="kicker">Review Loop</span>
+          <h2>From trade import to tomorrow&apos;s rule.</h2>
+          <p>
+            Fuga connects naturally with the DTSM process: trade, journal, review, discuss, and come
+            back with a cleaner plan.
+          </p>
+        </div>
+        <div className="fuga-workflow-grid">
+          {fugaWorkflow.map(([title, body], index) => (
+            <article key={title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section fuga-elite-section">
+        <div className="fuga-elite-card">
+          <div>
+            <span className="kicker">Included With Elite</span>
+            <h2>Elite members get Fuga for free.</h2>
+            <p>
+              Fuga is meant to become the journal layer for serious DTSM members: a place to bring
+              trades, screenshots, mistakes, and weekly review work into one focused system.
+            </p>
+          </div>
+          <div className="fuga-elite-points">
+            <small><ShieldCheck size={16} /> No added cost for Elite members</small>
+            <small><ClipboardCheck size={16} /> Built around trade review</small>
+            <small><Users size={16} /> Fits weekly Elite accountability</small>
+          </div>
+          <div className="hero-actions">
+            <a
+              className="primary-button"
+              href={checkoutLinks.pro}
+              onClick={() => trackEvent("checkout_click", { plan: "pro", location: "fuga_elite" })}
+            >
+              Start Elite Free Trial <ArrowRight size={18} />
+            </a>
+            <a className="secondary-button" href="/#pricing">
+              See DTSM Plans
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const path = window.location.pathname;
@@ -4895,6 +5256,10 @@ function App() {
 
   if (path === "/start") {
     return <AdLandingPage />;
+  }
+
+  if (path === "/fuga-trading-journal") {
+    return <FugaTradingJournalPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
   }
 
   return <HomePage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;

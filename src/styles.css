@@ -8294,6 +8294,949 @@ p {
   max-width: 660px;
 }
 
+.fuga-hero {
+  grid-template-columns: minmax(0, 0.82fr) minmax(460px, 1.18fr);
+  min-height: 760px;
+  padding-top: 124px;
+  padding-bottom: 54px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(25, 196, 119, 0.2), transparent 26%),
+    radial-gradient(circle at 12% 82%, rgba(15, 138, 77, 0.1), transparent 24%),
+    linear-gradient(135deg, rgba(233, 248, 239, 0.92), transparent 42%),
+    linear-gradient(rgba(0, 122, 59, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 59, 0.035) 1px, transparent 1px),
+    #ffffff;
+  background-size: auto, auto, auto, 42px 42px, 42px 42px, auto;
+}
+
+.fuga-hero-copy {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.fuga-logo-lockup {
+  display: grid;
+  place-items: center;
+  width: 108px;
+  height: 108px;
+  padding: 10px;
+  margin-bottom: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 122, 59, 0.12);
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(22, 34, 29, 0.12);
+}
+
+.fuga-logo-lockup img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.fuga-hero-copy h1 {
+  max-width: 11ch;
+  margin-bottom: 0;
+  font-size: clamp(4rem, 7.2vw, 7rem);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+}
+
+.fuga-hero-copy h1 span {
+  display: block;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.fuga-hero-copy p {
+  max-width: 620px;
+  font-size: clamp(1.02rem, 1.45vw, 1.18rem);
+  line-height: 1.62;
+}
+
+.fuga-hero-proof {
+  display: grid;
+  gap: 5px;
+  max-width: 560px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(0, 122, 59, 0.14);
+  border-radius: 20px;
+  box-shadow: 0 16px 36px rgba(22, 34, 29, 0.07);
+}
+
+.fuga-hero-proof strong {
+  color: #0f1714;
+  font-size: 1rem;
+}
+
+.fuga-hero-proof span {
+  color: var(--muted);
+  line-height: 1.45;
+  font-weight: 750;
+}
+
+.fuga-savings-callout {
+  display: grid;
+  gap: 5px;
+  width: min(560px, 100%);
+  padding: 16px 18px;
+  background:
+    radial-gradient(circle at 86% 16%, rgba(255, 215, 92, 0.18), transparent 28%),
+    linear-gradient(135deg, #ffffff, #fffaf0);
+  border: 1px solid rgba(184, 137, 18, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 16px 36px rgba(184, 137, 18, 0.08);
+}
+
+.fuga-savings-callout span {
+  color: var(--green-dark);
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.fuga-savings-callout strong {
+  color: #101816;
+  font-size: clamp(1.16rem, 1.8vw, 1.48rem);
+  line-height: 1.1;
+}
+
+.fuga-savings-callout s {
+  color: #8a5f08;
+  text-decoration-thickness: 3px;
+  text-decoration-color: #d79d16;
+}
+
+.fuga-savings-callout small {
+  color: var(--muted);
+  line-height: 1.45;
+  font-weight: 800;
+}
+
+.fuga-availability {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.fuga-availability span,
+.fuga-elite-points small {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px;
+  color: #14231b;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 122, 59, 0.14);
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 900;
+  box-shadow: 0 10px 26px rgba(22, 34, 29, 0.06);
+}
+
+.fuga-availability svg,
+.fuga-elite-points svg {
+  color: var(--green);
+  flex: 0 0 auto;
+}
+
+.fuga-dashboard,
+.fuga-feature-grid article,
+.fuga-picture-grid article,
+.fuga-device-grid article,
+.fuga-workflow-grid article,
+.fuga-elite-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 122, 59, 0.12);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.fuga-dashboard {
+  overflow: hidden;
+  align-self: center;
+  transform: translateY(10px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), #f7fbf8);
+}
+
+.fuga-dashboard-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 18px;
+  background: #fbfdfc;
+  border-bottom: 1px solid var(--line);
+}
+
+.fuga-dashboard-topbar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff6b6b;
+}
+
+.fuga-dashboard-topbar span:nth-child(2) {
+  background: #f8c55b;
+}
+
+.fuga-dashboard-topbar span:nth-child(3) {
+  background: #19c477;
+}
+
+.fuga-dashboard-topbar strong {
+  margin-left: 10px;
+  color: #15231c;
+  font-size: 0.92rem;
+}
+
+.fuga-dashboard-body {
+  display: grid;
+  gap: 16px;
+  padding: clamp(18px, 3vw, 26px);
+  background:
+    radial-gradient(circle at 88% 8%, rgba(25, 196, 119, 0.1), transparent 24%),
+    linear-gradient(180deg, #ffffff, #f7fbf8);
+}
+
+.fuga-real-preview {
+  display: grid;
+  gap: 14px;
+}
+
+.fuga-real-graph,
+.fuga-real-stats {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 16px 38px rgba(22, 34, 29, 0.07);
+}
+
+.fuga-real-graph {
+  padding: 12px;
+}
+
+.fuga-real-stats {
+  padding: 12px;
+}
+
+.fuga-chart-panel,
+.fuga-native-stat-grid {
+  background: #121720;
+  border: 1px solid #222a36;
+  border-radius: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.fuga-chart-panel {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.fuga-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.fuga-chart-header span,
+.fuga-native-stat-grid span {
+  color: #8994a5;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.fuga-chart-header strong {
+  color: #55e1a2;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fuga-chart-area {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 10px 12px;
+}
+
+.fuga-y-axis {
+  display: grid;
+  align-content: space-between;
+  height: 210px;
+  color: #8994a5;
+  font-size: 0.72rem;
+}
+
+.fuga-line-chart {
+  position: relative;
+  min-height: 210px;
+  border-left: 1px solid rgba(137, 148, 165, 0.18);
+  border-bottom: 1px dashed rgba(137, 148, 165, 0.2);
+}
+
+.fuga-line-chart svg {
+  display: block;
+  width: 100%;
+  height: 210px;
+}
+
+.fuga-area-path {
+  fill: url("#fugaArea");
+}
+
+.fuga-line-path {
+  fill: none;
+  stroke: #55e1a2;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 980;
+  stroke-dashoffset: 980;
+  animation: drawFugaLine 1700ms ease forwards;
+}
+
+.fuga-x-axis {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  color: #8994a5;
+  font-size: 0.72rem;
+}
+
+@keyframes drawFugaLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.fuga-range-tabs {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.fuga-range-tabs span,
+.fuga-range-tabs strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  min-width: 44px;
+  color: #667184;
+  background: #121720;
+  border: 1px solid #222a36;
+  border-radius: 9px;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.fuga-range-tabs strong {
+  color: #11161d;
+  background: #e1b744;
+  border-color: #e1b744;
+}
+
+.fuga-native-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+}
+
+.fuga-native-stat-grid article {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  min-height: 82px;
+  padding: 14px;
+  background: #171c25;
+  border: 1px solid #252d3a;
+  border-radius: 12px;
+}
+
+.fuga-native-stat-grid strong {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: clamp(0.94rem, 1.22vw, 1.16rem);
+  line-height: 1.08;
+  text-overflow: clip;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.fuga-native-stat-grid strong.positive {
+  color: #55e1a2;
+}
+
+.fuga-native-stat-grid strong.negative {
+  color: #ff7373;
+}
+
+.fuga-native-stat-grid strong.gold {
+  color: #e1b744;
+}
+
+.fuga-native-stat-grid strong.neutral {
+  color: #ffffff;
+}
+
+.fuga-live-badge {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  display: grid;
+  gap: 4px;
+  min-width: 176px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(0, 122, 59, 0.14);
+  border-radius: 18px;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(14px);
+  animation: metricPop 760ms ease both;
+}
+
+.fuga-live-badge span,
+.fuga-countup-grid span {
+  color: #64736c;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.fuga-live-badge strong,
+.fuga-countup-grid strong {
+  display: block;
+  color: #122019;
+  font-size: clamp(1.2rem, 2vw, 1.72rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.fuga-live-badge strong.positive,
+.fuga-countup-grid strong.positive {
+  color: #0b9f5b;
+}
+
+.fuga-countup-grid strong.gold {
+  color: #b88912;
+}
+
+.fuga-countup-grid strong.neutral {
+  color: #101816;
+}
+
+.fuga-countup-grid {
+  position: absolute;
+  inset: auto 24px 24px 24px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.fuga-countup-grid.compact {
+  display: none;
+}
+
+.fuga-countup-grid article {
+  display: grid;
+  gap: 6px;
+  min-height: 86px;
+  padding: 13px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 122, 59, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(14px);
+  animation: metricPop 760ms ease both;
+}
+
+.fuga-countup-grid article:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.fuga-countup-grid article:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.fuga-countup-grid article:nth-child(4) {
+  animation-delay: 240ms;
+}
+
+@keyframes metricPop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fuga-dashboard-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background: #f8fbf9;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.fuga-dashboard-heading small,
+.fuga-dashboard-heading strong,
+.fuga-dashboard-heading span {
+  display: block;
+}
+
+.fuga-dashboard-heading small {
+  color: var(--green-dark);
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.fuga-dashboard-heading strong {
+  margin-top: 4px;
+  color: #101816;
+  font-size: 1.08rem;
+  line-height: 1.15;
+}
+
+.fuga-dashboard-heading span {
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 8px 11px;
+  color: #ffffff;
+  background: var(--green);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 950;
+}
+
+.fuga-stat-row,
+.fuga-review-list,
+.fuga-feature-grid,
+.fuga-device-grid,
+.fuga-workflow-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.fuga-stat-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fuga-stat-row article,
+.fuga-review-list article {
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.fuga-stat-row small,
+.fuga-review-list small,
+.fuga-picture-grid span,
+.fuga-workflow-grid span {
+  color: var(--green-dark);
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.fuga-stat-row strong,
+.fuga-stat-row span,
+.fuga-review-list strong {
+  display: block;
+}
+
+.fuga-stat-row strong {
+  margin-top: 8px;
+  color: #0f1714;
+  font-size: clamp(1.24rem, 2vw, 1.7rem);
+  line-height: 1.08;
+}
+
+.fuga-stat-row span {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.fuga-chart-placeholder {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-content: end;
+  min-height: 300px;
+  padding: 20px;
+  background:
+    linear-gradient(rgba(0, 122, 59, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 59, 0.06) 1px, transparent 1px),
+    linear-gradient(145deg, #07120d, #0d5b31 58%, #0b7d3f);
+  background-size: 34px 34px, 34px 34px, auto;
+  border-radius: 22px;
+  box-shadow: inset 0 0 0 1px rgba(120, 240, 170, 0.14);
+}
+
+.fuga-chart-placeholder > span {
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  padding: 8px 12px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.fuga-candles {
+  position: absolute;
+  inset: 20px;
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  opacity: 0.9;
+}
+
+.fuga-candles i {
+  width: 100%;
+  height: var(--bar-height);
+  min-height: 44px;
+  background: linear-gradient(180deg, #78f0aa, rgba(120, 240, 170, 0.2));
+  border-radius: 999px 999px 8px 8px;
+  box-shadow: 0 12px 28px rgba(25, 196, 119, 0.14);
+}
+
+.fuga-chart-overlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  display: grid;
+  gap: 4px;
+  width: min(240px, calc(100% - 40px));
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
+}
+
+.fuga-chart-overlay strong {
+  color: #07120d;
+  font-size: 0.96rem;
+}
+
+.fuga-chart-overlay span {
+  color: #385046;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.fuga-review-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fuga-review-list strong {
+  margin-top: 7px;
+  color: #121c17;
+  line-height: 1.25;
+}
+
+.fuga-intro-section,
+.fuga-workflow-section {
+  background: #ffffff;
+}
+
+.fuga-feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.fuga-feature-grid article,
+.fuga-device-grid article,
+.fuga-workflow-grid article {
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.fuga-feature-grid article:hover,
+.fuga-device-grid article:hover,
+.fuga-workflow-grid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 122, 59, 0.22);
+  box-shadow: 0 22px 54px rgba(0, 122, 59, 0.11);
+}
+
+.fuga-feature-grid article div,
+.fuga-device-grid article div {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--green-dark);
+  background: var(--green-soft);
+  border: 1px solid #cfeedd;
+  border-radius: 16px;
+}
+
+.fuga-feature-grid h3,
+.fuga-device-grid strong,
+.fuga-workflow-grid h3 {
+  margin: 0;
+  color: #0f1b15;
+}
+
+.fuga-feature-grid p,
+.fuga-device-grid p,
+.fuga-workflow-grid p,
+.fuga-comparison-copy p,
+.fuga-comparison-card p,
+.fuga-picture-copy p,
+.fuga-elite-card p {
+  margin: 0;
+}
+
+.fuga-comparison-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(420px, 1.22fr);
+  gap: clamp(24px, 5vw, 58px);
+  align-items: center;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(25, 196, 119, 0.1), transparent 30%),
+    linear-gradient(180deg, #f7fbf8, #eef5f1);
+}
+
+.fuga-comparison-copy h2 {
+  max-width: 15ch;
+  font-size: clamp(1.95rem, 3.2vw, 3rem);
+}
+
+.fuga-comparison-card {
+  display: grid;
+  gap: 14px;
+}
+
+.fuga-comparison-card article {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 160px;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow-soft);
+}
+
+.fuga-comparison-card article.featured {
+  background:
+    radial-gradient(circle at 86% 16%, rgba(120, 240, 170, 0.2), transparent 30%),
+    linear-gradient(145deg, #07120d, #0d5b31 58%, #0b7d3f);
+  border-color: rgba(120, 240, 170, 0.2);
+}
+
+.fuga-comparison-card span {
+  color: var(--green-dark);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.fuga-comparison-card strong {
+  color: #101816;
+  line-height: 1.25;
+}
+
+.fuga-comparison-card p {
+  color: var(--muted);
+  line-height: 1.45;
+  font-weight: 800;
+}
+
+.fuga-comparison-card article.featured span,
+.fuga-comparison-card article.featured strong,
+.fuga-comparison-card article.featured p {
+  color: #ffffff;
+}
+
+.fuga-comparison-card article.featured p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.fuga-picture-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(420px, 1.22fr);
+  gap: clamp(24px, 5vw, 58px);
+  align-items: center;
+  background: linear-gradient(180deg, #f7fbf8, #eef5f1);
+}
+
+.fuga-picture-copy h2 {
+  max-width: 13ch;
+  font-size: clamp(1.95rem, 3.2vw, 3rem);
+}
+
+.fuga-picture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.fuga-picture-grid article {
+  display: grid;
+  align-content: end;
+  min-height: 230px;
+  padding: 22px;
+  overflow: hidden;
+  position: relative;
+  background:
+    linear-gradient(rgba(0, 122, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, #ffffff, #f8fbf9);
+  background-size: 28px 28px, 28px 28px, auto;
+}
+
+.fuga-picture-grid article::before {
+  content: "";
+  position: absolute;
+  inset: 18px 18px auto auto;
+  width: 86px;
+  height: 56px;
+  background:
+    linear-gradient(90deg, rgba(25, 196, 119, 0.24), rgba(25, 196, 119, 0.02)),
+    #ffffff;
+  border: 1px solid rgba(0, 122, 59, 0.12);
+  border-radius: 14px;
+}
+
+.fuga-picture-grid article.large {
+  grid-row: span 2;
+  min-height: 476px;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(25, 196, 119, 0.16), transparent 28%),
+    linear-gradient(rgba(0, 122, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, #ffffff, #eff8f3);
+  background-size: auto, 30px 30px, 30px 30px, auto;
+}
+
+.fuga-picture-grid article.large::before {
+  width: 58%;
+  height: 42%;
+  border-radius: 20px;
+  background:
+    linear-gradient(rgba(0, 122, 59, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 59, 0.06) 1px, transparent 1px),
+    #ffffff;
+  background-size: 18px 18px, 18px 18px, auto;
+}
+
+.fuga-picture-grid strong {
+  position: relative;
+  display: block;
+  max-width: 21ch;
+  margin-top: 10px;
+  color: #0f1714;
+  font-size: 1.14rem;
+  line-height: 1.2;
+}
+
+.fuga-picture-grid span {
+  position: relative;
+}
+
+.fuga-device-section {
+  background: #ffffff;
+}
+
+.fuga-device-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.fuga-workflow-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(420px, 1.28fr);
+  gap: clamp(24px, 5vw, 58px);
+  align-items: start;
+}
+
+.fuga-workflow-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fuga-elite-section {
+  background: linear-gradient(180deg, #f7fbf8, #eef5f1);
+}
+
+.fuga-elite-card {
+  display: grid;
+  gap: 18px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 44px);
+  background:
+    radial-gradient(circle at 84% 10%, rgba(120, 240, 170, 0.22), transparent 30%),
+    linear-gradient(145deg, #07120d, #0d5b31 58%, #0b7d3f);
+  border: 1px solid rgba(120, 240, 170, 0.18);
+  box-shadow: 0 28px 78px rgba(0, 74, 36, 0.22);
+}
+
+.fuga-elite-card .kicker,
+.fuga-elite-card h2 {
+  color: #ffffff;
+}
+
+.fuga-elite-card p {
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.fuga-elite-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fuga-elite-points small {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.fuga-elite-points svg {
+  color: #78f0aa;
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -8635,6 +9578,10 @@ footer p {
   .hero,
   .page-hero,
   .ad-hero,
+  .fuga-hero,
+  .fuga-picture-section,
+  .fuga-comparison-section,
+  .fuga-workflow-section,
   .inside-story,
   .pain-section,
   .join-flow-section,
@@ -8676,12 +9623,16 @@ footer p {
   .product-module-grid,
   .product-highlight-grid,
   .pricing-proof-shell,
-  .pricing-proof-main {
+  .pricing-proof-main,
+  .fuga-feature-grid,
+  .fuga-device-grid,
+  .fuga-comparison-card article {
     grid-template-columns: 1fr;
   }
 
   .ad-open-grid,
-  .ad-week-grid {
+  .ad-week-grid,
+  .fuga-workflow-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -8966,6 +9917,91 @@ footer p {
   .inside-flow,
   .affiliate-form-layout {
     grid-template-columns: 1fr;
+  }
+
+  .fuga-stat-row,
+  .fuga-review-list,
+  .fuga-picture-grid,
+  .fuga-workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fuga-picture-grid article.large {
+    grid-row: auto;
+    min-height: 260px;
+  }
+
+  .fuga-hero {
+    min-height: auto;
+    padding-top: 104px;
+    padding-bottom: 42px;
+  }
+
+  .fuga-hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(2.95rem, 13vw, 4.1rem);
+  }
+
+  .fuga-hero-copy h1 span {
+    white-space: normal;
+  }
+
+  .fuga-native-stat-grid strong {
+    font-size: clamp(0.9rem, 4.5vw, 1.08rem);
+  }
+
+  .fuga-dashboard {
+    transform: none;
+  }
+
+  .fuga-dashboard-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fuga-live-badge {
+    position: static;
+    margin-top: 10px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .fuga-native-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fuga-countup-grid {
+    display: none;
+  }
+
+  .fuga-chart-panel {
+    padding: 14px;
+  }
+
+  .fuga-chart-area {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .fuga-y-axis,
+  .fuga-line-chart,
+  .fuga-line-chart svg {
+    height: 160px;
+    min-height: 160px;
+  }
+
+  .fuga-x-axis span:nth-child(even) {
+    display: none;
+  }
+
+  .fuga-chart-placeholder {
+    min-height: 240px;
+  }
+
+  .fuga-chart-overlay {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin-bottom: 56px;
   }
 
   .resource-hero-stats {
