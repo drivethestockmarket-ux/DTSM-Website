@@ -167,6 +167,10 @@ const pageMeta = {
   "/fuga-trading-journal": {
     title: "Fuga Trading Journal | Free With DTSM Elite",
     description: "Preview the Fuga Trading Journal, a cross-platform trade review tool built for small-cap momentum traders and included free with DTSM Elite membership."
+  },
+  "/fuga-trading-journal/signup": {
+    title: "Fuga Trading Journal Early Access | DTSM",
+    description: "Join the Fuga Trading Journal early access list and preview the small-cap momentum trading journal built for DTSM Elite members."
   }
 };
 
@@ -5241,6 +5245,78 @@ function FugaTradingJournalPage({ menuOpen, setMenuOpen }) {
   );
 }
 
+function FugaSignupPage({ menuOpen, setMenuOpen }) {
+  const continueToSignup = () => {
+    trackEvent("fuga_early_access_submit", { status: "circle_invitation_redirect" });
+  };
+
+  return (
+    <main>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      <section className="page-hero fuga-signup-hero">
+        <div className="fuga-signup-copy">
+          <div className="fuga-logo-lockup">
+            <img src="/assets/fuga/fuga-logo-transparent.png" alt="Fuga Trading Journal logo" />
+          </div>
+          <span className="kicker">Early Access</span>
+          <h1>Get on the Fuga Trading Journal list.</h1>
+          <p>
+            Be first in line for the trading journal built around small-cap momentum review,
+            execution stats, trade notes, and the DTSM Elite workflow.
+          </p>
+          <div className="fuga-signup-proof">
+            <article>
+              <strong>$0 with Elite</strong>
+              <span>Built to replace a separate trading journal subscription.</span>
+            </article>
+            <article>
+              <strong>Small-cap focused</strong>
+              <span>Track the setups, trades, and mistakes momentum traders actually review.</span>
+            </article>
+          </div>
+        </div>
+
+        <div className="fuga-signup-form">
+          <span className="kicker">Join The List</span>
+          <h2>Early access signup</h2>
+          <p>
+            Continue into the free DTSM invitation signup form to get on the early-access path.
+          </p>
+          <a className="primary-button" href={signupLink} onClick={continueToSignup}>
+            Continue To Free Signup <ArrowRight size={18} />
+          </a>
+          <small>
+            Fuga is planned as a free trading software perk for DTSM Elite members.
+          </small>
+        </div>
+      </section>
+
+      <section className="section fuga-signup-detail">
+        <div className="section-heading centered compact">
+          <span className="kicker">Why Sign Up</span>
+          <h2>Built for traders who need better review, not more clutter.</h2>
+        </div>
+        <div className="fuga-feature-grid">
+          {[
+            ["Track momentum setups", "Review the exact setups you trade most, from high-of-day pushes to failed breakouts.", <TrendingUp />],
+            ["Spot repeat mistakes", "See late entries, oversized losses, weak exits, and emotional trades faster.", <ClipboardCheck />],
+            ["Review across devices", "Use the workflow from Mac, Windows, tablet, or mobile when Fuga launches.", <Laptop />]
+          ].map(([title, body, icon]) => (
+            <article key={title}>
+              <div>{icon}</div>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const path = window.location.pathname;
@@ -5442,6 +5518,10 @@ function App() {
 
   if (path === "/start") {
     return <AdLandingPage />;
+  }
+
+  if (path === "/fuga-trading-journal/signup") {
+    return <FugaSignupPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
   }
 
   if (path === "/fuga-trading-journal") {
