@@ -1669,6 +1669,7 @@ const plans = [
     cta: "Upgrade Access",
     features: [
       "Everything in Live Access",
+      "Fuga Trading Journal included free",
       "Elite weekly meetings",
       "Trade review submissions",
       "Strategy worksheets",
@@ -3383,6 +3384,19 @@ function HomePage({ menuOpen, setMenuOpen }) {
                 <span>/mo</span>
               </div>
               <p className="plan-best-for">{plan.bestFor}</p>
+              {plan.id === "pro" ? (
+                <a
+                  className="pricing-fuga-perk"
+                  href="/fuga-trading-journal"
+                  onClick={() => trackEvent("fuga_pricing_click", { location: "elite_price_card" })}
+                >
+                  <img src="/assets/fuga/fuga-logo-transparent.png" alt="Fuga Trading Journal logo" />
+                  <span>
+                    <small>Elite bonus</small>
+                    <strong>Free access to an advanced journal platform</strong>
+                  </span>
+                </a>
+              ) : null}
               <div className="features-label">Included</div>
               <ul>
                 {plan.features.map((feature) => (
@@ -5128,24 +5142,33 @@ function FugaTradingJournalPage({ menuOpen, setMenuOpen }) {
       <section id="fuga-preview" className="section fuga-picture-section">
         <div className="fuga-picture-copy">
           <span className="kicker">Product Visuals</span>
-          <h2>Launch-ready areas for real Fuga screenshots.</h2>
+          <h2>See the journal from trade review to performance tracking.</h2>
           <p>
-            The page has dedicated visual slots for the dashboard, trade detail view, calendar,
-            analytics, and mobile experience so the launch can swap in real Fuga screenshots cleanly.
+            Fuga brings the core review views into one clean workflow: calendar performance,
+            chart-based trade notes, and quick progress checks across every screen.
           </p>
         </div>
         <div className="fuga-picture-grid">
           <article className="large">
-            <span>Picture area: trade detail + chart screenshot</span>
-            <strong>Entry, exit, chart, notes, and execution grade in one view.</strong>
+            <img src="/assets/fuga/spot-green-days.png" alt="Fuga Trading Journal performance calendar showing green and red trading days" />
+            <div>
+              <span>Performance Calendar</span>
+              <strong>Spot green days, red days, streaks, fees, and weekly consistency at a glance.</strong>
+            </div>
           </article>
           <article>
-            <span>Picture area: calendar</span>
-            <strong>Spot green days, red days, and process quality.</strong>
+            <img src="/assets/fuga/entry-exit-chart.png" alt="Fuga Trading Journal chart review with candlesticks, levels, and indicators" />
+            <div>
+              <span>Chart-Based Review</span>
+              <strong>Attach the trade chart, study entry and exit quality, and connect the result to the setup.</strong>
+            </div>
           </article>
           <article>
-            <span>Picture area: mobile</span>
-            <strong>Quick review from phone or tablet.</strong>
+            <img src="/assets/fuga/quick-review-phone.png" alt="Fuga Trading Journal equity curve progress chart" />
+            <div>
+              <span>Progress Snapshot</span>
+              <strong>Check the equity curve, momentum, and consistency from laptop, tablet, or phone.</strong>
+            </div>
           </article>
         </div>
       </section>

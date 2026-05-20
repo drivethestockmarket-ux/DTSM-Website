@@ -7969,6 +7969,61 @@ p {
   line-height: 1.5;
 }
 
+.pricing-fuga-perk {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  margin: -6px 0 20px;
+  color: #101816;
+  text-decoration: none;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(255, 215, 92, 0.22), transparent 28%),
+    linear-gradient(135deg, #fffef9, #fff5d8);
+  border: 1px solid rgba(184, 137, 18, 0.24);
+  border-radius: 18px;
+  box-shadow: 0 16px 38px rgba(184, 137, 18, 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.pricing-fuga-perk:hover {
+  transform: translateY(-2px);
+  border-color: rgba(184, 137, 18, 0.38);
+  box-shadow: 0 20px 48px rgba(184, 137, 18, 0.16);
+}
+
+.pricing-fuga-perk img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  padding: 6px;
+  background: #101816;
+  border: 1px solid rgba(184, 137, 18, 0.28);
+  border-radius: 16px;
+}
+
+.pricing-fuga-perk span,
+.pricing-fuga-perk small,
+.pricing-fuga-perk strong {
+  display: block;
+}
+
+.pricing-fuga-perk small {
+  color: #8a5f08;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pricing-fuga-perk strong {
+  margin-top: 3px;
+  color: #101816;
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
 .features-label {
   margin-bottom: 12px;
   color: var(--green-dark);
@@ -8343,7 +8398,7 @@ p {
   margin-bottom: 0;
   font-size: clamp(4rem, 7.2vw, 7rem);
   line-height: 0.86;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 .fuga-hero-copy h1 span {
@@ -8462,6 +8517,8 @@ p {
 .fuga-dashboard {
   overflow: hidden;
   align-self: center;
+  justify-self: center;
+  width: min(100%, 920px);
   transform: translateY(10px);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.98), #f7fbf8);
@@ -8660,8 +8717,8 @@ p {
   display: grid;
   gap: 8px;
   min-width: 0;
-  min-height: 82px;
-  padding: 14px;
+  min-height: 86px;
+  padding: 14px 12px;
   background: #171c25;
   border: 1px solid #252d3a;
   border-radius: 12px;
@@ -8670,7 +8727,7 @@ p {
 .fuga-native-stat-grid strong {
   max-width: 100%;
   overflow: hidden;
-  font-size: clamp(0.94rem, 1.22vw, 1.16rem);
+  font-size: clamp(0.9rem, 1.12vw, 1.12rem);
   line-height: 1.08;
   text-overflow: clip;
   white-space: nowrap;
@@ -9099,7 +9156,7 @@ p {
 }
 
 .fuga-picture-copy h2 {
-  max-width: 13ch;
+  max-width: 15ch;
   font-size: clamp(1.95rem, 3.2vw, 3rem);
 }
 
@@ -9111,61 +9168,64 @@ p {
 
 .fuga-picture-grid article {
   display: grid;
-  align-content: end;
-  min-height: 230px;
-  padding: 22px;
+  grid-template-rows: minmax(180px, 1fr) auto;
+  gap: 16px;
+  min-height: 260px;
+  padding: 14px;
   overflow: hidden;
   position: relative;
-  background:
-    linear-gradient(rgba(0, 122, 59, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 122, 59, 0.045) 1px, transparent 1px),
-    linear-gradient(180deg, #ffffff, #f8fbf9);
-  background-size: 28px 28px, 28px 28px, auto;
+  background: linear-gradient(180deg, #ffffff, #f8fbf9);
 }
 
 .fuga-picture-grid article::before {
-  content: "";
-  position: absolute;
-  inset: 18px 18px auto auto;
-  width: 86px;
-  height: 56px;
-  background:
-    linear-gradient(90deg, rgba(25, 196, 119, 0.24), rgba(25, 196, 119, 0.02)),
-    #ffffff;
-  border: 1px solid rgba(0, 122, 59, 0.12);
-  border-radius: 14px;
+  display: none;
 }
 
 .fuga-picture-grid article.large {
-  grid-row: span 2;
-  min-height: 476px;
-  background:
-    radial-gradient(circle at 80% 12%, rgba(25, 196, 119, 0.16), transparent 28%),
-    linear-gradient(rgba(0, 122, 59, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 122, 59, 0.045) 1px, transparent 1px),
-    linear-gradient(180deg, #ffffff, #eff8f3);
-  background-size: auto, 30px 30px, 30px 30px, auto;
+  grid-column: 1 / -1;
+  grid-template-rows: minmax(240px, auto) auto;
+  min-height: 0;
+  background: linear-gradient(180deg, #ffffff, #eff8f3);
 }
 
 .fuga-picture-grid article.large::before {
-  width: 58%;
-  height: 42%;
-  border-radius: 20px;
-  background:
-    linear-gradient(rgba(0, 122, 59, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 122, 59, 0.06) 1px, transparent 1px),
-    #ffffff;
-  background-size: 18px 18px, 18px 18px, auto;
+  display: none;
+}
+
+.fuga-picture-grid img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  object-fit: cover;
+  object-position: center;
+  background: #121720;
+  border: 1px solid rgba(15, 24, 32, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 18px 44px rgba(15, 24, 32, 0.14);
+}
+
+.fuga-picture-grid article.large img {
+  min-height: 260px;
+  aspect-ratio: 1517 / 650;
+}
+
+.fuga-picture-grid article > div {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 4px 4px 6px;
 }
 
 .fuga-picture-grid strong {
   position: relative;
   display: block;
-  max-width: 21ch;
-  margin-top: 10px;
+  max-width: 44ch;
+  margin-top: 0;
   color: #0f1714;
-  font-size: 1.14rem;
-  line-height: 1.2;
+  font-size: clamp(1rem, 1.4vw, 1.14rem);
+  line-height: 1.25;
 }
 
 .fuga-picture-grid span {
@@ -9180,6 +9240,83 @@ p {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   max-width: 1180px;
   margin: 0 auto;
+}
+
+@media (max-width: 1180px) and (min-width: 941px) {
+  .site-header {
+    gap: 12px;
+    padding-inline: 24px;
+  }
+
+  .nav {
+    gap: 2px;
+    padding: 5px;
+  }
+
+  .nav a {
+    padding: 8px 10px;
+    font-size: 0.88rem;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-actions .header-login {
+    display: none;
+  }
+
+  .header-cta {
+    min-height: 46px;
+    padding: 0 16px;
+    white-space: nowrap;
+  }
+
+  .brand strong {
+    font-size: 1.12rem;
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 1121px) {
+  .fuga-hero {
+    grid-template-columns: minmax(0, 0.82fr) minmax(560px, 1fr);
+    gap: 24px;
+    padding-inline: clamp(44px, 5vw, 70px);
+  }
+
+  .fuga-hero-copy h1 {
+    max-width: 10.5ch;
+    font-size: clamp(4.3rem, 5.5vw, 5.45rem);
+  }
+
+  .fuga-hero-copy p {
+    max-width: 520px;
+    font-size: 1.02rem;
+  }
+
+  .fuga-savings-callout {
+    width: min(520px, 100%);
+  }
+
+  .fuga-dashboard {
+    width: min(100%, 720px);
+  }
+
+  .fuga-dashboard-body {
+    padding: 20px;
+  }
+
+  .fuga-native-stat-grid {
+    gap: 10px;
+  }
+
+  .fuga-native-stat-grid article {
+    padding: 12px 10px;
+  }
+
+  .fuga-native-stat-grid strong {
+    font-size: clamp(0.86rem, 1vw, 1rem);
+  }
 }
 
 .fuga-workflow-section {
@@ -10076,7 +10213,7 @@ footer p {
   .fuga-hero {
     min-height: auto;
     padding-top: 104px;
-    padding-bottom: 42px;
+    padding-bottom: 112px;
   }
 
   .fuga-signup-hero {
@@ -10114,6 +10251,17 @@ footer p {
 
   .fuga-dashboard {
     transform: none;
+    border-radius: 22px;
+  }
+
+  .fuga-dashboard-topbar {
+    min-height: 48px;
+    padding-inline: 14px;
+  }
+
+  .fuga-dashboard-body {
+    gap: 12px;
+    padding: 12px;
   }
 
   .fuga-dashboard-heading {
@@ -10129,6 +10277,17 @@ footer p {
 
   .fuga-native-stat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .fuga-native-stat-grid article {
+    min-height: 74px;
+    padding: 12px 10px;
+  }
+
+  .fuga-native-stat-grid span {
+    font-size: 0.66rem;
   }
 
   .fuga-countup-grid {
@@ -10137,6 +10296,7 @@ footer p {
 
   .fuga-chart-panel {
     padding: 14px;
+    border-radius: 14px;
   }
 
   .fuga-chart-area {
@@ -10153,6 +10313,17 @@ footer p {
 
   .fuga-x-axis span:nth-child(even) {
     display: none;
+  }
+
+  .fuga-range-tabs {
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .fuga-range-tabs span,
+  .fuga-range-tabs strong {
+    min-width: 0;
+    flex: 1;
   }
 
   .fuga-chart-placeholder {
@@ -10314,6 +10485,14 @@ footer p {
 @media (max-width: 640px) {
   body {
     padding-bottom: calc(98px + env(safe-area-inset-bottom));
+  }
+
+  .fuga-hero {
+    padding-bottom: 220px;
+  }
+
+  .fuga-availability {
+    display: none;
   }
 
   .section {
