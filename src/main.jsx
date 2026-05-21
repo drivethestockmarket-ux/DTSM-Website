@@ -1305,7 +1305,6 @@ const transformationCards = [
 
 const planGuides = [
   ["Best place to start", "Live Access", "The full daily room with chat, recordings, Level 2 study, and the clearest picture of DTSM."],
-  ["Start with full access", "7 days free", "Elite opens the full environment for 7 days before renewing at $99.99/month unless cancelled."],
   ["No lock-in", "Cancel anytime", "All plans are monthly, and trial plans can be cancelled before the next billing date."]
 ];
 
@@ -1634,7 +1633,14 @@ const plans = [
     bestFor: "For getting inside, learning the language, and building a trading routine.",
     outcome: "Community foundation",
     cta: "Get Started",
-    features: ["Community access", "The Tape", "Morning watchlist", "Beginner resources", "Limited recordings"]
+    features: [
+      "Community access",
+      "The Tape",
+      "Morning watchlist",
+      "Beginner resources",
+      "Limited recordings",
+      "Likes, comments, and community threads"
+    ]
   },
   {
     id: "live",
@@ -1648,7 +1654,7 @@ const plans = [
     popular: true,
     features: [
       "Everything in Starter",
-      "Live Trading Room",
+      "Ultra-low latency broadcast",
       "24/7 live chatroom",
       "Full recording archive",
       "Live session recordings",
@@ -1693,6 +1699,7 @@ const comparisonRows = [
   ["Level 2 + Time & Sales recordings", false, true, true],
   ["Level 2 + Time & Sales breakdowns", false, true, true],
   ["Weekly recaps", false, true, true],
+  ["Fuga Trading Journal", false, false, true, "fuga"],
   ["Elite weekly meetings", false, false, true],
   ["Trade review submissions", false, false, true],
   ["Strategy worksheets", false, false, true]
@@ -3356,18 +3363,21 @@ function HomePage({ menuOpen, setMenuOpen }) {
           </p>
         </div>
         <div className="pricing-launch-banner">
-          <span>Founders launch pricing</span>
-          <strong>Early members get the lowest pricing DTSM plans to offer.</strong>
-          <p>Join during the founders launch window and lock in early-member pricing while the community is still in its first growth phase.</p>
-        </div>
-        <div className="plan-guide">
-          {planGuides.map(([label, title, body], index) => (
-            <article className={index === 1 ? "featured" : ""} key={title}>
-              <span>{label}</span>
-              <strong>{title}</strong>
-              <p>{body}</p>
-            </article>
-          ))}
+          <div>
+            <span>Founders launch pricing</span>
+            <strong>67% off for the Founders Sale.</strong>
+            <p>Lock in the lowest pricing DTSM plans to offer while the community is still in its first growth phase.</p>
+          </div>
+          <a
+            className="pricing-launch-cta"
+            href={checkoutLinks.pro}
+            onClick={() => trackEvent("checkout_click", { plan: "pro", location: "pricing_launch_banner" })}
+          >
+            <span>Start with full access</span>
+            <strong>7 Days Free</strong>
+            <em>Elite opens the full environment before renewing at $99.99/month unless cancelled.</em>
+            <b>Start Free <ArrowRight size={18} /></b>
+          </a>
         </div>
         <div className="pricing-grid">
           {plans.map((plan) => (
@@ -3413,6 +3423,15 @@ function HomePage({ menuOpen, setMenuOpen }) {
             </article>
           ))}
         </div>
+        <div className="plan-guide">
+          {planGuides.map(([label, title, body]) => (
+            <article key={title}>
+              <span>{label}</span>
+              <strong>{title}</strong>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
         <div className="pricing-footer-note">
           <Check size={18} />
           <span>No financial advice. Educational content only. Trading involves risk. No guaranteed results.</span>
@@ -3432,9 +3451,23 @@ function HomePage({ menuOpen, setMenuOpen }) {
               <b>Live Access</b>
               <b>Elite</b>
             </div>
-            {comparisonRows.map(([feature, starter, live, pro]) => (
-              <div className="comparison-row" key={feature}>
-                <span>{feature}</span>
+            {comparisonRows.map(([feature, starter, live, pro, variant]) => (
+              <div className={variant === "fuga" ? "comparison-row fuga-journal-row" : "comparison-row"} key={feature}>
+                <span>
+                  {variant === "fuga" ? (
+                    <a
+                      className="comparison-feature-link"
+                      href="/fuga-trading-journal"
+                      onClick={() => trackEvent("fuga_comparison_click", { location: "pricing_comparison" })}
+                    >
+                      <img src="/assets/fuga/fuga-logo-transparent.png" alt="" aria-hidden="true" />
+                      <span>{feature}</span>
+                      <ArrowRight size={16} />
+                    </a>
+                  ) : (
+                    feature
+                  )}
+                </span>
                 {[starter, live, pro].map((included, index) => (
                   <b className={included ? "included" : "not-included"} key={`${feature}-${index}`}>
                     {included ? <Check size={18} /> : "—"}
@@ -3442,6 +3475,64 @@ function HomePage({ menuOpen, setMenuOpen }) {
                 ))}
               </div>
             ))}
+          </div>
+          <div id="faq" className="comparison-faq-block">
+            <div className="section-heading centered compact">
+              <span className="kicker">FAQ</span>
+              <h2>Questions before you join.</h2>
+              <p>
+                Quick answers on access, recordings, cancellation, and what DTSM is built to be.
+              </p>
+            </div>
+            <div className="faq-intro-strip">
+              <div className="faq-intro-pill">
+                <Check size={16} />
+                <span>Real community, not passive content</span>
+              </div>
+              <div className="faq-intro-pill">
+                <Check size={16} />
+                <span>Cancel anytime</span>
+              </div>
+              <div className="faq-intro-pill">
+                <Check size={16} />
+                <span>Live room + recordings + review</span>
+              </div>
+              <div className="faq-intro-pill">
+                <Check size={16} />
+                <span>No financial advice or guarantees</span>
+              </div>
+            </div>
+            <div className="faq-layout">
+              <div className="faq-list">
+                {faqs.map((item, index) => (
+                  <button
+                    className={openFaq === index ? "faq-item active" : "faq-item"}
+                    key={item.q}
+                    onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
+                  >
+                    <span>
+                      <strong>{item.q}</strong>
+                      {openFaq === index && <em>{item.a}</em>}
+                    </span>
+                    <ChevronDown />
+                  </button>
+                ))}
+              </div>
+              <aside className="faq-side-card">
+                <span>Still deciding?</span>
+                <strong>Start with the plan that matches how involved you want to be.</strong>
+                <p>
+                  Starter gets you inside. Live Access is the full daily experience. Elite adds weekly
+                  accountability, deeper feedback, and Fuga access.
+                </p>
+                <a className="primary-button" href="#pricing" onClick={(event) => scrollToSection(event, "pricing")}>
+                  View Membership Plans <ArrowRight size={18} />
+                </a>
+                <a className="secondary-button" href={supportEmail ? `mailto:${supportEmail}` : "#"}>
+                  Email Support <ArrowRight size={18} />
+                </a>
+              </aside>
+            </div>
           </div>
         </div>
       </section>
@@ -3491,66 +3582,6 @@ function HomePage({ menuOpen, setMenuOpen }) {
             <p>Use the ChartsWatcher scanner and DTSM workflow to turn movement into a cleaner plan.</p>
             <b>Open Scanner <ArrowRight size={16} /></b>
           </a>
-        </div>
-      </section>
-
-      <section id="faq" className="section faq-section">
-        <div className="section-heading centered compact">
-          <span className="kicker">FAQ</span>
-          <h2>Everything people usually want to know before joining.</h2>
-          <p>
-            The goal is simple: make it obvious what DTSM is, who it helps, and what happens when
-            you join.
-          </p>
-        </div>
-        <div className="faq-intro-strip">
-          <div className="faq-intro-pill">
-            <Check size={16} />
-            <span>Real community, not passive content</span>
-          </div>
-          <div className="faq-intro-pill">
-            <Check size={16} />
-            <span>Cancel anytime</span>
-          </div>
-          <div className="faq-intro-pill">
-            <Check size={16} />
-            <span>Live room + recordings + review</span>
-          </div>
-          <div className="faq-intro-pill">
-            <Check size={16} />
-            <span>No financial advice or guarantees</span>
-          </div>
-        </div>
-        <div className="faq-layout">
-          <div className="faq-list">
-            {faqs.map((item, index) => (
-              <button
-                className={openFaq === index ? "faq-item active" : "faq-item"}
-                key={item.q}
-                onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
-              >
-                <span>
-                  <strong>{item.q}</strong>
-                  {openFaq === index && <em>{item.a}</em>}
-                </span>
-                <ChevronDown />
-              </button>
-            ))}
-          </div>
-          <aside className="faq-side-card">
-            <span>Still deciding?</span>
-            <strong>Start with the plan that matches how involved you want to be.</strong>
-            <p>
-              Starter gets you inside. Live Access is the full daily experience. Elite adds weekly
-              accountability and deeper feedback.
-            </p>
-            <a className="primary-button" href="#pricing" onClick={(event) => scrollToSection(event, "pricing")}>
-              View Membership Plans <ArrowRight size={18} />
-            </a>
-            <a className="secondary-button" href={supportEmail ? `mailto:${supportEmail}` : "#"}>
-              Email Support <ArrowRight size={18} />
-            </a>
-          </aside>
         </div>
       </section>
 
@@ -5456,11 +5487,13 @@ function App() {
   }, [meta, path]);
 
   useEffect(() => {
-    if (path !== "/" || !window.location.hash) return undefined;
+    if (!window.location.hash) return undefined;
 
     const id = window.location.hash.slice(1);
     const frame = window.requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "auto", block: "start" });
+      window.requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
     });
 
     return () => window.cancelAnimationFrame(frame);

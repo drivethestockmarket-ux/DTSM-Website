@@ -3419,6 +3419,10 @@ p {
     linear-gradient(180deg, #f7fbf8, #eef5f1);
 }
 
+.comparison-section {
+  padding-top: clamp(34px, 4vw, 58px);
+}
+
 .founder-section {
   display: grid;
   grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1fr);
@@ -7652,12 +7656,17 @@ p {
 .pricing-launch-banner {
   position: relative;
   z-index: 1;
-  max-width: 860px;
-  padding: 24px 26px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+  align-items: center;
+  gap: 22px;
+  max-width: 1220px;
+  padding: 22px;
   margin: -8px auto 28px;
-  text-align: center;
+  text-align: left;
   background:
-    radial-gradient(circle at 50% 0%, rgba(25, 196, 119, 0.14), transparent 42%),
+    radial-gradient(circle at 88% 8%, rgba(25, 196, 119, 0.2), transparent 32%),
+    radial-gradient(circle at 12% 0%, rgba(255, 215, 92, 0.16), transparent 30%),
     rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 122, 59, 0.14);
   border-radius: 26px;
@@ -7679,15 +7688,74 @@ p {
 .pricing-launch-banner strong {
   margin-top: 10px;
   color: #101816;
-  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  font-size: clamp(1.45rem, 2.7vw, 2.05rem);
   line-height: 1.15;
 }
 
 .pricing-launch-banner p {
-  max-width: 640px;
-  margin: 10px auto 0;
+  max-width: 680px;
+  margin: 10px 0 0;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.pricing-launch-cta {
+  display: block;
+  padding: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(120, 240, 170, 0.24), transparent 32%),
+    linear-gradient(145deg, #07120d, #0d5b31 58%, #0a6f39);
+  border: 1px solid rgba(120, 240, 170, 0.22);
+  border-radius: 22px;
+  box-shadow: 0 20px 52px rgba(0, 74, 36, 0.18);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.pricing-launch-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 62px rgba(0, 74, 36, 0.22);
+}
+
+.pricing-launch-cta span,
+.pricing-launch-cta strong,
+.pricing-launch-cta em,
+.pricing-launch-cta b {
+  display: block;
+}
+
+.pricing-launch-cta span {
+  color: #78f0aa;
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pricing-launch-cta strong {
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.pricing-launch-cta em {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.45;
+}
+
+.pricing-launch-cta b {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: #101816;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 10px 13px;
+  font-size: 0.9rem;
 }
 
 
@@ -7695,10 +7763,10 @@ p {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
-  max-width: 1220px;
-  margin: 0 auto 24px;
+  max-width: 820px;
+  margin: 24px auto 0;
 }
 
 .plan-guide article {
@@ -8182,6 +8250,54 @@ p {
   padding: 16px;
 }
 
+.comparison-row > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comparison-row > span img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  padding: 4px;
+  background: #101816;
+  border: 1px solid rgba(184, 137, 18, 0.28);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(184, 137, 18, 0.14);
+}
+
+.comparison-feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #6f4c05;
+  text-decoration: none;
+  font-weight: 950;
+}
+
+.comparison-feature-link span {
+  text-decoration: underline;
+  text-decoration-color: rgba(184, 137, 18, 0.45);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.comparison-feature-link svg {
+  color: #8a5f08;
+  transition: transform 180ms ease;
+}
+
+.comparison-feature-link:hover span {
+  color: #3b2a08;
+  text-decoration-color: #b88912;
+}
+
+.comparison-feature-link:hover svg {
+  transform: translateX(3px);
+}
+
 .table-head {
   color: #0f1714;
   background: #f7faf8;
@@ -8201,6 +8317,67 @@ p {
 
 .not-included {
   color: #b9c3be;
+}
+
+.comparison-faq-block {
+  margin-top: clamp(34px, 5vw, 58px);
+  padding: clamp(26px, 4vw, 42px);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(25, 196, 119, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(247, 251, 248, 0.96));
+  border: 1px solid rgba(0, 122, 59, 0.12);
+  border-radius: 28px;
+  box-shadow: 0 22px 56px rgba(22, 34, 29, 0.07);
+}
+
+.comparison-faq-block .section-heading {
+  margin-bottom: 18px;
+}
+
+.comparison-faq-block .section-heading h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.comparison-faq-block .faq-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+}
+
+.comparison-faq-block .faq-item {
+  padding: 20px;
+  box-shadow: 0 10px 22px rgba(22, 34, 29, 0.04);
+}
+
+.fuga-journal-row {
+  background:
+    radial-gradient(circle at 92% 50%, rgba(255, 215, 92, 0.24), transparent 24%),
+    linear-gradient(90deg, #fffdf6, #fff5d7);
+  border-top-color: rgba(184, 137, 18, 0.18);
+}
+
+.fuga-journal-row > span {
+  color: #3b2a08;
+  font-weight: 950;
+}
+
+.fuga-journal-row b {
+  border-left-color: rgba(184, 137, 18, 0.2);
+}
+
+.fuga-journal-row b.included {
+  color: #7a5608;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 215, 92, 0.32), transparent 48%),
+    linear-gradient(180deg, rgba(255, 250, 225, 0.88), rgba(255, 239, 179, 0.7));
+}
+
+.fuga-journal-row b.included svg {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  color: #101816;
+  background: linear-gradient(135deg, #ffde6b, #b88912);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(184, 137, 18, 0.24);
 }
 
 .steps-grid {
@@ -9937,6 +10114,10 @@ footer p {
     grid-template-columns: 1fr;
   }
 
+  .pricing-launch-banner {
+    grid-template-columns: 1fr;
+  }
+
   .home-offer-grid-simple {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -10497,6 +10678,10 @@ footer p {
 
   .section {
     padding: 58px 18px;
+  }
+
+  .comparison-section {
+    padding-top: 30px;
   }
 
   .home-prehero {

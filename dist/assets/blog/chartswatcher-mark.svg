@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 50 245 190" role="img" aria-labelledby="title">
+  <title id="title">ChartsWatcher mark</title>
+  <rect x="64.95" y="66.01" width="175.9" height="127.97" rx="2" fill="none" stroke="#ffffff" stroke-width="10"/>
+  <rect x="68.58" y="93.6" width="168.65" height="9.5" fill="#ffffff"/>
+  <path fill="#58a6ff" d="m89.65 167.95-5.36-4.88 21.47-23.56 15.27 16.89 31.88-34.91 22 24.15 22.36-24.64 5.37 4.88-27.72 30.54-22.02-24.17-31.9 34.94-15.26-16.89z"/>
+  <rect x="79.27" y="79.81" width="12" height="7.57" rx="3.78" fill="#ffffff"/>
+  <rect x="95.38" y="79.81" width="12" height="7.57" rx="3.78" fill="#ffffff"/>
+  <rect x="111.36" y="79.81" width="12" height="7.57" rx="3.78" fill="#ffffff"/>
+  <path fill="#58a6ff" d="m222.95 216.57 14.96-18.19 16.93 23.97 13.1-9.39-16.72-24.17 21.91-8.31-65.93-39.82z"/>
+</svg>
