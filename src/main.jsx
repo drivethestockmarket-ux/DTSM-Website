@@ -188,11 +188,12 @@ function getPageMeta(path) {
 
 const navItems = [
   { label: "Home", href: "/" },
+  { label: "Journal", href: "/fuga-trading-journal" },
   { label: "Scanner", href: "/scanner" },
+  { label: "Pricing", id: "pricing" },
   { label: "Resources", href: "/resources" },
   { label: "Blog", href: "/blog" },
   { label: "Affiliates", href: "/affiliates" },
-  { label: "Pricing", id: "pricing" },
   { label: "About", href: "/about" }
 ];
 
@@ -1861,21 +1862,18 @@ function Header({ menuOpen, setMenuOpen }) {
       onClick: () => trackEvent("mobile_path_click", { target: "home" })
     },
     {
-      label: "Inside",
-      href: "/#preview",
-      icon: <Radio size={17} />,
-      active: currentPath === "/" && window.location.hash === "#preview",
-      onClick: (event) => {
-        trackEvent("mobile_path_click", { target: "preview" });
-        goToHomeSection(event, "preview", isHome);
-      }
+      label: "Journal",
+      href: "/fuga-trading-journal",
+      icon: <ClipboardCheck size={17} />,
+      active: currentPath === "/fuga-trading-journal",
+      onClick: () => trackEvent("mobile_path_click", { target: "journal" })
     },
     {
-      label: "Education",
-      href: "/resources",
-      icon: <Library size={17} />,
-      active: currentPath === "/resources",
-      onClick: () => trackEvent("mobile_path_click", { target: "resources" })
+      label: "Scanner",
+      href: "/scanner",
+      icon: <LineChart size={17} />,
+      active: currentPath === "/scanner",
+      onClick: () => trackEvent("mobile_path_click", { target: "scanner" })
     },
     {
       label: "Plans",
@@ -1922,6 +1920,15 @@ function Header({ menuOpen, setMenuOpen }) {
                 }}
               >
                 Join Now For 7 Days Free
+              </a>
+              <a
+                href="/fuga-trading-journal"
+                onClick={() => {
+                  setMenuOpen(false);
+                  trackEvent("fuga_nav_click", { location: "mobile_menu_shortcut" });
+                }}
+              >
+                Journal
               </a>
               <a
                 href="/#preview"
