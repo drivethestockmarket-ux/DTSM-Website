@@ -5296,6 +5296,96 @@ p {
   margin-bottom: 20px;
 }
 
+.brand-seo-hero {
+  background:
+    radial-gradient(circle at 84% 10%, rgba(25, 196, 119, 0.16), transparent 30%),
+    linear-gradient(135deg, rgba(233, 248, 239, 0.84), transparent 42%),
+    #ffffff;
+}
+
+.brand-seo-card {
+  overflow: hidden;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(255, 215, 92, 0.18), transparent 28%),
+    linear-gradient(180deg, #ffffff, #f7fbf8);
+  border: 1px solid rgba(0, 122, 59, 0.12);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.brand-seo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.brand-seo-card span,
+.brand-seo-card strong {
+  display: block;
+}
+
+.brand-seo-card span {
+  margin-top: 18px;
+  color: var(--green-dark);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.brand-seo-card strong {
+  margin-top: 8px;
+  color: #101816;
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.brand-seo-card p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.brand-seo-section {
+  background:
+    linear-gradient(180deg, #f7fbf8, #ffffff);
+}
+
+.brand-seo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.brand-seo-grid article {
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 16px 38px rgba(22, 34, 29, 0.06);
+}
+
+.brand-seo-grid svg {
+  color: var(--green);
+}
+
+.brand-seo-grid span {
+  display: block;
+  margin-top: 24px;
+  color: #101816;
+  font-weight: 950;
+}
+
+.brand-seo-grid p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
 .resource-hero-copy {
   display: grid;
   gap: 18px;
@@ -10079,6 +10169,7 @@ footer p {
   .product-highlight-grid,
   .pricing-proof-shell,
   .pricing-proof-main,
+  .brand-seo-grid,
   .fuga-feature-grid,
   .fuga-device-grid,
   .fuga-comparison-card article {

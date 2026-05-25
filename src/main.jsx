@@ -109,8 +109,9 @@ function initAnalytics() {
 
 const pageMeta = {
   "/": {
-    title: "DTSM | Live Trading Community for Better Execution",
-    description: "Join DTSM to watch live trading sessions, study Level 2 and Time & Sales, review trades, and build a more consistent small-cap trading process."
+    title: "DTSM | Drive the Stock Market by Brendan Hogan",
+    description: "DTSM, also known as Drive the Stock Market, is Brendan Hogan's live trading community for small-cap momentum traders who want live sessions, Level 2 study, recordings, trade review, and better execution.",
+    keywords: "DTSM, Drive the Stock Market, Brendan Hogan, JoinDTSM, Brendan Hogan trading, Drive The Stock Market community, live trading community, small-cap momentum trading, day trading education"
   },
   "/scanner": {
     title: "Free Trading Scanner | DTSM x ChartsWatcher",
@@ -137,8 +138,19 @@ const pageMeta = {
     description: "Explore the DTSM recordings archive, Level 2 replays, trade reviews, and weekly meetings built for post-market study."
   },
   "/about": {
-    title: "About DTSM | Trading Community Built Around Execution",
-    description: "Learn what DTSM stands for, how the community works, and why traders join for accountability, consistency, live market context, and real review."
+    title: "About DTSM | Drive the Stock Market by Brendan Hogan",
+    description: "Learn about DTSM, Drive the Stock Market, and founder Brendan Hogan. See how the trading community works and why traders join for accountability, consistency, live market context, and review.",
+    keywords: "DTSM, Drive the Stock Market, Brendan Hogan, about DTSM, Brendan Hogan trader, Drive the Stock Market founder"
+  },
+  "/drive-the-stock-market": {
+    title: "Drive the Stock Market | DTSM Trading Community",
+    description: "Drive the Stock Market, also known as DTSM, is Brendan Hogan's live trading community for small-cap momentum traders focused on live sessions, review, and better execution.",
+    keywords: "Drive the Stock Market, DTSM, Brendan Hogan, Drive the Stock Market trading, JoinDTSM, live trading community"
+  },
+  "/brendan-hogan": {
+    title: "Brendan Hogan | Founder of DTSM and Drive the Stock Market",
+    description: "Brendan Hogan is the founder of DTSM, Drive the Stock Market, a live trading community built around small-cap momentum trading, execution review, recordings, and accountability.",
+    keywords: "Brendan Hogan, Brendan Hogan DTSM, Brendan Hogan Drive the Stock Market, DTSM founder, Drive the Stock Market founder"
   },
   "/affiliates": {
     title: "DTSM Affiliate Program | 30% Recurring Partner Program",
@@ -2250,6 +2262,88 @@ function AboutPage({ menuOpen, setMenuOpen }) {
           <p>Choose your plan, get inside Circle, and put yourself around traders working on the process every week.</p>
         </div>
         <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: "about_final_cta" })}>
+          View Membership Plans <ArrowRight size={19} />
+        </a>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
+function BrandSeoPage({ menuOpen, setMenuOpen, variant }) {
+  const isFounder = variant === "founder";
+  const heroTitle = isFounder
+    ? "Brendan Hogan, founder of DTSM."
+    : "Drive the Stock Market is DTSM.";
+  const intro = isFounder
+    ? "Brendan Hogan created Drive the Stock Market, also known as DTSM, as a live trading community for traders who want structure, accountability, live market context, and a better review process."
+    : "Drive the Stock Market, also known as DTSM, is a live trading community founded by Brendan Hogan for small-cap momentum traders who want live sessions, recordings, Level 2 study, trade review, and accountability.";
+  const cards = isFounder
+    ? [
+        ["Founder", "Brendan Hogan founded DTSM to give traders a cleaner place to learn from live market examples and review decisions."],
+        ["Brand", "DTSM stands for Drive the Stock Market and is built around live trading education, community, and repetition."],
+        ["Focus", "The community focuses on small-cap momentum trading, Level 2, Time & Sales, recordings, watchlists, and execution review."]
+      ]
+    : [
+        ["Also known as", "Drive the Stock Market is the full brand name behind DTSM and JoinDTSM.com."],
+        ["Founded by", "Brendan Hogan is the founder and public face connected to the DTSM trading community."],
+        ["Built for", "DTSM is built for traders who want live context, recordings, review, accountability, and a real routine."]
+      ];
+
+  return (
+    <main>
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      <section className="page-hero brand-seo-hero">
+        <div>
+          <span className="kicker">{isFounder ? "Founder" : "Brand"}</span>
+          <h1>{heroTitle}</h1>
+          <p>{intro}</p>
+          <div className="hero-actions">
+            <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: isFounder ? "brendan_hogan_hero" : "drive_the_stock_market_hero" })}>
+              View Membership Plans <ArrowRight size={19} />
+            </a>
+            <a className="secondary-button" href="/about">
+              Learn About DTSM <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+        <div className="brand-seo-card">
+          <img src="/assets/founder-photo.png" alt="Brendan Hogan, founder of Drive the Stock Market and DTSM" />
+          <span>Drive the Stock Market</span>
+          <strong>DTSM by Brendan Hogan</strong>
+          <p>Live trading education, community discussion, recordings, scanner workflow, and trade review built for small-cap momentum traders.</p>
+        </div>
+      </section>
+
+      <section className="section brand-seo-section">
+        <div className="section-heading centered compact">
+          <span className="kicker">Entity Signals</span>
+          <h2>{isFounder ? "Who Brendan Hogan is connected to." : "What Drive the Stock Market means."}</h2>
+          <p>
+            This page connects the names people search for: DTSM, Drive the Stock Market,
+            Brendan Hogan, and JoinDTSM.
+          </p>
+        </div>
+        <div className="brand-seo-grid">
+          {cards.map(([title, body]) => (
+            <article key={title}>
+              <Check size={18} />
+              <span>{title}</span>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="final-cta">
+        <div>
+          <span className="kicker">JoinDTSM.com</span>
+          <h2>Step into the full DTSM environment.</h2>
+          <p>Choose a plan, get inside Circle, and connect the brand search to the actual community.</p>
+        </div>
+        <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: isFounder ? "brendan_hogan_final" : "drive_the_stock_market_final" })}>
           View Membership Plans <ArrowRight size={19} />
         </a>
       </section>
@@ -5407,9 +5501,11 @@ function App() {
     };
 
     ensureMeta('meta[name="description"]', "content", meta.description);
-    ensureMeta('meta[name="keywords"]', "content", meta.keywords || "DTSM, trading community, live trading, small-cap trading");
+    ensureMeta('meta[name="keywords"]', "content", meta.keywords || "DTSM, Drive the Stock Market, Brendan Hogan, JoinDTSM, trading community, live trading, small-cap trading");
+    ensureMeta('meta[name="author"]', "content", "Brendan Hogan, Drive the Stock Market");
     ensureMeta('meta[property="og:title"]', "content", meta.title);
     ensureMeta('meta[property="og:description"]', "content", meta.description);
+    ensureMeta('meta[property="og:site_name"]', "content", "DTSM | Drive the Stock Market");
     ensureMeta('meta[property="og:type"]', "content", post ? "article" : "website");
     ensureMeta('meta[property="og:url"]', "content", canonicalUrl);
     ensureMeta('meta[property="og:image"]', "content", shareImage);
@@ -5440,8 +5536,131 @@ function App() {
     }
     canonical.setAttribute("href", canonicalUrl);
 
-    const oldSchema = document.head.querySelector("#dtsm-schema");
-    if (oldSchema) oldSchema.remove();
+    document.head.querySelectorAll('script[data-dtsm-schema="true"]').forEach((schema) => schema.remove());
+
+    const baseSchema = document.createElement("script");
+    baseSchema.id = "dtsm-brand-schema";
+    baseSchema.dataset.dtsmSchema = "true";
+    baseSchema.type = "application/ld+json";
+    baseSchema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.joindtsm.com/#organization",
+          name: "Drive the Stock Market",
+          alternateName: ["DTSM", "JoinDTSM"],
+          url: "https://www.joindtsm.com/",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://www.joindtsm.com/assets/dtsm-orb-logo.png"
+          },
+          founder: {
+            "@id": "https://www.joindtsm.com/#brendan-hogan"
+          },
+          sameAs: [
+            youtubeLink
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.joindtsm.com/#brendan-hogan",
+          name: "Brendan Hogan",
+          url: "https://www.joindtsm.com/about",
+          image: "https://www.joindtsm.com/assets/founder-photo.png",
+          jobTitle: "Founder of Drive the Stock Market",
+          affiliation: {
+            "@id": "https://www.joindtsm.com/#organization"
+          },
+          sameAs: [
+            youtubeLink
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.joindtsm.com/#website",
+          name: "DTSM",
+          alternateName: "Drive the Stock Market",
+          url: "https://www.joindtsm.com/",
+          publisher: {
+            "@id": "https://www.joindtsm.com/#organization"
+          },
+          about: {
+            "@id": "https://www.joindtsm.com/#organization"
+          },
+          creator: {
+            "@id": "https://www.joindtsm.com/#brendan-hogan"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${canonicalUrl}#webpage`,
+          url: canonicalUrl,
+          name: meta.title,
+          description: meta.description,
+          isPartOf: {
+            "@id": "https://www.joindtsm.com/#website"
+          },
+          about: [
+            {
+              "@id": "https://www.joindtsm.com/#organization"
+            },
+            {
+              "@id": "https://www.joindtsm.com/#brendan-hogan"
+            }
+          ]
+        }
+      ]
+    });
+    document.head.appendChild(baseSchema);
+
+    const breadcrumbSchema = document.createElement("script");
+    breadcrumbSchema.id = "dtsm-breadcrumb-schema";
+    breadcrumbSchema.dataset.dtsmSchema = "true";
+    breadcrumbSchema.type = "application/ld+json";
+    breadcrumbSchema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "DTSM",
+          item: "https://www.joindtsm.com/"
+        },
+        ...(path === "/"
+          ? []
+          : [
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: meta.title.replace(" | DTSM", "").replace(" | Drive the Stock Market by Brendan Hogan", ""),
+                item: canonicalUrl
+              }
+            ])
+      ]
+    });
+    document.head.appendChild(breadcrumbSchema);
+
+    if (path === "/") {
+      const faqSchema = document.createElement("script");
+      faqSchema.id = "dtsm-faq-schema";
+      faqSchema.dataset.dtsmSchema = "true";
+      faqSchema.type = "application/ld+json";
+      faqSchema.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a
+          }
+        }))
+      });
+      document.head.appendChild(faqSchema);
+    }
 
     if (post) {
       const videoSchema = post.videoId
@@ -5458,7 +5677,8 @@ function App() {
           }
         : {};
       const schema = document.createElement("script");
-      schema.id = "dtsm-schema";
+      schema.id = "dtsm-article-schema";
+      schema.dataset.dtsmSchema = "true";
       schema.type = "application/ld+json";
       schema.textContent = JSON.stringify({
         "@context": "https://schema.org",
@@ -5470,16 +5690,10 @@ function App() {
         inLanguage: "en-US",
         isAccessibleForFree: true,
         author: {
-          "@type": "Person",
-          name: post.author?.name || "Brendan Hogan"
+          "@id": "https://www.joindtsm.com/#brendan-hogan"
         },
         publisher: {
-          "@type": "Organization",
-          name: "Drive the Stock Market",
-          logo: {
-            "@type": "ImageObject",
-            url: "https://www.joindtsm.com/assets/dtsm-orb-logo.png"
-          }
+          "@id": "https://www.joindtsm.com/#organization"
         },
         mainEntityOfPage: canonicalUrl,
         datePublished: post.publishedAtIso || post.publishedAt || post.date,
@@ -5524,6 +5738,14 @@ function App() {
 
   if (path === "/about") {
     return <AboutPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
+  }
+
+  if (path === "/drive-the-stock-market") {
+    return <BrandSeoPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} variant="brand" />;
+  }
+
+  if (path === "/brendan-hogan") {
+    return <BrandSeoPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} variant="founder" />;
   }
 
   if (path === "/scanner") {
