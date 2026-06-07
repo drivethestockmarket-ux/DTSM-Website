@@ -982,7 +982,7 @@ const painPoints = [
 
 const proofStrip = [
   {
-    title: "400+ hours of live market data recordings",
+    title: "500+ hours of live market data recordings",
     body: "Unlock a deep vault of live market recordings, Level 2 replays, and Time & Sales study sessions you can revisit anytime.",
     tag: "Special bonus",
     icon: <Layers3 />,
@@ -1218,7 +1218,7 @@ const productDetailPages = {
     intro: "The Study Library gives members a deeper reason to stay around DTSM after the market closes. Recordings, replays, reviews, and weekly meetings make the environment useful long after the opening push is over.",
     icon: <Layers3 />,
     stats: [
-      ["Library depth", "400+ hours of live market data recordings"],
+      ["Library depth", "500+ hours of live market data recordings"],
       ["Access", "Full library in Live Access + Elite"],
       ["Best for", "Review, replay, and pattern recognition"]
     ],
@@ -1282,7 +1282,7 @@ const productDetailPages = {
       }
     ],
     proof: [
-      "400+ hours of recordings",
+      "500+ hours of recordings",
       "Best for review and pattern recognition",
       "Built to turn screen time into study time"
     ],
@@ -1820,6 +1820,7 @@ function scrollToSection(event, id) {
   event?.preventDefault();
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   window.history.pushState(null, "", `#${id}`);
+  window.dispatchEvent(new Event("hashchange"));
 }
 
 function goToHomeSection(event, id, isHome) {
@@ -1864,13 +1865,59 @@ function CountUpNumber({ value, prefix = "", suffix = "", decimals = 0, classNam
 function Header({ menuOpen, setMenuOpen }) {
   const isHome = window.location.pathname === "/";
   const currentPath = window.location.pathname;
+  const [currentHash, setCurrentHash] = useState(window.location.hash);
+
+  useEffect(() => {
+    const updateHash = () => setCurrentHash(window.location.hash);
+    window.addEventListener("hashchange", updateHash);
+    window.addEventListener("popstate", updateHash);
+    return () => {
+      window.removeEventListener("hashchange", updateHash);
+      window.removeEventListener("popstate", updateHash);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [menuOpen, setMenuOpen]);
+
+  useEffect(() => {
+    const desktopMedia = window.matchMedia("(min-width: 1181px)");
+    const closeAtDesktop = (event) => {
+      if (event.matches) setMenuOpen(false);
+    };
+
+    desktopMedia.addEventListener("change", closeAtDesktop);
+    return () => desktopMedia.removeEventListener("change", closeAtDesktop);
+  }, [setMenuOpen]);
+
+  const isNavItemActive = (item) => {
+    if (item.id) return isHome && currentHash === `#${item.id}`;
+    if (item.href === "/") return isHome && !currentHash;
+    if (item.href === "/blog") return currentPath.startsWith("/blog");
+    if (item.href === "/fuga-trading-journal") return currentPath.startsWith("/fuga-trading-journal");
+    return currentPath === item.href;
+  };
 
   const mobilePathItems = [
     {
       label: "Home",
       href: "/",
       icon: <House size={17} />,
-      active: currentPath === "/",
+      active: currentPath === "/" && !currentHash,
       onClick: () => trackEvent("mobile_path_click", { target: "home" })
     },
     {
@@ -1894,6 +1941,7 @@ function Header({ menuOpen, setMenuOpen }) {
       active: currentPath === "/" && window.location.hash === "#pricing",
       onClick: (event) => {
         trackEvent("mobile_path_click", { target: "pricing" });
+        setCurrentHash("#pricing");
         goToHomeSection(event, "pricing", isHome);
       }
     }
@@ -1906,22 +1954,10 @@ function Header({ menuOpen, setMenuOpen }) {
           <img className="brand-orb" src="/assets/dtsm-orb-logo.png" alt="" />
           <strong>DTSM</strong>
         </a>
-        <nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
-          <div className="mobile-nav-top-actions">
-            <a
-              className="header-login"
-              href={loginLink}
-              onClick={() => {
-                setMenuOpen(false);
-                trackEvent("login_click", { location: "mobile_nav_top" });
-              }}
-            >
-              Member Log In
-            </a>
-          </div>
+        <nav id="main-navigation" className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
           <div className="mobile-nav-intro">
-            <small>Best place to start</small>
-            <strong>See inside DTSM, then choose your plan.</strong>
+            <small>Explore DTSM</small>
+            <strong>Journal, scanners, education, and membership access.</strong>
             <div className="mobile-nav-shortcuts">
               <a
                 className="mobile-nav-join"
@@ -1965,13 +2001,17 @@ function Header({ menuOpen, setMenuOpen }) {
           </div>
           {navItems.map((item) => {
             const href = item.href || `/#${item.id}`;
+            const active = isNavItemActive(item);
             return (
               <a
                 key={item.label}
+                className={active ? "active" : ""}
                 href={href}
+                aria-current={active ? "page" : undefined}
                 onClick={(event) => {
                   setMenuOpen(false);
                   if (item.id) {
+                    setCurrentHash(`#${item.id}`);
                     goToHomeSection(event, item.id, isHome);
                   }
                 }}
@@ -1980,18 +2020,6 @@ function Header({ menuOpen, setMenuOpen }) {
               </a>
             );
           })}
-        <div className="mobile-nav-actions">
-          <a
-            className="header-login"
-            href={loginLink}
-            onClick={() => {
-                setMenuOpen(false);
-                trackEvent("login_click", { location: "mobile_nav" });
-              }}
-            >
-              Log In
-            </a>
-          </div>
         </nav>
         <div className="header-actions">
           <a className="header-login" href={loginLink} onClick={() => trackEvent("login_click", { location: "header" })}>
@@ -2009,6 +2037,13 @@ function Header({ menuOpen, setMenuOpen }) {
           </a>
         </div>
         <a
+          className="mobile-header-login"
+          href={loginLink}
+          onClick={() => trackEvent("login_click", { location: "mobile_header" })}
+        >
+          Log In
+        </a>
+        <a
           className="mobile-header-cta"
           href="/#pricing"
           onClick={(event) => {
@@ -2018,11 +2053,24 @@ function Header({ menuOpen, setMenuOpen }) {
         >
           View Plans <ArrowRight size={17} />
         </a>
-        <button className="icon-button" aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
+        <button
+          className="icon-button"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           {menuOpen ? <X /> : <Menu />}
         </button>
       </header>
-      <div className="mobile-pathbar" aria-label="Quick mobile navigation">
+      {menuOpen ? (
+        <button
+          className="nav-backdrop"
+          aria-label="Close navigation"
+          onClick={() => setMenuOpen(false)}
+        />
+      ) : null}
+      <div className={menuOpen ? "mobile-pathbar menu-open" : "mobile-pathbar"} aria-label="Quick mobile navigation">
         {mobilePathItems.map((item) => (
           <a
             key={item.label}
@@ -3342,7 +3390,7 @@ function HomePage({ menuOpen, setMenuOpen }) {
             <div className="home-prehero-proof" aria-label="DTSM proof points">
               <div>
                 <PlayCircle size={18} />
-                <span>400+ hours of live recordings</span>
+                <span>500+ hours of live recordings</span>
               </div>
               <div>
                 <CalendarDays size={18} />
@@ -3969,7 +4017,7 @@ function ResourcesPage({ menuOpen, setMenuOpen }) {
           <h2>Ready for the full DTSM environment?</h2>
           <p>
             Free resources can teach the basics. DTSM adds the live room, 24/7 chat, trade
-            reviews, 400+ hours of live market data recordings, and weekly accountability that help you keep improving after the lesson ends.
+            reviews, 500+ hours of live market data recordings, and weekly accountability that help you keep improving after the lesson ends.
           </p>
         </div>
         <a className="primary-button" href="/#pricing" onClick={() => trackEvent("pricing_click", { location: "resources_final_cta" })}>Unlock The Full Environment <ArrowRight size={19} /></a>
@@ -4873,7 +4921,7 @@ function AdLandingPage() {
   const quickWins = [
     "Live trading room every weekday from 6:45 AM - 9:45 AM ET",
     "The Tape feed, 24/7 chat, and trader discussion in one place",
-    "400+ hours of recordings, Level 2 replays, and weekly review"
+    "500+ hours of recordings, Level 2 replays, and weekly review"
   ];
 
   const openingStack = [
